@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="it" data-mode="dark" data-accent="warm">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>NeuroSuite — Area privata</title>
+<meta name="robots" content="noindex,nofollow" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+.private-wrap{min-height:100dvh;display:grid;place-items:center;padding:100px var(--gutter) 60px;background:radial-gradient(circle at 70% 20%,var(--accent-glow),transparent 32%),var(--bg)}
+.private-card{width:min(760px,100%);border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--panel-2));border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:clamp(28px,5vw,56px)}
+.private-card h1{font-size:clamp(42px,7vw,82px)}
+.private-card p{color:var(--fg-2);font-size:var(--fs-md);margin-top:18px;max-width:60ch}
+.private-form{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}.private-form input{flex:1;min-width:220px;background:var(--panel-2);border:1px solid var(--line-2);border-radius:999px;color:var(--fg);padding:14px 18px}.private-form button{border:1px solid var(--fg);background:var(--fg);color:var(--bg);border-radius:999px;padding:14px 22px}.private-links{display:none;margin-top:32px;gap:12px;grid-template-columns:repeat(3,1fr)}.private-links a{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--panel-2)}.private-links strong{display:block}.private-links span{color:var(--fg-2);font-size:var(--fs-sm)}.private-error{display:none;color:#ffb4a7;margin-top:14px;font-size:var(--fs-sm)}@media(max-width:720px){.private-links{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="nav"><a class="nav__brand" href="index.html"><span class="mark">●</span><span>NeuroSuite</span></a><a class="nav__cta" href="index.html">Home →</a></header>
+<main class="private-wrap">
+  <section class="private-card">
+    <span class="eyebrow">Area riservata soft</span>
+    <h1>Materiale interno.</h1>
+    <p>Accesso rapido ai materiali pubblicati e alle sezioni riservate. Protezione lato browser: utile per separare i percorsi, non per materiale sensibile.</p>
+    <form class="private-form" id="private-form"><input id="private-password" type="password" autocomplete="current-password" placeholder="Password" /><button type="submit">Entra →</button></form>
+    <div class="private-error" id="private-error">Password non corretta.</div>
+    <div class="private-links" id="private-links">
+      <a href="NeuroSuite_Health.html"><strong>Health</strong><span>presentazione verticale</span></a>
+      <a href="NeuroSuite_Mobility.html"><strong>Mobility</strong><span>presentazione verticale</span></a>
+      <a href="NeuroVision_GDO.html"><strong>GDO</strong><span>presentazione verticale</span></a>
+    </div>
+  </section>
+</main>
+<script>
+(function(){
+ const f=document.getElementById('private-form'), p=document.getElementById('private-password'), e=document.getElementById('private-error'), links=document.getElementById('private-links');
+ function open(){f.style.display='none';e.style.display='none';links.style.display='grid';sessionStorage.setItem('ns_private','ok');}
+ if(sessionStorage.getItem('ns_private')==='ok') open();
+ f.addEventListener('submit',function(ev){ev.preventDefault(); if((p.value||'').trim().toLowerCase()==='privato') open(); else e.style.display='block';});
+})();
+</script>
+</body>
+</html>
