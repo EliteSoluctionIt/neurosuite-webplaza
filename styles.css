@@ -884,3 +884,86 @@ section { position: relative; }
 .panel-copy{color:var(--fg-2);font-size:var(--fs-sm);line-height:1.55;margin:0!important;max-width:none!important}
 .access-panel{display:grid;align-content:start;gap:18px}
 @media(max-width:680px){.hero__meta{grid-template-columns:1fr}.nav__cta{padding:8px 12px}.nav__actions{gap:8px}.eco{grid-template-columns:1fr}.hero__title{font-size:clamp(44px,15vw,72px)}}
+
+/* =========================================================
+   NeuroSuite — gold accent refinements
+   ========================================================= */
+
+/* Fragments: numeri in oro */
+.fragments__cell .num {
+  color: var(--accent);
+}
+
+/* Fragments: label con linea sinistra oro sottile */
+.fragments__cell {
+  border-left: 2px solid transparent;
+  transition: border-color 0.4s var(--ease);
+}
+.fragments__cell:hover {
+  border-left-color: var(--accent-line);
+}
+
+/* Flow steps: numero step in oro */
+.flow__num {
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+/* Status cards: linea sinistra oro al hover */
+.status-card {
+  border-left: 2px solid transparent;
+  transition: border-left-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.status-card:hover {
+  border-left-color: var(--accent-line);
+  transform: translateY(-1px);
+}
+
+/* Section index number in oro */
+.s-head__index span {
+  color: var(--accent);
+}
+
+/* Eco-card name: accent al hover */
+.eco-card:hover .eco-card__name {
+  color: var(--accent);
+  transition: color 0.4s var(--ease);
+}
+
+/* Vision quote em: più luminosa */
+.vision__quote em {
+  background: linear-gradient(135deg, var(--accent) 0%, oklch(0.92 0.04 75) 50%, var(--fg-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Access section: email in oro */
+.access-email {
+  color: var(--accent);
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+}
+
+/* Why section: lede prima lettera in oro */
+.why-lede::first-letter {
+  color: var(--accent);
+  font-size: 1.3em;
+}
+
+/* Gradient line: più visibile */
+.gradient-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, var(--accent-line) 70%, transparent 100%);
+  opacity: 0.6;
+}
+
+/* s-head title em in oro invece di fg-3 */
+.s-head__title em {
+  color: var(--accent);
+  opacity: 0.75;
+}
+[data-mode="light"] .s-head__title em {
+  color: var(--accent-2);
+  opacity: 0.9;
+}
