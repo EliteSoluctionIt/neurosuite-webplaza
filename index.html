@@ -3,49 +3,60 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>NeuroSuite — Ecosistema operativo</title>
-<meta name="description" content="NeuroSuite è un ecosistema di verticali specializzate che trasformano segnali, contesto ed eventi in priorità operative leggibili." />
+<title>NeuroSuite — Ecosistema osservativo</title>
+<meta name="description" content="NeuroSuite è un ecosistema di sistemi specializzati per collegare segnali, contesto e azioni operative in sanità, mobilità, retail e ambienti complessi." />
 <meta name="theme-color" content="#0a0a0c" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
 <header class="nav" role="banner">
-  <a class="nav__brand" href="#top">
-    <span class="mark" aria-hidden="true"><svg viewBox="0 0 22 22" width="22" height="22"><circle cx="11" cy="11" r="9" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="11" cy="11" r="3" fill="currentColor"/><circle cx="11" cy="2"  r="1.4" fill="currentColor"/><circle cx="20" cy="11" r="1.4" fill="currentColor"/><circle cx="11" cy="20" r="1.4" fill="currentColor"/><circle cx="2"  cy="11" r="1.4" fill="currentColor"/></svg></span>
+  <a class="nav__brand" href="#top" aria-label="NeuroSuite home">
+    <span class="mark" aria-hidden="true">
+      <svg viewBox="0 0 22 22" width="22" height="22">
+        <circle cx="11" cy="11" r="9" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="11" cy="11" r="3" fill="currentColor"/>
+        <circle cx="11" cy="2"  r="1.4" fill="currentColor"/>
+        <circle cx="20" cy="11" r="1.4" fill="currentColor"/>
+        <circle cx="11" cy="20" r="1.4" fill="currentColor"/>
+        <circle cx="2"  cy="11" r="1.4" fill="currentColor"/>
+      </svg>
+    </span>
     <span>NeuroSuite</span>
   </a>
   <nav class="nav__links" aria-label="Sezioni">
-    <a href="#perche">Perché</a>
+    <a href="#perche">Origine</a>
     <a href="#ecosistema">Verticali</a>
-    <a href="#funziona">Metodo</a>
+    <a href="#funziona">Sistema</a>
     <a href="#stato">Stato</a>
-    <a href="#accesso">Contatti</a>
+    <a href="#accesso">Accesso</a>
   </nav>
-  <div style="display:flex; align-items:center; gap:14px;">
+  <div class="nav__actions">
     <button id="mode-toggle" class="mode-toggle" aria-label="Cambia modalità chiaro/scuro"></button>
-    <a class="nav__cta" href="/adaptron.html">Adaptron Beta <span aria-hidden="true">→</span></a>
+    <a class="nav__cta" href="privato.html">Area privata <span aria-hidden="true">→</span></a>
   </div>
 </header>
 
 <section id="top" class="hero">
   <canvas id="hero-canvas" class="hero__canvas" aria-hidden="true"></canvas>
   <div class="shell hero__content">
-    <span class="eyebrow reveal">NeuroSuite · piattaforma madre · verticali operative</span>
+    <span class="eyebrow reveal">NeuroSuite · piattaforma madre · verticali specializzate</span>
     <h1 class="hero__title reveal" id="hero-title">Un sistema non nasce <em>da un sensore.</em></h1>
     <p class="hero__sub reveal">
-      NeuroSuite nasce per collegare segnali che oggi restano separati: ambiente, comportamento,
-      movimento, contesto e priorità operative. Non mostra più dati: rende leggibile ciò che conta.
+      NeuroSuite nasce per collegare segnali che oggi restano separati: ambienti, eventi,
+      comportamenti, priorità operative e strumenti già presenti. Non una singola app,
+      ma una base comune da cui sviluppare soluzioni verticali, rapide e su misura.
     </p>
-    <div class="reveal" style="display:flex; gap:12px; flex-wrap:wrap;">
-      <a class="btn btn--primary" href="#ecosistema">Esplora le verticali <span class="arrow"></span></a>
-      <a class="btn" href="/adaptron.html">Apri Adaptron Beta</a>
+    <div class="reveal hero__buttons">
+      <a class="btn btn--primary" href="#ecosistema">Apri le verticali <span class="arrow"></span></a>
+      <a class="btn" href="#perche">Perché nasce</a>
     </div>
   </div>
   <div class="shell hero__meta reveal">
-    <div class="hero__meta-col"><span>Stato</span><strong>Prototipi e verticali online</strong></div>
-    <div class="hero__meta-col"><span>Approccio</span><strong>Supervisione umana centrale</strong></div>
-    <div class="hero__meta-col"><span>Architettura</span><strong>Modulare · privacy-by-design</strong></div>
-    <div class="hero__meta-col"><span>Dominio</span><strong>Health · Mobility · Retail · Adaptive AI</strong></div>
+    <div class="hero__meta-col"><span>Fase</span><strong>Presentazioni live · dominio attivo</strong></div>
+    <div class="hero__meta-col"><span>Metodo</span><strong>Prototipi rapidi · test sul campo</strong></div>
+    <div class="hero__meta-col"><span>Approccio</span><strong>Privacy-by-design · supervisione umana</strong></div>
+    <div class="hero__meta-col"><span>Direzione</span><strong>Trial, POC e partner verticali</strong></div>
   </div>
 </section>
 
@@ -54,54 +65,80 @@
 <section id="perche" class="shell">
   <div class="s-head">
     <div class="s-head__index"><span>01</span> Perché è nato</div>
-    <h2 class="s-head__title">Il problema non è la mancanza di dati. <em>È la loro separazione.</em></h2>
+    <h2 class="s-head__title">Il problema non è raccogliere dati. <em>È collegarli prima che diventino rumore.</em></h2>
   </div>
+
   <div class="why-grid">
     <p class="why-lede reveal">
-      Molti sistemi registrano. Pochi aiutano davvero a capire quando una situazione sta prendendo una direzione importante.
+      NeuroSuite nasce da una constatazione semplice: molti ambienti complessi sono pieni di segnali,
+      ma poveri di lettura operativa.
     </p>
     <div class="why-body reveal">
-      <p>Un reparto, un punto vendita, una stazione o un ambiente di apprendimento producono segnali continui. Spesso però restano distribuiti tra strumenti, persone, report e momenti diversi.</p>
-      <p>NeuroSuite nasce per trasformare questa frammentazione in lettura operativa: non per sostituire chi decide, ma per dare al personale un quadro più chiaro, prima che una situazione diventi critica.</p>
-      <p>La tecnologia proprietaria lavora sotto la superficie. In pubblico conta l'effetto: meno rumore, più contesto, priorità più leggibili.</p>
+      <p>Una camera, un corridoio, uno scaffale, una stazione o una sessione di apprendimento producono tracce continue. Spesso però ogni traccia resta chiusa nel proprio strumento.</p>
+      <p>Quando i sistemi non dialogano, il personale vede l’evento finale ma perde la sequenza che lo ha preceduto: micro-variazioni, ripetizioni, anomalie contestuali, cambiamenti di routine.</p>
+      <p>NeuroSuite non promette diagnosi automatiche né decisioni autonome. Costruisce un livello osservativo che aiuta a trasformare segnali dispersi in priorità leggibili.</p>
     </div>
   </div>
-  <div class="fragments reveal" aria-label="Principi NeuroSuite">
-    <div class="fragments__cell"><span class="label">Segnali</span><span class="num">01</span><span class="desc">input ambientali, comportamentali, operativi e digitali</span></div>
-    <div class="fragments__cell"><span class="label">Contesto</span><span class="num">02</span><span class="desc">zona, momento, intensità, persistenza e scenario</span></div>
-    <div class="fragments__cell"><span class="label">Priorità</span><span class="num">03</span><span class="desc">cosa merita attenzione, perché e con quale urgenza</span></div>
-    <div class="fragments__cell"><span class="label">Azione</span><span class="num">04</span><span class="desc">supporto operativo, mai decisione automatica cieca</span></div>
+
+  <div class="fragments reveal" aria-label="Principi del sistema">
+    <div class="fragments__cell"><span class="label">Segnali</span><span class="num">01</span><span class="desc">video, sensori, dati ambientali, eventi digitali e input operativi</span></div>
+    <div class="fragments__cell"><span class="label">Contesto</span><span class="num">02</span><span class="desc">luogo, orario, area, ruolo, ripetizione, prossimità e intensità</span></div>
+    <div class="fragments__cell"><span class="label">Lettura</span><span class="num">03</span><span class="desc">pattern utili, anomalie, escalation, priorità e rischio operativo</span></div>
+    <div class="fragments__cell"><span class="label">Azione</span><span class="num">04</span><span class="desc">supporto umano, verifica, intervento, documentazione e miglioramento</span></div>
   </div>
 </section>
 
 <section id="ecosistema" class="shell">
   <div class="s-head">
-    <div class="s-head__index"><span>02</span> Verticali</div>
-    <h2 class="s-head__title">Sistemi specializzati. <em>Una struttura comune sotto.</em></h2>
+    <div class="s-head__index"><span>02</span> Ecosistema</div>
+    <h2 class="s-head__title">Verticali autonome. <em>Una montagna sotto, non una cunetta.</em></h2>
   </div>
-  <p class="reveal" style="max-width: 62ch; color: var(--fg-2); font-size: var(--fs-md); margin-bottom: clamp(40px, 5vw, 64px);">
-    Ogni verticale parla il linguaggio del suo settore. Sotto, NeuroSuite mantiene una struttura coerente: segnali, contesto, eventi, priorità e supporto operativo.
+
+  <p class="reveal intro-copy">
+    Ogni verticale deve parlare il linguaggio del proprio settore. Chi lavora in ospedale non deve vedere il retail;
+    chi valuta la GDO non deve passare dalla sanità. Sotto, però, la logica resta coerente: stessa architettura,
+    diversi cappotti su misura.
   </p>
+
   <div class="eco">
     <article class="eco-card reveal" style="--card-accent: oklch(0.78 0.10 160 / 0.40); --card-accent-solid: oklch(0.78 0.10 160);">
       <div class="eco-card__header"><span class="eco-card__index"><span class="eco-card__dot"></span> Verticale · 01</span><span>Health</span></div>
-      <div><h3 class="eco-card__name">NeuroSuite Health</h3><p class="eco-card__manifesto">Supporto osservativo per RSA, ospedali e ambienti assistiti. Aiuta il personale a riconoscere segnali che possono evolvere in eventi critici, senza sostituire il giudizio clinico.</p></div>
-      <div class="eco-card__footer"><span class="powered">Powered by NeuroSuite</span><a class="link" href="/NeuroSuite_Health.html">Presentazione →</a></div>
+      <div>
+        <div class="eco-glyph"><svg viewBox="0 0 240 84" preserveAspectRatio="none"><path d="M0,42 L60,42 L72,20 L86,64 L100,42 L240,42" fill="none" stroke="oklch(0.78 0.10 160)" stroke-width="1.2" opacity="0.75"/></svg></div>
+        <h3 class="eco-card__name">NeuroSuite Health</h3>
+        <p class="eco-card__manifesto">Ambienti assistiti, RSA e ospedali: supporto all’osservazione, alle priorità e alla continuità del lavoro clinico.</p>
+      </div>
+      <div class="eco-card__footer"><span class="powered">Powered by NeuroSuite</span><a class="link" href="NeuroSuite_Health.html">Apri →</a></div>
     </article>
+
     <article class="eco-card reveal" style="--card-accent: oklch(0.78 0.10 240 / 0.40); --card-accent-solid: oklch(0.78 0.10 240);">
       <div class="eco-card__header"><span class="eco-card__index"><span class="eco-card__dot"></span> Verticale · 02</span><span>Mobility</span></div>
-      <div><h3 class="eco-card__name">NeuroSuite Mobility</h3><p class="eco-card__manifesto">Sicurezza operativa per trasporti, stazioni, aeroporti e hub ad alta densità. Analizza flussi, traiettorie, anomalie e contesto per offrire alle centrali operative informazioni più tempestive e leggibili, aiutando il personale a riconoscere prima le situazioni che possono diventare critiche.</p></div>
-      <div class="eco-card__footer"><span class="powered">Powered by NeuroSuite</span><a class="link" href="/NeuroSuite_Mobility.html">Presentazione →</a></div>
+      <div>
+        <div class="eco-glyph"><svg viewBox="0 0 240 84" preserveAspectRatio="none"><path d="M0,60 Q60,20 120,42 T240,30" fill="none" stroke="oklch(0.78 0.10 240)" stroke-width="1.2" opacity="0.75"/><circle cx="120" cy="42" r="2.5" fill="oklch(0.78 0.10 240)"/></svg></div>
+        <h3 class="eco-card__name">NeuroSuite Mobility</h3>
+        <p class="eco-card__manifesto">Stazioni, aeroporti, mezzi, hub e flussi: lettura delle traiettorie operative e dei segnali di criticità.</p>
+      </div>
+      <div class="eco-card__footer"><span class="powered">Powered by NeuroSuite</span><a class="link" href="NeuroSuite_Mobility.html">Apri →</a></div>
     </article>
+
     <article class="eco-card reveal" style="--card-accent: oklch(0.78 0.10 50 / 0.40); --card-accent-solid: oklch(0.78 0.10 50);">
-      <div class="eco-card__header"><span class="eco-card__index"><span class="eco-card__dot"></span> Verticale · 03</span><span>Retail</span></div>
-      <div><h3 class="eco-card__name">NeuroVision Retail</h3><p class="eco-card__manifesto">Analisi comportamentale e supporto alla prevenzione perdite per GDO e punti vendita. Lavora su infrastrutture video esistenti per leggere sequenze operative, non per accusare persone.</p></div>
-      <div class="eco-card__footer"><span class="powered">Powered by NeuroSuite</span><a class="link" href="/NeuroVision_GDO.html">Presentazione →</a></div>
+      <div class="eco-card__header"><span class="eco-card__index"><span class="eco-card__dot"></span> Verticale · 03</span><span>Retail / GDO</span></div>
+      <div>
+        <div class="eco-glyph"><svg viewBox="0 0 240 84" preserveAspectRatio="none"><g stroke="oklch(0.78 0.10 50)" stroke-width="1.2" opacity="0.75" fill="none"><path d="M0,50 L80,50 L80,30 L160,30 L160,55 L240,55"/></g></svg></div>
+        <h3 class="eco-card__name">NeuroVision GDO</h3>
+        <p class="eco-card__manifesto">Punti vendita, scaffali, perdita operativa e sicurezza: pattern da verificare, non persone da accusare.</p>
+      </div>
+      <div class="eco-card__footer"><span class="powered">Powered by NeuroSuite</span><a class="link" href="NeuroVision_GDO.html">Apri →</a></div>
     </article>
+
     <article class="eco-card reveal" style="--card-accent: oklch(0.82 0.08 75 / 0.40); --card-accent-solid: oklch(0.82 0.08 75);">
       <div class="eco-card__header"><span class="eco-card__index"><span class="eco-card__dot"></span> Verticale · 04</span><span>Adaptive AI</span></div>
-      <div><h3 class="eco-card__name">Adaptron</h3><p class="eco-card__manifesto">Istruzione adattiva, sessioni guidate, intelligenza conversazionale e progressione personalizzata. Per studenti, adulti e professionisti: non solo risposte, ma percorsi guidati.</p></div>
-      <div class="eco-card__footer"><span class="powered">Powered by NeuroSuite</span><a class="link" href="/adaptron.html">Beta privata →</a></div>
+      <div>
+        <div class="eco-glyph"><svg viewBox="0 0 240 84" preserveAspectRatio="none"><g stroke="oklch(0.82 0.08 75)" stroke-width="1" opacity="0.7" fill="none"><circle cx="60" cy="42" r="22"/><circle cx="120" cy="42" r="14"/><circle cx="180" cy="42" r="22"/><line x1="82" y1="42" x2="106" y2="42"/><line x1="134" y1="42" x2="158" y2="42"/></g></svg></div>
+        <h3 class="eco-card__name">SIPA / Adaptron</h3>
+        <p class="eco-card__manifesto">Istruzione adattiva, sessioni guidate, intelligenza conversazionale e progressione personalizzata.</p>
+      </div>
+      <div class="eco-card__footer"><span class="powered">In sviluppo</span><a class="link" href="#stato">Stato →</a></div>
     </article>
   </div>
 </section>
@@ -109,37 +146,44 @@
 <section id="funziona" class="flow">
   <div class="shell">
     <div class="s-head" style="padding-block: 0 clamp(40px, 5vw, 72px);">
-      <div class="s-head__index"><span>03</span> Metodo</div>
-      <h2 class="s-head__title">Non più dati isolati. <em>Priorità operative.</em></h2>
+      <div class="s-head__index"><span>03</span> Come funziona</div>
+      <h2 class="s-head__title">Non spiega il motore. <em>Mostra il valore.</em></h2>
     </div>
+
     <div class="flow__steps reveal">
-      <div class="flow__step"><span class="flow__num">01 · SEGNALI</span><h4 class="flow__title">Input diversi</h4><p class="flow__desc">Dati ambientali, digitali, comportamentali o operativi entrano in modo modulare.</p></div>
-      <div class="flow__step"><span class="flow__num">02 · CONTESTO</span><h4 class="flow__title">Dove e quando</h4><p class="flow__desc">Il valore cambia in base a luogo, momento, ripetizione, intensità e scenario.</p></div>
-      <div class="flow__step"><span class="flow__num">03 · EVENTI</span><h4 class="flow__title">Cosa sta succedendo</h4><p class="flow__desc">Il sistema trasforma segnali deboli in eventi leggibili e confrontabili.</p></div>
-      <div class="flow__step"><span class="flow__num">04 · PRIORITÀ</span><h4 class="flow__title">Cosa conta adesso</h4><p class="flow__desc">Non tutto merita attenzione. NeuroSuite evidenzia ciò che può diventare rilevante.</p></div>
-      <div class="flow__step"><span class="flow__num">05 · SUPPORTO</span><h4 class="flow__title">Supervisione umana</h4><p class="flow__desc">La piattaforma orienta, documenta e supporta. La decisione resta alle persone.</p></div>
+      <div class="flow__step"><span class="flow__num">01 · INPUT</span><h4 class="flow__title">Segnali già presenti</h4><p class="flow__desc">Telecamere, sensori, eventi digitali, dispositivi e dati operativi: il sistema parte da ciò che esiste.</p><div class="flow__viz"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><g stroke="currentColor" stroke-width="0.6" opacity="0.4"><line x1="10" y1="30" x2="190" y2="30"/></g><g fill="var(--accent)" opacity="0.85"><circle cx="20" cy="30" r="1.6"/><circle cx="50" cy="30" r="1.6"/><circle cx="78" cy="30" r="1.6"/><circle cx="112" cy="30" r="1.6"/><circle cx="148" cy="30" r="1.6"/><circle cx="180" cy="30" r="1.6"/></g></svg></div></div>
+      <div class="flow__step"><span class="flow__num">02 · EVENTI</span><h4 class="flow__title">Cose che accadono</h4><p class="flow__desc">Il segnale viene trasformato in evento leggibile: zona, tempo, intensità, persistenza e contesto.</p><div class="flow__viz"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><g stroke="currentColor" stroke-width="0.6" opacity="0.3"><rect x="20" y="22" width="40" height="16" rx="2" fill="none"/><rect x="80" y="22" width="40" height="16" rx="2" fill="none"/><rect x="140" y="22" width="40" height="16" rx="2" fill="none"/></g><g fill="var(--accent)" opacity="0.7"><circle cx="40" cy="30" r="2"/><circle cx="100" cy="30" r="2"/><circle cx="160" cy="30" r="2"/></g></svg></div></div>
+      <div class="flow__step"><span class="flow__num">03 · PATTERN</span><h4 class="flow__title">Sequenze da capire</h4><p class="flow__desc">Non basta il singolo evento: conta la combinazione, la ripetizione e la traiettoria nel contesto.</p><div class="flow__viz"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0,48 Q50,40 100,30 T200,12" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.85"/><path d="M0,52 Q50,46 100,38 T200,22" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/></svg></div></div>
+      <div class="flow__step"><span class="flow__num">04 · PRIORITÀ</span><h4 class="flow__title">Cosa merita verifica</h4><p class="flow__desc">Il sistema non accusa e non diagnostica: ordina il rumore e segnala ciò che può meritare attenzione umana.</p><div class="flow__viz"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><g stroke="currentColor" stroke-width="0.6" opacity="0.3"><line x1="20" y1="48" x2="20" y2="12"/><line x1="60" y1="48" x2="60" y2="28"/><line x1="100" y1="48" x2="100" y2="20"/><line x1="140" y1="48" x2="140" y2="36"/><line x1="180" y1="48" x2="180" y2="40"/></g><g fill="var(--accent)" opacity="0.85"><circle cx="20" cy="12" r="2.4"/><circle cx="100" cy="20" r="2"/></g></svg></div></div>
+      <div class="flow__step"><span class="flow__num">05 · AZIONE</span><h4 class="flow__title">Supporto operativo</h4><p class="flow__desc">Alert, report, documentazione, revisione, pilot e miglioramento: il valore arriva quando il sistema entra nel lavoro reale.</p><div class="flow__viz"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><g stroke="var(--accent)" stroke-width="1" fill="none" opacity="0.85"><circle cx="100" cy="30" r="14"/><line x1="86" y1="30" x2="60" y2="30"/><line x1="114" y1="30" x2="140" y2="30"/></g><circle cx="100" cy="30" r="3" fill="var(--accent)"/></svg></div></div>
     </div>
   </div>
 </section>
 
 <section id="stato" class="shell">
-  <div class="s-head"><div class="s-head__index"><span>04</span> Stato attuale</div><h2 class="s-head__title">Un ecosistema già visibile. <em>In evoluzione controllata.</em></h2></div>
-  <p class="reveal" style="max-width: 62ch; color: var(--fg-2); font-size: var(--fs-md); margin-bottom: clamp(40px, 5vw, 64px);">
-    Le verticali sono pubblicate come materiali dimostrativi e il sistema sta entrando in una fase più operativa: test, confronti con interlocutori reali, accesso beta e raccolta feedback.
-  </p>
+  <div class="s-head">
+    <div class="s-head__index"><span>04</span> Stato attuale</div>
+    <h2 class="s-head__title">Non una promessa generica. <em>Un sistema che prende forma.</em></h2>
+  </div>
+
+  <p class="reveal intro-copy">La fase attuale è concreta: dominio online, presentazioni verticali pubblicate, prototipi in costruzione e percorsi pilota in preparazione. La comunicazione resta modulare: ogni interlocutore vede solo ciò che gli serve.</p>
+
   <div class="status">
-    <div class="status-card reveal"><div class="row"><span>Health / RSA / ospedali</span><span class="pill"><span class="pulse"></span> Demo online</span></div><h4>Materiale verticale già pubblicato.</h4><p>Descrive l'approccio di supporto osservativo, privacy, supervisione umana e priorità operative.</p></div>
-    <div class="status-card reveal"><div class="row"><span>Mobility</span><span class="pill"><span class="pulse"></span> Demo online</span></div><h4>Scenario trasporti e hub.</h4><p>Focalizzato su flussi, anomalie, contesto e informazioni tempestive per supportare centrali operative e personale sul campo.</p></div>
-    <div class="status-card reveal"><div class="row"><span>Retail / GDO</span><span class="pill"><span class="pulse"></span> Demo online</span></div><h4>Verticale rapida da validare sul campo.</h4><p>È pensata per partire dalle telecamere esistenti e costruire una POC su esigenze reali del punto vendita.</p></div>
-    <div class="status-card reveal"><div class="row"><span>Adaptron</span><span class="pill"><span class="pulse"></span> Beta 100</span></div><h4>Accesso controllato a inviti.</h4><p>Prima fase gratuita per persone selezionate, con filtri sicurezza, feedback e log di utilizzo anonimi.</p></div>
+    <div class="status-card reveal"><div class="row"><span>Health · RSA / ospedali</span><span class="pill"><span class="pulse"></span> Presentazione live</span></div><h4>Materiale verticale pronto per interlocutori clinici.</h4><p>Focus su ambienti assistiti, supporto al personale, osservazione multimodale e integrazione progressiva con strumenti esistenti.</p><div class="meta"><div><span>Link</span><br><strong><a href="NeuroSuite_Health.html">Apri Health</a></strong></div><div><span>Fase</span><br><strong>Fase 0 / pilot</strong></div><div><span>Nota</span><br><strong>Non diagnostico</strong></div></div></div>
+    <div class="status-card reveal"><div class="row"><span>Mobility · hub / trasporti</span><span class="pill"><span class="pulse"></span> Presentazione live</span></div><h4>Materiale verticale per sicurezza predittiva e flussi.</h4><p>Focus su stazioni, aeroporti, flotte, aree ad alta densità e segnali operativi prima dell’evento critico.</p><div class="meta"><div><span>Link</span><br><strong><a href="NeuroSuite_Mobility.html">Apri Mobility</a></strong></div><div><span>Fase</span><br><strong>POC configurabile</strong></div><div><span>Metodo</span><br><strong>su misura</strong></div></div></div>
+    <div class="status-card reveal"><div class="row"><span>Retail / GDO</span><span class="pill"><span class="pulse"></span> Presentazione live</span></div><h4>La verticale più rapida da testare sul campo.</h4><p>Parte da telecamere e processi già presenti. Obiettivo: ridurre perdita, danno merce e falsi allarmi con verifica umana centrale.</p><div class="meta"><div><span>Link</span><br><strong><a href="NeuroVision_GDO.html">Apri GDO</a></strong></div><div><span>Fase</span><br><strong>POC veloce</strong></div><div><span>Privacy</span><br><strong>No accusa automatica</strong></div></div></div>
+    <div class="status-card reveal"><div class="row"><span>SIPA / Adaptive AI</span><span class="pill" style="border-color: var(--line);"><span class="pulse" style="background: var(--fg-3); box-shadow: none;"></span> In sviluppo</span></div><h4>Motore di adattività e orchestrazione.</h4><p>Verticale educativa e cognitiva utile anche come base di ragionamento per sessioni guidate, memoria utente e progressione dinamica.</p><div class="meta"><div><span>Stato</span><br><strong>attivo</strong></div><div><span>Uso</span><br><strong>adattività</strong></div><div><span>Prossimo</span><br><strong>rebranding</strong></div></div></div>
   </div>
 </section>
 
 <section id="visione" class="vision">
   <div class="shell">
-    <div class="s-head" style="padding-block: 0 clamp(32px, 4vw, 56px);"><div class="s-head__index"><span>05</span> Visione</div><h2 class="s-head__title" style="opacity: 0;">.</h2></div>
-    <p class="vision__quote reveal">La forza non è osservare di più.<br/>È <em>capire meglio</em> cosa merita attenzione.</p>
-    <p class="vision__caption reveal">NeuroSuite non espone tutta la sua complessità in superficie. Ogni verticale risponde a un problema concreto; sotto, una struttura proprietaria collega segnali, contesto, eventi e priorità.</p>
+    <div class="s-head" style="padding-block: 0 clamp(32px, 4vw, 56px);">
+      <div class="s-head__index"><span>05</span> Visione</div>
+      <h2 class="s-head__title" style="opacity: 0;">.</h2>
+    </div>
+    <p class="vision__quote reveal">I sistemi del futuro non leggeranno solo eventi.<br/>Leggeranno <em>contesto, traiettorie</em> e priorità.</p>
+    <p class="vision__caption reveal">Il salto non è aggiungere sensori. È costruire un livello che renda utilizzabile ciò che i sensori, da soli, non riescono a raccontare.</p>
   </div>
 </section>
 
@@ -147,32 +191,37 @@
   <div class="shell access__inner">
     <div class="reveal">
       <div class="s-head__index" style="margin-bottom: 22px;"><span>06</span> Accesso</div>
-      <h3>Materiali pubblici fuori. <em>Materiali sensibili dentro.</em></h3>
-      <p>La parte pubblica racconta la visione e le aree di applicazione. Note interne, documentazione tecnica, log di sviluppo e materiali riservati restano in area privata dedicata.</p>
+      <h3>Una piattaforma madre. <em>Tre percorsi pubblici già online.</em></h3>
+      <p>Questa home serve a raccontare l’ecosistema senza confondere gli interlocutori. Per invii operativi, usa sempre il link verticale corretto.</p>
       <div class="streams">
-        <a class="streams__row" href="/NeuroSuite_Health.html"><span class="tag">Health</span><span class="desc">presentazione verticale</span><span class="when">apri</span></a>
-        <a class="streams__row" href="/NeuroSuite_Mobility.html"><span class="tag">Mobility</span><span class="desc">presentazione verticale</span><span class="when">apri</span></a>
-        <a class="streams__row" href="/NeuroVision_GDO.html"><span class="tag">Retail</span><span class="desc">presentazione verticale</span><span class="when">apri</span></a>
-        <a class="streams__row" href="/privato.html"><span class="tag">Privato</span><span class="desc">materiali interni e note riservate</span><span class="when">accesso</span></a>
+        <a class="streams__row" href="NeuroSuite_Health.html"><span class="tag">Health</span><span class="desc">RSA, ospedali, ambienti assistiti</span><span class="when">Apri</span></a>
+        <a class="streams__row" href="NeuroSuite_Mobility.html"><span class="tag">Mobility</span><span class="desc">trasporti, stazioni, aeroporti, hub</span><span class="when">Apri</span></a>
+        <a class="streams__row" href="NeuroVision_GDO.html"><span class="tag">GDO</span><span class="desc">retail, supermercati, perdita operativa</span><span class="when">Apri</span></a>
+        <a class="streams__row" href="privato.html"><span class="tag">Privato</span><span class="desc">area riservata soft, materiale interno</span><span class="when">Entra</span></a>
       </div>
     </div>
-    <form id="access-form" class="form reveal" novalidate>
-      <div class="form__row"><label for="email">Email</label><input id="email" name="email" type="email" required placeholder="tu@dominio.com" /></div>
-      <div class="form__row"><label for="role">Profilo</label><select id="role" name="role"><option>Partner</option><option>Clinico / RSA</option><option>Retail / GDO</option><option>Mobility</option><option>Beta tester Adaptron</option></select></div>
-      <div class="form__row"><label for="vertical">Interesse</label><select id="vertical" name="vertical"><option>NeuroSuite generale</option><option>Health</option><option>Mobility</option><option>Retail</option><option>Adaptron</option></select></div>
-      <button type="submit" class="form__submit">Richiedi contatto →</button>
-      <div class="form__success"><strong>Richiesta registrata localmente.</strong> Per contatti diretti usa info@neurosuite.dev.</div>
-    </form>
+
+    <div class="form reveal access-panel" aria-label="Note operative">
+      <div class="form__row"><label>Principio</label><p class="panel-copy">Non mostrare tutto a tutti. Ogni verticale ha un link diretto, una narrativa dedicata e un livello di profondità diverso.</p></div>
+      <div class="form__row"><label>Per interlocutori strategici</label><p class="panel-copy">La home comunica la montagna: architettura, visione e stato di avanzamento.</p></div>
+      <div class="form__row"><label>Per clienti verticali</label><p class="panel-copy">Usare la presentazione specifica: Health, Mobility o GDO.</p></div>
+      <a class="form__submit" href="privato.html">Vai all’area privata →</a>
+    </div>
   </div>
 </section>
 
 <footer class="footer">
-  <div class="shell"><div class="footer__inner">
-    <div><div class="footer__brand">NeuroSuite</div><p class="footer__caption">Ecosistema operativo per trasformare segnali frammentati in priorità leggibili. Costruito in Europa, rilasciato per fasi.</p></div>
-    <div class="footer__col"><h5>Contatti</h5><a href="mailto:info@neurosuite.dev">info@neurosuite.dev</a><a href="mailto:adaptron@neurosuite.dev">adaptron@neurosuite.dev</a><a href="mailto:beta@neurosuite.dev">beta@neurosuite.dev</a></div>
-    <div class="footer__col"><h5>Link</h5><a href="/adaptron.html">Adaptron Beta</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Uso responsabile</a><a href="/privato.html">Area privata</a></div>
-  </div></div>
+  <div class="shell">
+    <div class="footer__inner">
+      <div><div class="footer__brand">NeuroSuite</div><p class="footer__caption">Ecosistema osservativo modulare. Verticali specializzate, base comune, sviluppo progressivo.</p></div>
+      <div class="footer__col"><h5>Verticali</h5><a href="NeuroSuite_Health.html">Health</a><a href="NeuroSuite_Mobility.html">Mobility</a><a href="NeuroVision_GDO.html">Retail / GDO</a><a href="#stato">Adaptive AI</a></div>
+      <div class="footer__col"><h5>Sistema</h5><a href="#funziona">Come funziona</a><a href="#stato">Stato attuale</a><a href="#visione">Visione</a><a href="privato.html">Area privata</a></div>
+      <div class="footer__col"><h5>Uso</h5><a href="#accesso">Link diretti</a><a href="NeuroSuite_Health.html">Per sanità</a><a href="NeuroSuite_Mobility.html">Per mobilità</a><a href="NeuroVision_GDO.html">Per GDO</a></div>
+    </div>
+    <div class="footer__base"><span>© 2026 NeuroSuite</span><span>Non-diagnostic · human-in-the-loop · privacy-by-design</span></div>
+  </div>
 </footer>
+
 <script src="app.js"></script>
 </body>
 </html>
