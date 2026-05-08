@@ -722,7 +722,7 @@ section { position: relative; }
   text-transform: uppercase;
   color: var(--fg-3);
 }
-.form__row input, .form__row select {
+.form__row input, .form__row select, .form__row textarea {
   appearance: none;
   width: 100%;
   background: var(--bg-2);
@@ -734,12 +734,13 @@ section { position: relative; }
   font-size: var(--fs-base);
   transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
 }
-.form__row input:focus, .form__row select:focus {
+.form__row input:focus, .form__row select:focus, .form__row textarea:focus {
   outline: none;
   border-color: var(--accent-line);
   background: color-mix(in oklab, var(--bg-2) 60%, var(--accent-glow));
 }
 .form__row select { cursor: pointer; }
+.form__row textarea { resize: vertical; min-height: 130px; }
 .form__check { display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--fg-3); cursor: pointer; }
 .form__check input { accent-color: var(--accent); }
 .form__submit {
@@ -966,4 +967,14 @@ section { position: relative; }
 [data-mode="light"] .s-head__title em {
   color: var(--accent-2);
   opacity: 0.9;
+}
+
+/* requested alignment: flow columns keep number, title, paragraph and visual on the same rows */
+@media (min-width: 901px) {
+  .flow__step {
+    grid-template-rows: 24px minmax(88px, auto) minmax(160px, auto) 60px;
+    align-items: start;
+  }
+  .flow__title, .flow__desc { margin: 0; }
+  .flow__viz { margin-top: 0; align-self: end; }
 }

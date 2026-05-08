@@ -172,3 +172,47 @@
     form.classList.add('is-submitted');
   });
 })();
+
+
+// Contact form: build a prefilled email without uploading files from the static site
+(function(){
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const type = document.getElementById('contact-type');
+  const companyRow = document.getElementById('company-row');
+  const company = document.getElementById('contact-company');
+
+  function syncCompany() {
+    const isCompany = type && type.value === 'Azienda / ente';
+    if (companyRow) companyRow.hidden = !isCompany;
+    if (company) company.required = isCompany;
+  }
+
+  if (type) type.addEventListener('change', syncCompany);
+  syncCompany();
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const lines = [
+      'Buongiorno,',
+      '',
+      'richiedo un contatto operativo.',
+      '',
+      'Nome e cognome: ' + (data.get('name') || ''),
+      'Tipo contatto: ' + (data.get('type') || ''),
+      'Azienda / ente: ' + (data.get('company') || ''),
+      'Email per ricontatto: ' + (data.get('email') || ''),
+      'Telefono per ricontatto: ' + (data.get('phone') || ''),
+      'Preferenza: ' + (data.get('preference') || ''),
+      '',
+      'Messaggio:',
+      data.get('message') || '',
+      '',
+      'Eventuali allegati possono essere aggiunti direttamente a questa email.'
+    ];
+    const subject = encodeURIComponent('Contatto operativo - neurosuite.dev');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:info@neurosuite.dev?subject=' + subject + '&body=' + body;
+  });
+})();
