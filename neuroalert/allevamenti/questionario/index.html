@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroAlert LiveStock - Questionario</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Helvetica, Arial, sans-serif; font-size: 13px; background: #f5f5f5; }
+.wrap { padding: 24px; max-width: 750px; margin: 0 auto; }
+.header { background: #1B3F6B; color: white; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px; }
+.header h1 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.header p { font-size: 11px; opacity: 0.8; }
+.section { margin-bottom: 20px; }
+.sec-title { background: #1B3F6B; color: white; font-size: 11px; font-weight: 500; padding: 7px 12px; border-radius: 6px; margin-bottom: 8px; }
+.qblock { border: 1px solid #ddd; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; background: white; }
+.qlabel { font-size: 11px; font-weight: bold; color: #1B3F6B; margin-bottom: 2px; }
+.qen { font-size: 10px; color: #888; font-style: italic; margin-bottom: 8px; }
+.row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.lbl { font-size: 11px; color: #666; white-space: nowrap; min-width: 90px; }
+input[type=text], textarea {
+  width: 100%; border: none; border-bottom: 1px solid #ccc;
+  background: transparent; font-size: 13px; padding: 3px 4px;
+  color: #333; font-family: inherit; outline: none;
+}
+input[type=text]:focus, textarea:focus { border-bottom-color: #1B3F6B; }
+textarea { border: 1px solid #ccc; border-radius: 4px; padding: 6px 8px; margin-top: 4px; resize: none; line-height: 1.6; }
+.chk { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; color: #333; }
+.chk input[type=checkbox] { width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+.pair { display: flex; gap: 10px; align-items: center; margin-bottom: 7px; }
+.pair .lbl { min-width: 60px; }
+.inline2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fgroup label { font-size: 10px; color: #888; display: block; margin-bottom: 3px; }
+.send-btn {
+  display: block; width: 100%; padding: 16px; background: #1B3F6B; color: white;
+  border: none; border-radius: 8px; font-size: 15px; font-weight: 500;
+  cursor: pointer; margin-top: 24px; letter-spacing: 0.3px;
+}
+.send-btn:hover { background: #2a5a99; }
+.success-msg { display: none; background: #E8F5E9; border: 1px solid #1A5C2E; border-radius: 8px; padding: 24px; text-align: center; margin-top: 16px; }
+.success-msg h2 { color: #1A5C2E; font-size: 18px; margin-bottom: 8px; }
+.success-msg p { color: #333; font-size: 13px; line-height: 1.6; }
+.footer { font-size: 10px; color: #999; font-style: italic; text-align: center; padding: 16px 0 4px; }
+/* sezione altri animali — dinamica */
+.animal-block { border: 1px solid #ddd; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; background: #fafcff; }
+.animal-block-title { font-size: 11px; font-weight: bold; color: #1B3F6B; margin-bottom: 10px; }
+#add-animal-btn { background: none; border: 1px dashed #1B3F6B; color: #1B3F6B; border-radius: 6px; padding: 8px 14px; font-size: 11px; cursor: pointer; margin-top: 4px; }
+#add-animal-btn:hover { background: #eef3fb; }
+.remove-animal { float: right; background: none; border: none; color: #aaa; font-size: 13px; cursor: pointer; margin-top: -2px; }
+.remove-animal:hover { color: #c00; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>NeuroAlert LiveStock — Questionario preliminare</h1>
+    <p>Preliminary assessment questionnaire &nbsp;/&nbsp; Le risposte non devono essere precise — bastano ordini di grandezza</p>
+  </div>
+
+
+  <div style="background:#fff8e1;border:1px solid #e6c84a;border-left:4px solid #D4A843;border-radius:8px;padding:16px 18px;margin-bottom:20px;font-size:12px;line-height:1.75;color:#3a3000;">
+    <div style="font-size:13px;font-weight:bold;color:#1B3F6B;margin-bottom:8px;">&#128274;&nbsp; Perché chiediamo queste informazioni — e come vengono trattate</div>
+    <p style="margin-bottom:8px;">
+      Le informazioni raccolte in questo questionario servono <strong>esclusivamente</strong> per elaborare una prima bozza di progetto personalizzato sulla vostra struttura.
+      Nessun dato verrà condiviso con terzi: tutta l'attività progettuale viene svolta internamente dal team NeuroAlert.
+    </p>
+    <p style="margin-bottom:8px;">
+      Il materiale che ci fornirete — planimetrie, foto, descrizioni, dati tecnici — verrà utilizzato solo per le finalità indicate e
+      <strong>distrutto al termine di questo utilizzo</strong>.
+    </p>
+    <p style="margin-bottom:10px;">
+      L'obiettivo è capire la vostra realtà senza dover necessariamente effettuare un sopralluogo in questa fase,
+      per arrivare al primo incontro già con una proposta concreta e su misura.
+    </p>
+    <div style="border-top:1px solid #e6c84a;padding-top:10px;font-size:11px;color:#7a6a00;">
+      Le domande non richiedono risposte precise — bastano ordini di grandezza e descrizioni approssimative.
+      Rispondete solo a quello che sapete o che vi è comodo condividere: anche una risposta parziale è utile.
+    </div>
+  </div>
+
+  <form id="qform">
+
+    <!-- A — STRUTTURA E DIMENSIONI -->
+    <div class="section">
+      <div class="sec-title">A — Struttura e dimensioni &nbsp;/&nbsp; Scale and structure</div>
+
+      <div class="qblock">
+        <div class="qlabel">A1. Numero di bovini in gestione contemporaneamente.</div>
+        <div class="qen">Number of cattle under management at any one time.</div>
+        <div class="inline2">
+          <div class="fgroup"><label>Numero medio / Average</label><input type="text" name="a1_medio"></div>
+          <div class="fgroup"><label>Numero massimo / Maximum</label><input type="text" name="a1_max"></div>
+        </div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">A2. Capi macellati mediamente al giorno e alla settimana.</div>
+        <div class="qen">Animals slaughtered per day / per week on average.</div>
+        <div class="inline2">
+          <div class="fgroup"><label>Al giorno / Per day</label><input type="text" name="a2_giorno"></div>
+          <div class="fgroup"><label>Alla settimana / Per week</label><input type="text" name="a2_sett"></div>
+        </div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">A3. Capi che al mese richiedono cure mediche o vengono abbattuti per malattia.</div>
+        <div class="qen">Animals requiring veterinary treatment or culled per month due to disease.</div>
+        <div class="inline2">
+          <div class="fgroup"><label>Necessitano cure / Requiring treatment</label><input type="text" name="a3_cure"></div>
+          <div class="fgroup"><label>Abbattuti (non macellati) / Culled</label><input type="text" name="a3_abbattuti"></div>
+        </div>
+      </div>
+
+      <!-- A4 — ALTRI ANIMALI — DINAMICO -->
+      <div class="qblock">
+        <div class="qlabel">A4. Come avviene la macellazione dei vostri capi?</div>
+        <div class="qen">How is slaughter handled for your animals?</div>
+        <div style="font-size:10.5px;color:#1B3F6B;background:#eef3fb;border-radius:4px;padding:5px 9px;margin-bottom:8px;">&#128204; <em>Ci serve per capire quanto controllo avete sull'animale fino all'ultimo momento utile e dove si chiude la filiera.</em></div>
+        <div class="chk"><input type="checkbox" name="a4mac_interna"> Macellazione interna — avete il macello in azienda</div>
+        <div class="chk"><input type="checkbox" name="a4mac_terzi"> Macellazione presso terzi — portate i capi a un macello esterno</div>
+        <div class="chk"><input type="checkbox" name="a4mac_misto"> Entrambe — dipende dal tipo di capo o dal periodo</div>
+        <div style="margin-top:8px" id="a4mac_terzi_detail">
+          <div class="fgroup"><label>Se presso terzi — distanza indicativa dal macello / Distance to external slaughterhouse</label>
+          <input type="text" name="a4mac_dist" placeholder="es. 15 km, 1 ora di trasporto..."></div>
+        </div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">A5. Oltre ai bovini, gestite altri animali?</div>
+        <div class="qen">Besides cattle, do you manage other animals? Add one row per species.</div>
+
+        <div id="other-animals-container">
+          <!-- Righe aggiunte dinamicamente -->
+        </div>
+
+        <button type="button" id="add-animal-btn">+ Aggiungi specie</button>
+
+        <div style="font-size:10px;color:#aaa;margin-top:8px;font-style:italic">
+          Esempi: cavalli, ovini, suini, caprini, cervi, lama, animali da zoo, ecc.
+        </div>
+      </div>
+    </div>
+
+    <!-- B — STRUTTURA FISICA -->
+    <div class="section">
+      <div class="sec-title">B — Struttura fisica &nbsp;/&nbsp; Physical layout</div>
+
+      <div class="qblock">
+        <div class="qlabel">B1. Esistono punti di passaggio obbligato per tutta la mandria?</div>
+        <div class="qen">Are there mandatory passage points for the entire herd?</div>
+        <div class="chk"><input type="checkbox" name="b1si" id="b1si"> Si / Yes, descrivere: <input type="text" name="b1desc" style="flex:1;margin-left:6px"></div>
+        <div class="chk"><input type="checkbox" name="b1no"> No</div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">B2. Strutture coperte (stalle, box): numero e dimensione di ciascuna.</div>
+        <div class="qen">Covered structures: number and size of each.</div>
+        <div class="pair"><span class="lbl">N.:</span><input type="text" name="b2n1" style="max-width:70px"><span class="lbl">Dimensione:</span><input type="text" name="b2d1"></div>
+        <div class="pair"><span class="lbl">N.:</span><input type="text" name="b2n2" style="max-width:70px"><span class="lbl">Dimensione:</span><input type="text" name="b2d2"></div>
+        <div class="pair"><span class="lbl">N.:</span><input type="text" name="b2n3" style="max-width:70px"><span class="lbl">Dimensione:</span><input type="text" name="b2d3"></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">B3. Aree esterne (paddock, pascoli): numero e dimensione di ciascuna.</div>
+        <div class="qen">Outdoor areas: number and size of each.</div>
+        <div class="pair"><span class="lbl">N.:</span><input type="text" name="b3n1" style="max-width:70px"><span class="lbl">Dimensione:</span><input type="text" name="b3d1"></div>
+        <div class="pair"><span class="lbl">N.:</span><input type="text" name="b3n2" style="max-width:70px"><span class="lbl">Dimensione:</span><input type="text" name="b3d2"></div>
+        <div class="pair"><span class="lbl">N.:</span><input type="text" name="b3n3" style="max-width:70px"><span class="lbl">Dimensione:</span><input type="text" name="b3d3"></div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">B4. Connettivita disponibile in stalla e nei paddock.</div>
+        <div class="qen">Connectivity available.</div>
+        <div class="chk"><input type="checkbox" name="b4wifi"> WiFi</div>
+        <div class="chk"><input type="checkbox" name="b4_4g"> 4G/5G</div>
+        <div class="chk"><input type="checkbox" name="b4ele"> Corrente elettrica disponibile</div>
+        <div class="chk"><input type="checkbox" name="b4lim"> Connettivita limitata</div>
+      </div>
+    </div>
+
+    <!-- C — IDENTIFICAZIONE -->
+    <div class="section">
+      <div class="sec-title">C — Identificazione e localizzazione dei capi &nbsp;/&nbsp; Animal identification and tracking</div>
+
+      <div class="qblock">
+        <div class="qlabel">C1. Sistema di identificazione individuale gia in uso. (segnare tutto cio che si applica)</div>
+        <div class="qen">Individual identification system already in use. (mark all that apply)</div>
+        <div class="chk"><input type="checkbox" name="c1marchio"> Marchio auricolare visivo (numero visibile sull'orecchio)</div>
+        <div class="chk"><input type="checkbox" name="c1rfid"> Transponder auricolare elettronico</div>
+        <div class="chk"><input type="checkbox" name="c1bolo"> Bolo ruminale elettronico</div>
+        <div class="chk"><input type="checkbox" name="c1gps"> Tag con localizzazione (GPS / smart tag)</div>
+        <div class="chk"><input type="checkbox" name="c1collare"> Collare con sensori (rumia, attivita)</div>
+        <div class="chk"><input type="checkbox" name="c1no"> Nessun sistema elettronico</div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">C2. Come viene rintracciato fisicamente un capo da isolare o avviare alla macellazione?</div>
+        <div class="qen">How is a specific animal located when it needs to be isolated or sent to slaughter?</div>
+        <textarea name="c2" rows="3" placeholder="Descrivere il processo attuale..."></textarea>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">C3. Per i capi in paddock o al pascolo: come vengono localizzati e ricondotti in stalla?</div>
+        <div class="qen">For animals in paddocks or pastures: how are they located and brought back?</div>
+        <textarea name="c3" rows="3"></textarea>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">C4. Software gestionale integrato con identificazione?</div>
+        <div class="qen">Herd management software integrated with identification system?</div>
+        <div class="chk"><input type="checkbox" name="c4si"> Si / Yes: <input type="text" name="c4nome" style="flex:1;margin-left:8px" placeholder="Nome software..."></div>
+        <div class="chk"><input type="checkbox" name="c4no"> No</div>
+      </div>
+    </div>
+
+    <!-- D — PLANIMETRIA -->
+    <div class="section">
+      <div class="sec-title">D — Planimetria &nbsp;/&nbsp; Property map</div>
+      <div class="qblock">
+        <div class="qlabel">D1. E possibile condividere una planimetria o mappa della struttura?</div>
+        <div class="qen">Would it be possible to share a floor plan or map?</div>
+        <div class="chk"><input type="checkbox" name="d1a"> Si, la allego</div>
+        <div class="chk"><input type="checkbox" name="d1b"> Si, la mandero successivamente</div>
+        <div class="chk"><input type="checkbox" name="d1c"> Preferisco non condividerla</div>
+      </div>
+      <div class="qblock">
+        <div class="qlabel">D2. Superficie totale e perimetro esterno approssimativi.</div>
+        <div class="qen">Approximate total area and outer perimeter.</div>
+        <div class="inline2">
+          <div class="fgroup"><label>Superficie / Area (ettari)</label><input type="text" name="d2sup"></div>
+          <div class="fgroup"><label>Perimetro esterno (km)</label><input type="text" name="d2per"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- E — SALUTE E SICUREZZA -->
+    <div class="section">
+      <div class="sec-title">E — Salute e sicurezza &nbsp;/&nbsp; Health and security</div>
+      <div class="qblock">
+        <div class="qlabel">E1. Patologie piu frequenti o economicamente rilevanti nei bovini.</div>
+        <div class="qen">Most frequent or economically significant diseases in cattle.</div>
+        <div class="row"><span class="lbl">1.</span><input type="text" name="e1p1"></div>
+        <div class="row"><span class="lbl">2.</span><input type="text" name="e1p2"></div>
+        <div class="row"><span class="lbl">3.</span><input type="text" name="e1p3"></div>
+      </div>
+      <div class="qblock">
+        <div class="qlabel">E2. Intrusioni notturne, furti o aggressioni da animali selvatici?</div>
+        <div class="qen">Nocturnal intrusions, theft or wild animal attacks?</div>
+        <div class="chk"><input type="checkbox" name="e2freq"> Si, frequenti</div>
+        <div class="chk"><input type="checkbox" name="e2occ"> Si, occasionali</div>
+        <div class="chk"><input type="checkbox" name="e2rar"> Raramente</div>
+        <div class="chk"><input type="checkbox" name="e2mai"> Mai</div>
+      </div>
+      <div class="qblock">
+        <div class="qlabel">E3. I tori vengono gestiti separatamente? Episodi di aggressivita?</div>
+        <div class="qen">Are bulls managed separately? Aggression incidents?</div>
+        <div style="display:flex;gap:16px;margin-bottom:8px">
+          <div class="chk"><input type="checkbox" name="e3sep"> Si, separati</div>
+          <div class="chk"><input type="checkbox" name="e3grp"> No, in gruppo</div>
+          <div class="chk"><input type="checkbox" name="e3nob"> Nessun toro</div>
+        </div>
+        <div style="font-size:11px;color:#888;margin-bottom:5px">Episodi di aggressivita:</div>
+        <div style="display:flex;gap:16px">
+          <div class="chk"><input type="checkbox" name="e3freq"> Frequenti</div>
+          <div class="chk"><input type="checkbox" name="e3occ"> Occasionali</div>
+          <div class="chk"><input type="checkbox" name="e3rar"> Raramente</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- F — ALTRI ANIMALI: DETTAGLIO PER SPECIE -->
+    <div class="section" id="sec-altri-animali" style="display:none">
+      <div class="sec-title">F — Dettaglio altri animali &nbsp;/&nbsp; Other animals detail</div>
+      <div id="animal-detail-blocks">
+        <!-- generato da JS in base alle specie dichiarate in A4 -->
+      </div>
+    </div>
+
+
+    <!-- H — DOCUMENTAZIONE E TECNOLOGIE ESISTENTI -->
+    <div class="section">
+      <div class="sec-title">H — Documentazione e tecnologie esistenti &nbsp;/&nbsp; Documentation and existing technology</div>
+
+      <div class="qblock">
+        <div class="qlabel">H1. Avete una piantina o mappa dell'allevamento da condividere?</div>
+        <div class="qen">Do you have a floor plan or map of the farm you can share?</div>
+        <div style="font-size:10.5px;color:#1B3F6B;background:#eef3fb;border-radius:4px;padding:5px 9px;margin-bottom:8px;">&#128204; <em>Ci permette di stimare copertura sensori, posizione telecamere e punti di monitoraggio senza venire sul posto.</em></div>
+        <div class="chk"><input type="checkbox" name="h1_allego"> Si, la allego a questa email</div>
+        <div class="chk"><input type="checkbox" name="h1_dopo"> Si, la mando separatamente</div>
+        <div class="chk"><input type="checkbox" name="h1_foto"> Ho solo fotografie aeree o da satellite (Google Maps va benissimo)</div>
+        <div class="chk"><input type="checkbox" name="h1_schizzo"> Posso fare uno schizzo a mano con le misure principali</div>
+        <div class="chk"><input type="checkbox" name="h1_no"> Non ho nulla al momento</div>
+        <div style="margin-top:8px">
+          <div class="fgroup"><label>Note o link (es. Google Maps, foto, PDF):</label><input type="text" name="h1_note" placeholder="es. link Google Maps, nome file..."></div>
+        </div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">H2. Sulla piantina o nella descrizione, e possibile indicare:</div>
+        <div class="qen">On the map or in the description, can you indicate the following?</div>
+        <div style="font-size:10.5px;color:#1B3F6B;background:#eef3fb;border-radius:4px;padding:5px 9px;margin-bottom:8px;">&#128204; <em>Ogni elemento indicato riduce il numero di domande che dovremo fare in un eventuale sopralluogo.</em></div>
+        <div style="font-size:11px;color:#888;margin-bottom:8px;font-style:italic">Segnare quello che e possibile fornire — anche solo a grandi linee</div>
+        <div class="chk"><input type="checkbox" name="h2_stalle"> Posizione e dimensioni delle stalle o box coperti</div>
+        <div class="chk"><input type="checkbox" name="h2_paddock"> Posizione e dimensioni dei paddock o aree esterne</div>
+        <div class="chk"><input type="checkbox" name="h2_percorsi"> Percorsi abituali degli animali (entrata/uscita, abbeveratoi, mangiatoie)</div>
+        <div class="chk"><input type="checkbox" name="h2_varchi"> Punti di passaggio obbligato o varchi stretti</div>
+        <div class="chk"><input type="checkbox" name="h2_abbeveratoi"> Posizione abbeveratoi e mangiatoie</div>
+        <div class="chk"><input type="checkbox" name="h2_uffici"> Posizione uffici, locali tecnici o sala controllo</div>
+        <div class="chk"><input type="checkbox" name="h2_recinzioni"> Tipo e posizione delle recinzioni principali</div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">H3. Sono presenti telecamere di videosorveglianza?</div>
+        <div class="qen">Are there any existing CCTV or surveillance cameras?</div>
+        <div style="font-size:10.5px;color:#1B3F6B;background:#eef3fb;border-radius:4px;padding:5px 9px;margin-bottom:8px;">&#128204; <em>Sapere cosa è già installato ci permette di valutare se integrare l'esistente invece di aggiungere nuovi dispositivi.</em></div>
+        <div class="chk"><input type="checkbox" name="h3_si"> Si</div>
+        <div class="chk"><input type="checkbox" name="h3_no"> No</div>
+        <div style="margin-top:8px" id="h3_detail" style="display:none">
+          <div class="inline2">
+            <div class="fgroup"><label>Numero di telecamere / Number of cameras</label><input type="text" name="h3_num"></div>
+            <div class="fgroup"><label>Marca o sistema / Brand or system</label><input type="text" name="h3_marca" placeholder="es. Hikvision, Dahua..."></div>
+          </div>
+          <div style="margin-top:6px">
+            <div class="fgroup"><label>Dove sono posizionate / Where are they placed</label><input type="text" name="h3_dove" placeholder="es. ingresso, stalla A, paddock nord..."></div>
+          </div>
+          <div style="margin-top:6px;font-size:11px;color:#888">Coprono aree dove si trovano gli animali?</div>
+          <div style="display:flex;gap:16px;margin-top:4px">
+            <div class="chk"><input type="checkbox" name="h3_coprono_si"> Si, almeno in parte</div>
+            <div class="chk"><input type="checkbox" name="h3_coprono_no"> No, solo aree perimetrali</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">H4. Altre tecnologie gia installate o in uso.</div>
+        <div class="qen">Other technologies already installed or in use.</div>
+        <div style="font-size:10.5px;color:#1B3F6B;background:#eef3fb;border-radius:4px;padding:5px 9px;margin-bottom:8px;">&#128204; <em>Evita di proporre ciò che avete già e permette di costruire il progetto su quello che manca davvero.</em></div>
+        <div class="chk"><input type="checkbox" name="h4_pesapersone"> Bilance automatiche per la pesatura dei capi</div>
+        <div class="chk"><input type="checkbox" name="h4_mungitura"> Sistemi di mungitura automatica (robot di mungitura)</div>
+        <div class="chk"><input type="checkbox" name="h4_alimentazione"> Sistemi di distribuzione automatica del mangime</div>
+        <div class="chk"><input type="checkbox" name="h4_meteo"> Stazione meteo aziendale</div>
+        <div class="chk"><input type="checkbox" name="h4_sensori_aria"> Sensori di qualita dell'aria in stalla (ammoniaca, CO2, umidita)</div>
+        <div class="chk"><input type="checkbox" name="h4_rfid_varchi"> Lettori automatici ai varchi (per identificazione al passaggio)</div>
+        <div class="chk"><input type="checkbox" name="h4_collari"> Collari con sensori (rumia, attivita, temperatura)</div>
+        <div class="chk"><input type="checkbox" name="h4_termica"> Termocamera gia presente</div>
+        <div class="chk"><input type="checkbox" name="h4_altro_tech"> Altro: <input type="text" name="h4_altro_desc" style="flex:1;margin-left:8px" placeholder="descrivere..."></div>
+        <div class="chk"><input type="checkbox" name="h4_niente"> Nessuna tecnologia specifica al momento</div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">H5. Infrastruttura elettrica e di rete in stalla.</div>
+        <div class="qen">Electrical and network infrastructure inside the barn.</div>
+        <div style="font-size:10.5px;color:#1B3F6B;background:#eef3fb;border-radius:4px;padding:5px 9px;margin-bottom:8px;">&#128204; <em>Determina se i sensori possono essere installati senza interventi elettrici aggiuntivi e se serve connettività dedicata.</em></div>
+        <div class="chk"><input type="checkbox" name="h5_220"> Prese 220V disponibili nelle stalle</div>
+        <div class="chk"><input type="checkbox" name="h5_industriale"> Alimentazione industriale trifase disponibile</div>
+        <div class="chk"><input type="checkbox" name="h5_wifi_stalla"> WiFi gia presente dentro le stalle</div>
+        <div class="chk"><input type="checkbox" name="h5_lan"> Rete cablata (cavi ethernet) in alcuni punti</div>
+        <div class="chk"><input type="checkbox" name="h5_4g"> Segnale 4G/5G buono anche dentro le strutture</div>
+        <div class="chk"><input type="checkbox" name="h5_no_rete"> Nessuna rete dati nelle stalle al momento</div>
+        <div style="margin-top:8px">
+          <div class="fgroup"><label>Note su eventuali limitazioni o punti critici:</label>
+          <textarea name="h5_note" rows="2" placeholder="es. zona senza segnale, stalla B senza prese, ecc."></textarea></div>
+        </div>
+      </div>
+
+      <div class="qblock">
+        <div class="qlabel">H6. Foto, video o documenti della struttura</div>
+        <div class="qen">Photos, videos or documents of the facility</div>
+        <div style="font-size:10.5px;color:#1B3F6B;background:#eef3fb;border-radius:4px;padding:5px 9px;margin-bottom:12px;">&#128204; <em>Anche foto scattate con il telefono sono utilissime. Caricate quello che avete — planimetrie, foto stalle, paddock, qualsiasi cosa.</em></div>
+
+        <div id="upload-area" style="border:2px dashed #1B3F6B;border-radius:10px;padding:28px 20px;text-align:center;cursor:pointer;background:#f7f9ff;transition:background 0.2s;" onclick="document.getElementById('file-input').click()" ondragover="event.preventDefault();this.style.background='#ddeeff'" ondragleave="this.style.background='#f7f9ff'" ondrop="handleDrop(event)">
+          <div style="font-size:32px;margin-bottom:8px;">&#128247;</div>
+          <div style="font-size:14px;font-weight:600;color:#1B3F6B;margin-bottom:4px;">Clicca qui per caricare foto, video o documenti</div>
+          <div style="font-size:11px;color:#888;">oppure trascina i file direttamente qui sopra</div>
+          <div style="font-size:10px;color:#aaa;margin-top:6px;">Foto, video, PDF, planimetrie — quanti file volete</div>
+        </div>
+        <input type="file" id="file-input" multiple accept="image/*,video/*,.pdf,.dwg,.dxf" style="display:none" onchange="handleFiles(this.files)">
+
+        <div id="file-list" style="margin-top:12px;display:none">
+          <div style="font-size:11px;font-weight:600;color:#1B3F6B;margin-bottom:6px;">File selezionati:</div>
+          <div id="file-items"></div>
+          <div style="margin-top:8px">
+            <button type="button" onclick="document.getElementById('file-input').click()" style="background:none;border:1px solid #1B3F6B;color:#1B3F6B;border-radius:5px;padding:5px 12px;font-size:11px;cursor:pointer;">+ Aggiungi altri file</button>
+          </div>
+        </div>
+
+        <div style="margin-top:10px">
+          <div class="fgroup"><label>Note sui file (facoltativo — es. "foto stalla principale", "planimetria 2022"):</label>
+          <input type="text" name="h6_note" placeholder="Descrivete brevemente cosa avete caricato..."></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- G — DISPONIBILITA AL TRIAL -->
+    <div class="section">
+      <div class="sec-title">G — Disponibilita al trial &nbsp;/&nbsp; Trial availability</div>
+      <div class="qblock">
+        <div class="qlabel">G1. Su quanti capi bovini sareste disposti a testare il sistema in una fase pilota?</div>
+        <div class="qen">How many cattle would you include in a pilot phase?</div>
+        <div class="row"><span class="lbl">Numero:</span><input type="text" name="g1"></div>
+      </div>
+      <div class="qblock">
+        <div class="qlabel">G2. Sareste interessati a includere nel trial anche altri animali (cavalli, ovini, ecc.)?</div>
+        <div class="qen">Would you be interested in including other species in the trial?</div>
+        <div class="chk"><input type="checkbox" name="g2altri_si"> Si — specificare: <input type="text" name="g2altri_spec" style="flex:1;margin-left:8px" placeholder="es. cavalli, ovini..."></div>
+        <div class="chk"><input type="checkbox" name="g2altri_no"> No, solo bovini per ora</div>
+        <div class="chk"><input type="checkbox" name="g2altri_val"> Da valutare</div>
+      </div>
+      <div class="qblock">
+        <div class="qlabel">G3. C'e un veterinario aziendale disponibile a collaborare?</div>
+        <div class="qen">Is a farm veterinarian available?</div>
+        <div style="display:flex;gap:16px">
+          <div class="chk"><input type="checkbox" name="g3si"> Si</div>
+          <div class="chk"><input type="checkbox" name="g3no"> No</div>
+          <div class="chk"><input type="checkbox" name="g3val"> Da valutare</div>
+        </div>
+      </div>
+      <div class="qblock">
+        <div class="qlabel">G4. Qualsiasi altra informazione, vincolo o aspettativa da condividere.</div>
+        <div class="qen">Any other information, constraints or expectations.</div>
+        <textarea name="g4" rows="6"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="send-btn">Invia questionario compilato &#8594;</button>
+  </form>
+
+  <div class="success-msg" id="successMsg">
+    <h2>Questionario inviato</h2>
+    <p>La vostra email si e' aperta con le risposte gia' inserite.<br>Cliccate <b>Invia</b> nella vostra email per completare l'invio.</p>
+    <div id="attach-reminder" style="margin-top:12px;background:#fff3cd;border:1px solid #e6c84a;border-radius:6px;padding:12px;font-size:12px;color:#7a5c00;display:none">
+      <strong>&#128247; Ricordatevi di allegare i file!</strong><br>
+      Avete selezionato dei file da condividere. Prima di inviare l'email, allegate manualmente i file dalla vostra cartella.
+    </div>
+    <p style="margin-top:12px;color:#333;font-size:13px;">Grazie — vi contatteremo a breve.</p>
+  </div>
+
+  <div class="footer">NeuroAlert LiveStock — Questionario preliminare<br>Tutte le informazioni sono riservate, utilizzate esclusivamente per la progettazione interna e distrutte al termine del loro utilizzo.</div>
+</div>
+
+<script>
+
+// ── FILE UPLOAD ───────────────────────────────────────────────
+let uploadedFiles = [];
+
+function handleFiles(files) {
+  Array.from(files).forEach(addFile);
+  renderFileList();
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('upload-area').style.background = '#f7f9ff';
+  handleFiles(e.dataTransfer.files);
+}
+
+function addFile(file) {
+  // evita duplicati per nome
+  if (!uploadedFiles.find(f => f.name === file.name && f.size === file.size)) {
+    uploadedFiles.push(file);
+  }
+}
+
+function removeFile(idx) {
+  uploadedFiles.splice(idx, 1);
+  renderFileList();
+}
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/(1024*1024)).toFixed(1) + ' MB';
+}
+
+function getIcon(file) {
+  if (file.type.startsWith('image/')) return '&#128247;';
+  if (file.type.startsWith('video/')) return '&#127910;';
+  if (file.type === 'application/pdf') return '&#128196;';
+  return '&#128459;';
+}
+
+function renderFileList() {
+  const container = document.getElementById('file-items');
+  const listDiv = document.getElementById('file-list');
+  container.innerHTML = '';
+  if (uploadedFiles.length === 0) { listDiv.style.display = 'none'; return; }
+  listDiv.style.display = 'block';
+
+  uploadedFiles.forEach(function(file, idx) {
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;align-items:center;gap:8px;padding:6px 10px;background:#f4f7ff;border-radius:6px;margin-bottom:5px;font-size:12px;';
+
+    // thumbnail per immagini
+    let thumb = '';
+    if (file.type.startsWith('image/')) {
+      const url = URL.createObjectURL(file);
+      thumb = '<img src="' + url + '" style="width:36px;height:36px;object-fit:cover;border-radius:4px;flex-shrink:0">';
+    } else {
+      thumb = '<span style="font-size:20px;flex-shrink:0">' + getIcon(file) + '</span>';
+    }
+
+    div.innerHTML = thumb +
+      '<span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#333">' + file.name + '</span>' +
+      '<span style="color:#888;font-size:10px;flex-shrink:0">' + formatSize(file.size) + '</span>' +
+      '<button type="button" onclick="removeFile(' + idx + ')" style="background:none;border:none;color:#ccc;font-size:14px;cursor:pointer;flex-shrink:0" title="Rimuovi">✕</button>';
+    container.appendChild(div);
+  });
+
+  // riepilogo
+  const total = uploadedFiles.reduce((s,f) => s+f.size, 0);
+  const info = document.createElement('div');
+  info.style.cssText = 'font-size:10px;color:#888;margin-top:4px;';
+  info.textContent = uploadedFiles.length + ' file  —  ' + formatSize(total) + ' totali';
+  container.appendChild(info);
+}
+
+// ── GESTIONE SEZIONE A4: aggiungi/rimuovi specie ──────────────
+let animalCount = 0;
+
+function addAnimalRow(prefill) {
+  animalCount++;
+  const idx = animalCount;
+  const container = document.getElementById('other-animals-container');
+  const div = document.createElement('div');
+  div.className = 'pair';
+  div.id = 'animal-row-' + idx;
+  div.innerHTML =
+    '<span class="lbl">Specie:</span>' +
+    '<input type="text" name="a4_specie_' + idx + '" style="flex:3" placeholder="es. Cavalli, Ovini, Suini..." value="' + (prefill || '') + '">' +
+    '<span class="lbl" style="min-width:35px;text-align:right">N.:</span>' +
+    '<input type="text" name="a4_num_' + idx + '" style="max-width:80px">' +
+    '<button type="button" class="remove-animal" onclick="removeAnimalRow(' + idx + ')">✕</button>';
+  container.appendChild(div);
+  updateAnimalDetails();
+}
+
+function removeAnimalRow(idx) {
+  const el = document.getElementById('animal-row-' + idx);
+  if (el) el.remove();
+  updateAnimalDetails();
+}
+
+document.getElementById('add-animal-btn').addEventListener('click', function() {
+  addAnimalRow('');
+});
+
+// ── SEZIONE F DINAMICA: blocco dettaglio per ogni specie ──────
+function updateAnimalDetails() {
+  const rows = document.querySelectorAll('#other-animals-container .pair');
+  const secF = document.getElementById('sec-altri-animali');
+  const detailContainer = document.getElementById('animal-detail-blocks');
+  detailContainer.innerHTML = '';
+
+  let hasSpecies = false;
+  rows.forEach(function(row, i) {
+    const specieInput = row.querySelector('input[name^="a4_specie_"]');
+    const specie = specieInput ? specieInput.value.trim() : '';
+    if (!specie) return;
+    hasSpecies = true;
+    const idx = i + 1;
+
+    const block = document.createElement('div');
+    block.className = 'animal-block';
+    block.innerHTML =
+      '<div class="animal-block-title">F' + idx + '. ' + specie + '</div>' +
+
+      '<div style="margin-bottom:8px">' +
+        '<div class="qlabel" style="margin-bottom:4px">Struttura di gestione:</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_stalla"> Stalla / box chiuso</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_paddock"> Paddock / area aperta</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_pascolo"> Pascolo libero</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_misto"> Misto</div>' +
+      '</div>' +
+
+      '<div style="margin-bottom:8px">' +
+        '<div class="qlabel" style="margin-bottom:4px">Identificazione individuale gia in uso:</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_id_marchio"> Marchio visivo</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_id_chip"> Microchip / transponder</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_id_gps"> Tag GPS / localizzazione</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_id_collare"> Collare con sensori</div>' +
+        '<div class="chk"><input type="checkbox" name="f' + idx + '_id_no"> Nessun sistema elettronico</div>' +
+      '</div>' +
+
+      '<div style="margin-bottom:8px">' +
+        '<div class="qlabel" style="margin-bottom:4px">Patologie piu frequenti o preoccupanti:</div>' +
+        '<div class="row"><span class="lbl">1.</span><input type="text" name="f' + idx + '_pat1"></div>' +
+        '<div class="row"><span class="lbl">2.</span><input type="text" name="f' + idx + '_pat2"></div>' +
+      '</div>' +
+
+      '<div>' +
+        '<div class="qlabel" style="margin-bottom:4px">Priorita principali (salute, performance, riproduzione, sicurezza, altro):</div>' +
+        '<textarea name="f' + idx + '_priorita" rows="2" placeholder="Descrivere le priorita per ' + specie + '..."></textarea>' +
+      '</div>';
+
+    detailContainer.appendChild(block);
+  });
+
+  secF.style.display = hasSpecies ? 'block' : 'none';
+}
+
+// ── INVIO MAILTO ──────────────────────────────────────────────
+document.getElementById('qform').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const f = e.target;
+  const d = new FormData(f);
+
+  // raccoglie tutte le specie aggiunte
+  const animalRows = document.querySelectorAll('#other-animals-container .pair');
+  let altriAnimali = [];
+  animalRows.forEach(function(row) {
+    const sInput = row.querySelector('input[name^="a4_specie_"]');
+    const nInput = row.querySelector('input[name^="a4_num_"]');
+    const sp = sInput ? sInput.value.trim() : '';
+    const nu = nInput ? nInput.value.trim() : '';
+    if (sp) altriAnimali.push(sp + (nu ? ' (N. ' + nu + ')' : ''));
+  });
+
+  // dettaglio sezione F
+  let detailF = '';
+  const fBlocks = document.querySelectorAll('#animal-detail-blocks .animal-block');
+  fBlocks.forEach(function(block, i) {
+    const title = block.querySelector('.animal-block-title').textContent;
+    detailF += '\n' + title + '\n';
+    const checks = block.querySelectorAll('input[type=checkbox]:checked');
+    checks.forEach(function(c) {
+      detailF += '  ✓ ' + c.name.replace(/f\d+_/, '').replace(/_/g,' ') + '\n';
+    });
+    const texts = block.querySelectorAll('input[type=text], textarea');
+    texts.forEach(function(t) {
+      if (t.value.trim()) detailF += '  ' + t.name.replace(/f\d+_/, '').replace(/_/g,' ') + ': ' + t.value.trim() + '\n';
+    });
+  });
+
+  const fields = [
+    ['A1 - N. medio bovini', d.get('a1_medio')],
+    ['A1 - N. massimo bovini', d.get('a1_max')],
+    ['A2 - Macellati al giorno', d.get('a2_giorno')],
+    ['A2 - Macellati alla settimana', d.get('a2_sett')],
+    ['A3 - Necessitano cure al mese', d.get('a3_cure')],
+    ['A3 - Abbattuti (non macellati) al mese', d.get('a3_abbattuti')],
+    ['A4 - Macellazione', [
+      f.querySelector('[name=a4mac_interna]') && f.querySelector('[name=a4mac_interna]').checked ? 'Interna (macello in azienda)' : '',
+      f.querySelector('[name=a4mac_terzi]') && f.querySelector('[name=a4mac_terzi]').checked ? 'Presso terzi' : '',
+      f.querySelector('[name=a4mac_misto]') && f.querySelector('[name=a4mac_misto]').checked ? 'Entrambe' : '',
+    ].filter(Boolean).join(', ')],
+    ['A4 - Distanza macello terzi', d.get('a4mac_dist')],
+    ['A5 - Altri animali gestiti', altriAnimali.join(', ') || 'Nessuno'],
+    ['B1 - Passaggio obbligato', f.querySelector('[name=b1si]').checked ? 'SI - ' + (d.get('b1desc')||'') : (f.querySelector('[name=b1no]').checked ? 'NO' : '')],
+    ['B2 - Struttura coperta 1', 'N.' + (d.get('b2n1')||'') + '  dim.' + (d.get('b2d1')||'')],
+    ['B2 - Struttura coperta 2', 'N.' + (d.get('b2n2')||'') + '  dim.' + (d.get('b2d2')||'')],
+    ['B2 - Struttura coperta 3', 'N.' + (d.get('b2n3')||'') + '  dim.' + (d.get('b2d3')||'')],
+    ['B3 - Paddock 1', 'N.' + (d.get('b3n1')||'') + '  dim.' + (d.get('b3d1')||'')],
+    ['B3 - Paddock 2', 'N.' + (d.get('b3n2')||'') + '  dim.' + (d.get('b3d2')||'')],
+    ['B3 - Paddock 3', 'N.' + (d.get('b3n3')||'') + '  dim.' + (d.get('b3d3')||'')],
+    ['B4 - Connettivita', [f.querySelector('[name=b4wifi]').checked?'WiFi':'', f.querySelector('[name=b4_4g]').checked?'4G/5G':'', f.querySelector('[name=b4ele]').checked?'Corrente elettrica':'', f.querySelector('[name=b4lim]').checked?'Limitata':''].filter(Boolean).join(', ')],
+    ['C1 - Identificazione in uso', [f.querySelector('[name=c1marchio]').checked?'Marchio visivo':'', f.querySelector('[name=c1rfid]').checked?'Transponder auricolare':'', f.querySelector('[name=c1bolo]').checked?'Bolo ruminale':'', f.querySelector('[name=c1gps]').checked?'Tag GPS':'', f.querySelector('[name=c1collare]').checked?'Collare sensori':'', f.querySelector('[name=c1no]').checked?'Nessun sistema':''].filter(Boolean).join(', ')],
+    ['C2 - Come si rintraccia un capo', d.get('c2')],
+    ['C3 - Capi in paddock/pascolo', d.get('c3')],
+    ['C4 - Software gestionale', f.querySelector('[name=c4si]').checked ? 'SI: ' + (d.get('c4nome')||'') : (f.querySelector('[name=c4no]').checked ? 'NO' : '')],
+    ['D1 - Planimetria', f.querySelector('[name=d1a]').checked?'Allego':f.querySelector('[name=d1b]').checked?'Inviero dopo':f.querySelector('[name=d1c]').checked?'No':''],
+    ['D2 - Superficie (ha)', d.get('d2sup')],
+    ['D2 - Perimetro (km)', d.get('d2per')],
+    ['E1 - Patologie bovini', [(d.get('e1p1')||''), (d.get('e1p2')||''), (d.get('e1p3')||'')].filter(Boolean).join(' / ')],
+    ['E2 - Intrusioni/furti', [f.querySelector('[name=e2freq]').checked?'Frequenti':'', f.querySelector('[name=e2occ]').checked?'Occasionali':'', f.querySelector('[name=e2rar]').checked?'Raramente':'', f.querySelector('[name=e2mai]').checked?'Mai':''].filter(Boolean).join(', ')],
+    ['E3 - Tori', [f.querySelector('[name=e3sep]').checked?'Separati':'', f.querySelector('[name=e3grp]').checked?'In gruppo':'', f.querySelector('[name=e3nob]').checked?'Nessun toro':''].filter(Boolean).join(', ')],
+    ['E3 - Aggressivita', [f.querySelector('[name=e3freq]').checked?'Frequente':'', f.querySelector('[name=e3occ]').checked?'Occasionale':'', f.querySelector('[name=e3rar]').checked?'Raramente':''].filter(Boolean).join(', ')],
+    ['G1 - N. capi trial (bovini)', d.get('g1')],
+    ['G2 - Trial altri animali', f.querySelector('[name=g2altri_si]').checked ? 'SI: ' + (d.get('g2altri_spec')||'') : f.querySelector('[name=g2altri_no]').checked ? 'Solo bovini' : f.querySelector('[name=g2altri_val]').checked ? 'Da valutare' : ''],
+    ['G3 - Veterinario aziendale', f.querySelector('[name=g3si]').checked?'SI':f.querySelector('[name=g3no]').checked?'NO':f.querySelector('[name=g3val]').checked?'Da valutare':''],
+    ['G4 - Note aggiuntive', d.get('g4')],
+  ];
+
+
+    // sezione H — documentazione e tecnologie
+    const h2_items = ['stalle','paddock','percorsi','varchi','abbeveratoi','uffici','recinzioni'];
+    const h2_labels = ['Stalle/box','Paddock/esterni','Percorsi animali','Varchi obbligati','Abbeveratoi/mangiatoie','Uffici/locali tecnici','Recinzioni'];
+    const h2_checked = h2_items.filter((x,i) => f.querySelector('[name=h2_'+x+']').checked).map((x,i) => h2_labels[h2_items.indexOf(x)]);
+
+    const h4_items = ['pesapersone','mungitura','alimentazione','meteo','sensori_aria','rfid_varchi','collari','termica'];
+    const h4_labels = ['Bilance automatiche','Robot mungitura','Distribuzione mangime automatica','Stazione meteo','Sensori qualita aria','Lettori ai varchi','Collari con sensori','Termocamera'];
+    const h4_checked = h4_items.filter(x => f.querySelector('[name=h4_'+x+']').checked).map((x,i) => h4_labels[h4_items.indexOf(x)]);
+    if (f.querySelector('[name=h4_altro_tech]').checked && d.get('h4_altro_desc')) h4_checked.push('Altro: ' + d.get('h4_altro_desc'));
+    if (f.querySelector('[name=h4_niente]').checked) h4_checked.push('Nessuna tecnologia');
+
+    const h5_items = ['220','industriale','wifi_stalla','lan','4g','no_rete'];
+    const h5_labels = ['Prese 220V in stalla','Trifase','WiFi in stalla','Rete cablata','4G/5G dentro','Nessuna rete dati'];
+    const h5_checked = h5_items.filter(x => f.querySelector('[name=h5_'+x+']').checked).map((x,i) => h5_labels[h5_items.indexOf(x)]);
+
+    fields.push(
+      ['H1 - Piantina/mappa', [
+        f.querySelector('[name=h1_allego]').checked?'Allegata':'',
+        f.querySelector('[name=h1_dopo]').checked?'Manda dopo':'',
+        f.querySelector('[name=h1_foto]').checked?'Foto/satellite':'',
+        f.querySelector('[name=h1_schizzo]').checked?'Schizzo a mano':'',
+        f.querySelector('[name=h1_no]').checked?'Non disponibile':''
+      ].filter(Boolean).join(', ')],
+      ['H1 - Note/link mappa', d.get('h1_note')],
+      ['H2 - Elementi indicabili sulla mappa', h2_checked.join(', ')],
+      ['H3 - Telecamere esistenti', f.querySelector('[name=h3_si]').checked ? 'SI - N.' + (d.get('h3_num')||'') + ' - ' + (d.get('h3_marca')||'') + ' - dove: ' + (d.get('h3_dove')||'') : f.querySelector('[name=h3_no]').checked ? 'NO' : ''],
+      ['H3 - Coprono aree animali', f.querySelector('[name=h3_coprono_si]').checked?'SI, almeno in parte':f.querySelector('[name=h3_coprono_no]').checked?'No, solo perimetro':''],
+      ['H4 - Tecnologie presenti', h4_checked.join(', ') || 'Nessuna'],
+      ['H5 - Infrastruttura elettrica/rete', h5_checked.join(', ')],
+      ['H5 - Note infrastruttura', d.get('h5_note')],
+      ['H6 - Foto struttura', f.querySelector('[name=h6_si_allego]').checked?'Allegate':f.querySelector('[name=h6_si_dopo]').checked?'Manda dopo':f.querySelector('[name=h6_no]').checked?'No':''],
+      ['H6 - File caricati', uploadedFiles.length > 0 ? uploadedFiles.map(f => f.name + ' (' + formatSize(f.size) + ')').join(', ') : 'Nessun file caricato'],
+      ['H6 - Note file', d.get('h6_note')],
+    );
+  let body = 'NEUROALERT LIVESTOCK - QUESTIONARIO COMPILATO\n';
+  body += '='.repeat(50) + '\n\n';
+  fields.forEach(function([label, val]) {
+    if (val && val.toString().trim()) body += label + ':\n' + val.toString().trim() + '\n\n';
+  });
+
+  if (detailF.trim()) {
+    body += '='.repeat(50) + '\nF - DETTAGLIO ALTRI ANIMALI\n' + detailF + '\n';
+  }
+
+  const subject = encodeURIComponent('NeuroAlert LiveStock - Questionario compilato');
+  const bodyEnc = encodeURIComponent(body);
+  const mailto = 'mailto:?subject=' + subject + '&body=' + bodyEnc;
+
+  document.getElementById('qform').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  if (uploadedFiles.length > 0) {
+    document.getElementById('attach-reminder').style.display = 'block';
+  }
+  window.location.href = mailto;
+});
+</script>
+</body>
+</html>
