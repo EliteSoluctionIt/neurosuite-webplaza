@@ -738,4 +738,55 @@ if (document.readyState === 'loading') {
 }
 </script>
 </body>
-</html>
+</html><style id="mobile-fix-neuroalert-v2">
+@media (max-width: 760px){
+  html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+  *{box-sizing:border-box!important}
+  .slide,.section,.container,.wrap,.content{width:100%!important;max-width:100%!important}
+  h1{font-size:clamp(34px,10vw,52px)!important;line-height:1.08!important;word-break:normal!important}
+  h2,h3{line-height:1.15!important;word-break:normal!important}
+  p,li{font-size:18px!important;line-height:1.55!important}
+  .grid,.cards,.columns,.stats,.timeline,.pipeline,.research-grid{
+    display:block!important;
+    grid-template-columns:1fr!important;
+    columns:1!important;
+  }
+  .card,.stat,.box,.phase,.module,.research-card{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:auto!important;
+    margin:18px 0!important;
+    overflow:visible!important;
+  }
+  table,thead,tbody,tr,td,th{display:block!important;width:100%!important}
+  td,th{white-space:normal!important}
+  .row,.item,.metric{
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    overflow:visible!important;
+  }
+}
+</style>
+<style id="neuroalert-mobile-final-fix-v3">
+@media (max-width: 820px){
+  html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+  *{box-sizing:border-box!important}
+  main,section,.slide,.container,.wrap,.content{width:100%!important;max-width:100%!important;overflow:visible!important}
+  .slide{height:auto!important;min-height:100vh!important;padding:72px 18px 96px!important}
+  h1{font-size:clamp(32px,9vw,48px)!important;line-height:1.08!important;max-width:100%!important}
+  h2,h3{line-height:1.15!important;max-width:100%!important}
+  p,li{font-size:17px!important;line-height:1.5!important}
+  .grid,.cards,.columns,.stats,.timeline,.pipeline,.research-grid,.market-grid,.phase-grid,.module-grid{
+    display:flex!important;flex-direction:column!important;gap:18px!important;width:100%!important
+  }
+  .card,.stat,.box,.phase,.module,.research-card,.metric,.item{
+    width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;min-height:auto!important;margin:0 0 18px!important;overflow:visible!important
+  }
+  table,thead,tbody,tr,td,th{display:block!important;width:100%!important;max-width:100%!important}
+  td,th{white-space:normal!important;overflow:visible!important}
+  .nav,.topbar,.deck-nav{position:sticky!important;top:0!important}
+}
+</style>
