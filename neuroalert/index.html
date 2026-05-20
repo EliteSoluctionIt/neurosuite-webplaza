@@ -790,3 +790,44 @@ if (document.readyState === 'loading') {
   .nav,.topbar,.deck-nav{position:sticky!important;top:0!important}
 }
 </style>
+<style id="NEUROALERT_FORCE_MOBILE_SCROLL_V4">
+@media (max-width: 900px){
+  html, body{
+    height:auto!important;
+    min-height:100%!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    position:static!important;
+    -webkit-overflow-scrolling:touch!important;
+    touch-action:pan-y!important;
+  }
+  #stage{
+    position:static!important;
+    height:auto!important;
+    min-height:100vh!important;
+    overflow-y:visible!important;
+    overflow-x:hidden!important;
+    -webkit-overflow-scrolling:touch!important;
+    touch-action:pan-y!important;
+  }
+  .slide{
+    position:relative!important;
+    inset:auto!important;
+    display:none!important;
+    height:auto!important;
+    min-height:auto!important;
+    overflow:visible!important;
+    padding:78px 18px 96px!important;
+    transform:none!important;
+  }
+  .slide.active{
+    display:flex!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+  nav{
+    position:sticky!important;
+    top:0!important;
+  }
+}
+</style>
