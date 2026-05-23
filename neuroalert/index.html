@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -79,7 +79,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 #s4 .sensor-label{font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:12px 14px 4px}
 #s4 .sensor-items{padding:7px 14px 9px;flex:1}
 #s4 .sensor-items li{font-size:11px;color:var(--text);padding:3px 0;list-style:none;display:flex;gap:6px;align-items:flex-start;line-height:1.5}
-#s4 .sensor-items li::before{content:'Ã”Ã‡Ã¶';color:var(--mid);flex-shrink:0}
+#s4 .sensor-items li::before{content:'—';color:var(--mid);flex-shrink:0}
 #s4 .sensor-proof{font-size:9.5px;color:var(--gray);font-style:italic;padding:9px 14px 0;line-height:1.5;border-top:1px solid var(--lgray);margin:0 14px}
 
 /* S5 */
@@ -153,7 +153,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 #s10 .phase-items{flex:1}
 #s10 .phase-items li{font-size:11px;color:var(--text);padding:4px 0;list-style:none;display:flex;gap:7px;border-bottom:1px solid var(--lgray);line-height:1.45}
 #s10 .phase-items li:last-child{border:none}
-#s10 .phase-items li::before{content:'Ã”Ã¥Ã†';color:var(--mid);font-weight:500;flex-shrink:0}
+#s10 .phase-items li::before{content:'→';color:var(--mid);font-weight:500;flex-shrink:0}
 
 /* S11 */
 #s11{flex-direction:column;justify-content:center}
@@ -182,7 +182,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 #s13 .sector-items{padding:11px 15px;flex:1}
 #s13 .sector-items li{font-size:11.5px;color:var(--text);padding:5px 0;list-style:none;border-bottom:1px solid var(--lgray);display:flex;gap:7px;line-height:1.45}
 #s13 .sector-items li:last-child{border:none}
-#s13 .sector-items li::before{content:'â”¬Ã€';font-size:16px;color:var(--mid);flex-shrink:0;line-height:1.3}
+#s13 .sector-items li::before{content:'·';font-size:16px;color:var(--mid);flex-shrink:0;line-height:1.3}
 #s13 .sector-note{padding:9px 15px 12px;font-size:10px;color:var(--gray);font-style:italic;line-height:1.5;border-top:1px solid var(--lgray)}
 #s13 .footer-bar{background:#EAF4EE;border-left:3px solid var(--mid);padding:10px 16px;font-size:12px;color:var(--text);margin-top:12px;border-radius:2px;flex-shrink:0}
 
@@ -204,9 +204,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 #s14 .anim-type{font-size:11px;font-weight:500;color:var(--dark)}
 #s14 .anim-why{font-size:11px;color:var(--gray);line-height:1.45}
 #s14 .footer-bar{background:#FEF9EC;border-left:3px solid var(--accent);padding:10px 16px;font-size:12px;color:var(--text);margin-top:11px;border-radius:2px;flex-shrink:0}
-/* === NEUROALERT_CLEAN_MOBILE_SCROLL_FIX_V1 ===
-   Clean fix after restoring a valid deck.
-   Mobile keeps one active slide at a time and scrolls vertically inside that slide. */
+/* === NEUROALERT_UTF8_SCROLL_FIX_V5 === */
 @media (max-width: 900px), (hover: none) and (pointer: coarse) {
   html, body {
     width: 100% !important;
@@ -217,14 +215,10 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     -webkit-text-size-adjust: 100% !important;
     overscroll-behavior: none !important;
   }
-
   nav {
     height: var(--nav-h, 56px) !important;
-    padding-left: max(12px, env(safe-area-inset-left, 0px)) !important;
-    padding-right: max(12px, env(safe-area-inset-right, 0px)) !important;
     overflow: hidden !important;
   }
-
   #stage {
     position: fixed !important;
     top: var(--nav-h, 56px) !important;
@@ -234,7 +228,6 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     height: calc(100dvh - var(--nav-h, 56px)) !important;
     overflow: hidden !important;
   }
-
   .slide {
     position: absolute !important;
     inset: 0 !important;
@@ -254,77 +247,27 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     pointer-events: none !important;
     box-sizing: border-box !important;
   }
-
   .slide.active {
     display: block !important;
     opacity: 1 !important;
     pointer-events: auto !important;
   }
-
-  .slide.prev {
-    display: none !important;
-  }
-
-  .slide::after,
-  .slide-dark::after {
-    pointer-events: none !important;
-  }
-
-  .slide > * {
-    max-width: 100% !important;
-  }
-
-  .slide h1 {
-    font-size: clamp(31px, 9vw, 48px) !important;
-    line-height: 1.08 !important;
-  }
-
-  .slide h2 {
-    font-size: clamp(23px, 7vw, 36px) !important;
-    line-height: 1.12 !important;
-  }
-
-  .slide h3 {
-    font-size: clamp(17px, 5vw, 24px) !important;
-  }
-
-  .slide p,
-  .slide li {
-    font-size: 16px !important;
-    line-height: 1.55 !important;
-  }
-
-  .cards-row,
-  .timeline,
-  .grid,
-  .cols,
-  .sectors,
-  .module-grid,
-  .phase-grid,
-  .market-grid,
-  .research-grid,
-  .pipeline,
-  [class*="grid"],
-  [class*="cards"],
-  [class*="cols"] {
+  .slide.prev { display: none !important; }
+  .slide::after, .slide-dark::after { pointer-events: none !important; }
+  .slide > * { max-width: 100% !important; }
+  .slide h1 { font-size: clamp(31px, 9vw, 48px) !important; line-height: 1.08 !important; }
+  .slide h2 { font-size: clamp(23px, 7vw, 36px) !important; line-height: 1.12 !important; }
+  .slide h3 { font-size: clamp(17px, 5vw, 24px) !important; }
+  .slide p, .slide li { font-size: 16px !important; line-height: 1.55 !important; }
+  .cards-row, .timeline, .grid, .cols, .sectors, .module-grid, .phase-grid, .market-grid, .research-grid, .pipeline,
+  [class*="grid"], [class*="cards"], [class*="cols"] {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
     min-height: 0 !important;
   }
-
-  .card,
-  .stat-card,
-  .tl-card,
-  .col-card,
-  .sector,
-  .module,
-  .phase,
-  .box,
-  [class*="card"],
-  [class*="sector"],
-  [class*="module"],
-  [class*="phase"] {
+  .card, .stat-card, .tl-card, .col-card, .sector, .module, .phase, .box,
+  [class*="card"], [class*="sector"], [class*="module"], [class*="phase"] {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
@@ -333,14 +276,6 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     margin: 0 0 16px 0 !important;
     overflow: visible !important;
   }
-
-  table, thead, tbody, tr, td, th {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-  }
-
   #progress {
     position: fixed !important;
     bottom: 0 !important;
@@ -363,9 +298,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
  .card *,.panel *,.box *,.step *,.column *{max-width:100%!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important}
  .nav,.topbar,header{position:sticky!important;top:0!important;width:100%!important;max-width:100%!important}
 }
-/* === NEUROALERT_CLEAN_MOBILE_SCROLL_FIX_V1 ===
-   Clean fix after restoring a valid deck.
-   Mobile keeps one active slide at a time and scrolls vertically inside that slide. */
+/* === NEUROALERT_UTF8_SCROLL_FIX_V5 === */
 @media (max-width: 900px), (hover: none) and (pointer: coarse) {
   html, body {
     width: 100% !important;
@@ -376,14 +309,10 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     -webkit-text-size-adjust: 100% !important;
     overscroll-behavior: none !important;
   }
-
   nav {
     height: var(--nav-h, 56px) !important;
-    padding-left: max(12px, env(safe-area-inset-left, 0px)) !important;
-    padding-right: max(12px, env(safe-area-inset-right, 0px)) !important;
     overflow: hidden !important;
   }
-
   #stage {
     position: fixed !important;
     top: var(--nav-h, 56px) !important;
@@ -393,7 +322,6 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     height: calc(100dvh - var(--nav-h, 56px)) !important;
     overflow: hidden !important;
   }
-
   .slide {
     position: absolute !important;
     inset: 0 !important;
@@ -413,77 +341,27 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     pointer-events: none !important;
     box-sizing: border-box !important;
   }
-
   .slide.active {
     display: block !important;
     opacity: 1 !important;
     pointer-events: auto !important;
   }
-
-  .slide.prev {
-    display: none !important;
-  }
-
-  .slide::after,
-  .slide-dark::after {
-    pointer-events: none !important;
-  }
-
-  .slide > * {
-    max-width: 100% !important;
-  }
-
-  .slide h1 {
-    font-size: clamp(31px, 9vw, 48px) !important;
-    line-height: 1.08 !important;
-  }
-
-  .slide h2 {
-    font-size: clamp(23px, 7vw, 36px) !important;
-    line-height: 1.12 !important;
-  }
-
-  .slide h3 {
-    font-size: clamp(17px, 5vw, 24px) !important;
-  }
-
-  .slide p,
-  .slide li {
-    font-size: 16px !important;
-    line-height: 1.55 !important;
-  }
-
-  .cards-row,
-  .timeline,
-  .grid,
-  .cols,
-  .sectors,
-  .module-grid,
-  .phase-grid,
-  .market-grid,
-  .research-grid,
-  .pipeline,
-  [class*="grid"],
-  [class*="cards"],
-  [class*="cols"] {
+  .slide.prev { display: none !important; }
+  .slide::after, .slide-dark::after { pointer-events: none !important; }
+  .slide > * { max-width: 100% !important; }
+  .slide h1 { font-size: clamp(31px, 9vw, 48px) !important; line-height: 1.08 !important; }
+  .slide h2 { font-size: clamp(23px, 7vw, 36px) !important; line-height: 1.12 !important; }
+  .slide h3 { font-size: clamp(17px, 5vw, 24px) !important; }
+  .slide p, .slide li { font-size: 16px !important; line-height: 1.55 !important; }
+  .cards-row, .timeline, .grid, .cols, .sectors, .module-grid, .phase-grid, .market-grid, .research-grid, .pipeline,
+  [class*="grid"], [class*="cards"], [class*="cols"] {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
     min-height: 0 !important;
   }
-
-  .card,
-  .stat-card,
-  .tl-card,
-  .col-card,
-  .sector,
-  .module,
-  .phase,
-  .box,
-  [class*="card"],
-  [class*="sector"],
-  [class*="module"],
-  [class*="phase"] {
+  .card, .stat-card, .tl-card, .col-card, .sector, .module, .phase, .box,
+  [class*="card"], [class*="sector"], [class*="module"], [class*="phase"] {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
@@ -492,14 +370,6 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     margin: 0 0 16px 0 !important;
     overflow: visible !important;
   }
-
-  table, thead, tbody, tr, td, th {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-  }
-
   #progress {
     position: fixed !important;
     bottom: 0 !important;
@@ -524,9 +394,9 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 <!-- S1 COVER -->
 <div class="slide slide-dark" id="s1">
   <h1 style="color:var(--white);max-width:640px">NeuroAlert</h1>
-  <div class="sub">Sapere prima che l'animale stia male.<br>Intervenire quando c'â”œÂ¿ ancora tempo.</div>
+  <div class="sub">Sapere prima che l'animale stia male.<br>Intervenire quando c'è ancora tempo.</div>
   <div class="accent-line"></div>
-  <div class="desc">Un sistema che guarda i vostri animali giorno e notte, rileva i primi segnali di qualcosa che non va e ve lo dice in anticipo Ã”Ã‡Ã¶ prima che il problema diventi visibile a occhio nudo.</div>
+  <div class="desc">Un sistema che guarda i vostri animali giorno e notte, rileva i primi segnali di qualcosa che non va e ve lo dice in anticipo — prima che il problema diventi visibile a occhio nudo.</div>
   <div class="year">2026</div>
 </div>
 
@@ -542,12 +412,12 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     <div class="stat-card">
       <div class="stat-val">7 su 10</div>
       <div class="stat-lbl">animali malati nei grandi allevamenti hanno la polmonite bovina</div>
-      <div class="stat-body">Nei grandi allevamenti americani â”œÂ¿ la malattia piâ”œâ•£ diffusa. Un problema enorme, ovunque nel mondo.</div>
+      <div class="stat-body">Nei grandi allevamenti americani è la malattia più diffusa. Un problema enorme, ovunque nel mondo.</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val">3Ã”Ã‡Ã´7 giorni</div>
+      <div class="stat-val">3–7 giorni</div>
       <div class="stat-lbl">di anticipo possibile, prima che si veda qualcosa</div>
-      <div class="stat-body">Prima che l'animale mostri i sintomi evidenti ci sono giâ”œÃ¡ segnali che cambiano. Il sistema li vede. L'occhio umano su cento capi no.</div>
+      <div class="stat-body">Prima che l'animale mostri i sintomi evidenti ci sono già segnali che cambiano. Il sistema li vede. L'occhio umano su cento capi no.</div>
     </div>
   </div>
   <div class="footer-note">Curare un capo al primo segnale costa circa 38 dollari di perdita netta. Aspettare e curarlo tre volte: 230 dollari. <em style="color:var(--gray);font-size:11px">(Wilson et al. 2017)</em></div>
@@ -561,28 +431,28 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
       <div class="tl-top" style="background:var(--light)"></div>
       <div class="tl-day" style="color:var(--light)">Da 7 a 5 giorni prima</div>
       <div class="tl-label" style="color:var(--light)">L'animale cambia abitudini</div>
-      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Si muove un po' meno del solito<br>Si allontana dagli altri<br>Va meno alla mangiatoia<br><em>Ã”Ã‡Ã¶ cose quasi invisibili a occhio nudo</em></div>
+      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Si muove un po' meno del solito<br>Si allontana dagli altri<br>Va meno alla mangiatoia<br><em>— cose quasi invisibili a occhio nudo</em></div>
     </div>
     <div class="tl-card">
       <div class="tl-top" style="background:var(--accent)"></div>
       <div class="tl-day" style="color:var(--accent)">Da 3 a 2 giorni prima</div>
       <div class="tl-label" style="color:var(--accent)">Segnali fisici precoci</div>
-      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Temperatura intorno all'occhio leggermente alta<br>Testa un po' piâ”œâ•£ bassa del solito<br>Qualcosa che non torna nella postura<br><em>Ã”Ã‡Ã¶ ancora niente di evidente</em></div>
+      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Temperatura intorno all'occhio leggermente alta<br>Testa un po' più bassa del solito<br>Qualcosa che non torna nella postura<br><em>— ancora niente di evidente</em></div>
     </div>
     <div class="tl-card">
       <div class="tl-top" style="background:#E05252"></div>
       <div class="tl-day" style="color:#E05252">Il giorno zero</div>
       <div class="tl-label" style="color:#E05252">Il problema diventa visibile</div>
-      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Febbre alta<br>Tosse evidente<br>L'animale non mangia piâ”œâ•£<br><em>Ã”Ã‡Ã¶ qui lo vede anche l'occhio</em></div>
+      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Febbre alta<br>Tosse evidente<br>L'animale non mangia più<br><em>— qui lo vede anche l'occhio</em></div>
     </div>
     <div class="tl-card">
       <div class="tl-top" style="background:var(--red)"></div>
       <div class="tl-day" style="color:var(--red)">Diagnosi in ritardo</div>
-      <div class="tl-label" style="color:var(--red)">Il danno â”œÂ¿ giâ”œÃ¡ fatto</div>
-      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Medicine piâ”œâ•£ costose<br>Animale giâ”œÃ¡ indebolito<br>Nei casi peggiori: abbattimento<br><em>Ã”Ã‡Ã¶ la finestra si â”œÂ¿ chiusa</em></div>
+      <div class="tl-label" style="color:var(--red)">Il danno è già fatto</div>
+      <div class="tl-detail" style="color:rgba(194,213,200,0.8)">Medicine più costose<br>Animale già indebolito<br>Nei casi peggiori: abbattimento<br><em>— la finestra si è chiusa</em></div>
     </div>
   </div>
-  <div class="tagline">La forza del sistema non â”œÂ¿ identificare l'animale malato. â”œÃª rilevare le variazioni nel momento in cui stanno cominciando a comparire.</div>
+  <div class="tagline">La forza del sistema non è identificare l'animale malato. È rilevare le variazioni nel momento in cui stanno cominciando a comparire.</div>
 </div>
 
 <!-- S4 COME FUNZIONA -->
@@ -611,7 +481,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
         <li>Rileva calore anomalo alla mammella</li>
         <li>Individua stress da caldo nella mandria</li>
       </ul>
-      <div class="sensor-proof">Diversi studi riportano sensibilitâ”œÃ¡ elevate nell'uso della termografia come supporto osservazionale per il rilevamento di anomalie termiche associate a mastite subclinica.</div>
+      <div class="sensor-proof">Diversi studi riportano sensibilità elevate nell'uso della termografia come supporto osservazionale per il rilevamento di anomalie termiche associate a mastite subclinica.</div>
     </div>
     <div class="sensor-card">
       <div class="sensor-bar" style="background:var(--blue)"></div>
@@ -631,7 +501,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
         <li>Riconosce la tosse bovina in automatico</li>
         <li>Misura anidride carbonica e ammoniaca nell'aria</li>
         <li>Rileva vocalizzazioni anomale</li>
-        <li>Controlla temperatura e umiditâ”œÃ¡ dell'ambiente</li>
+        <li>Controlla temperatura e umidità dell'ambiente</li>
       </ul>
       <div class="sensor-proof">Aria con troppa ammoniaca favorisce le malattie respiratorie. Il sistema lo misura in continuo e lo correla con i pattern osservazionali dei singoli capi.</div>
     </div>
@@ -640,7 +510,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 
 <!-- S5 LA LOGICA -->
 <div class="slide slide-light" id="s5">
-  <div style="flex:0 0 auto"><h2>La logica: ogni animale confrontato con sâ”œÂ® stesso</h2><div class="accent-line"></div></div>
+  <div style="flex:0 0 auto"><h2>La logica: ogni animale confrontato con sé stesso</h2><div class="accent-line"></div></div>
   <div class="pipeline">
     <div class="pipe-step" style="background:#1A3A2A">Guarda</div>
     <div class="pipe-step" style="background:#224F38">Segue</div>
@@ -651,23 +521,23 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
   </div>
   <div class="cols">
     <div class="col-card">
-      <h3 style="border-left:3px solid var(--mid);padding-left:11px">Non confronta l'animale con gli altri Ã”Ã‡Ã¶ lo confronta con se stesso</h3>
+      <h3 style="border-left:3px solid var(--mid);padding-left:11px">Non confronta l'animale con gli altri — lo confronta con se stesso</h3>
       <div style="margin-top:13px;display:flex;flex-direction:column;flex:1">
         <div class="rule"><div class="rule-num">1</div><div class="rule-txt">Nelle prime 48 ore il sistema impara come si comporta normalmente quell'animale specifico</div></div>
-        <div class="rule"><div class="rule-num">2</div><div class="rule-txt">Scatta l'allarme solo se almeno due segnali diversi si scostano significativamente dalla normalitâ”œÃ¡ di quell'animale, nello stesso momento</div></div>
+        <div class="rule"><div class="rule-num">2</div><div class="rule-txt">Scatta l'allarme solo se almeno due segnali diversi si scostano significativamente dalla normalità di quell'animale, nello stesso momento</div></div>
         <div class="rule"><div class="rule-num">3</div><div class="rule-txt">Filtra gli eventi che riguardano tutta la mandria (troppo caldo, movimentazione) per non fare falsi allarmi</div></div>
-        <div class="rule"><div class="rule-num">4</div><div class="rule-txt">La media della mandria â”œÂ¿ troppo rumorosa. Serve la storia di quell'animale, non quella degli altri</div></div>
+        <div class="rule"><div class="rule-num">4</div><div class="rule-txt">La media della mandria è troppo rumorosa. Serve la storia di quell'animale, non quella degli altri</div></div>
       </div>
       <div style="margin-top:14px;background:#EAF4EE;border-left:3px solid var(--mid);padding:10px 14px;border-radius:2px;font-size:11px;color:var(--text);line-height:1.6"><strong>Importante:</strong> il sistema non formula diagnosi veterinarie autonome. Genera segnalazioni e indicatori osservazionali che devono essere valutati dal veterinario o dagli operatori competenti.</div>
     </div>
     <div class="col-card">
       <h3 style="border-left:3px solid var(--accent);padding-left:11px">Esempio: una vacca che sta per ammalarsi di polmonite</h3>
       <div style="margin-top:13px;flex:1">
-        <div class="ex-row"><div class="ex-param">Movimento</div><div class="ex-val">Ã”ÃªÃ†22% rispetto al suo normale</div></div>
-        <div class="ex-row"><div class="ex-param">Mangiatoia</div><div class="ex-val">Ã”ÃªÃ†18% di accessi rispetto al suo normale</div></div>
+        <div class="ex-row"><div class="ex-param">Movimento</div><div class="ex-val">−22% rispetto al suo normale</div></div>
+        <div class="ex-row"><div class="ex-param">Mangiatoia</div><div class="ex-val">−18% di accessi rispetto al suo normale</div></div>
         <div class="ex-row"><div class="ex-param">Postura testa</div><div class="ex-val">Abbassata per oltre il 35% del tempo</div></div>
-        <div class="ex-row"><div class="ex-param">Calore occhio</div><div class="ex-val">+0,4â”¬â–‘C rispetto al suo normale</div></div>
-        <div class="ex-row"><div class="ex-param">Passaggi varchi</div><div class="ex-val">Ã”ÃªÃ†31% nelle ultime 12 ore</div></div>
+        <div class="ex-row"><div class="ex-param">Calore occhio</div><div class="ex-val">+0,4°C rispetto al suo normale</div></div>
+        <div class="ex-row"><div class="ex-param">Passaggi varchi</div><div class="ex-val">−31% nelle ultime 12 ore</div></div>
       </div>
     </div>
   </div>
@@ -675,34 +545,34 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 
 <!-- S6 COSA TROVA -->
 <div class="slide slide-light" id="s6">
-  <div style="flex:0 0 auto"><h2>Cosa trova il sistema Ã”Ã‡Ã¶ e con quanto anticipo</h2><div class="accent-line"></div></div>
+  <div style="flex:0 0 auto"><h2>Cosa trova il sistema — e con quanto anticipo</h2><div class="accent-line"></div></div>
   <div class="diseases">
     <div class="disease-row">
       <div class="d-left"><div class="d-bar" style="background:var(--mid)"></div><div class="d-name">Polmonite bovina (malattia respiratoria)</div></div>
-      <div class="d-badge" style="background:var(--mid)">4Ã”Ã‡Ã´7 giorni prima*</div>
-      <div class="d-signals">Variazioni osservabili: calo di movimento â”¬Ã€ meno accessi alla mangiatoia â”¬Ã€ isolamento â”¬Ã€ calore oculare in salita â”¬Ã€ tosse appena accennata</div>
+      <div class="d-badge" style="background:var(--mid)">4–7 giorni prima*</div>
+      <div class="d-signals">Variazioni osservabili: calo di movimento · meno accessi alla mangiatoia · isolamento · calore oculare in salita · tosse appena accennata</div>
     </div>
     <div class="disease-row">
       <div class="d-left"><div class="d-bar" style="background:var(--accent)"></div><div class="d-name">Mastite che non si vede ancora</div></div>
       <div class="d-badge" style="background:var(--accent)">3 giorni prima*</div>
-      <div class="d-signals">Variazioni osservabili: meno rumia â”¬Ã€ modifiche nel passo â”¬Ã€ anomalie termiche nella mammella rilevabili con termocamera senza contatto</div>
+      <div class="d-signals">Variazioni osservabili: meno rumia · modifiche nel passo · anomalie termiche nella mammella rilevabili con termocamera senza contatto</div>
     </div>
     <div class="disease-row">
       <div class="d-left"><div class="d-bar" style="background:var(--blue)"></div><div class="d-name">Chetosi (problema metabolico dopo il parto)</div></div>
-      <div class="d-badge" style="background:var(--blue)">3Ã”Ã‡Ã´5 giorni prima*</div>
-      <div class="d-signals">Variazioni osservabili: meno rumia â”¬Ã€ riduzione attivitâ”œÃ¡ â”¬Ã€ calo alimentare. In molti casi non si osserva nulla a occhio nudo: solo il monitoraggio strumentale rileva le variazioni</div>
+      <div class="d-badge" style="background:var(--blue)">3–5 giorni prima*</div>
+      <div class="d-signals">Variazioni osservabili: meno rumia · riduzione attività · calo alimentare. In molti casi non si osserva nulla a occhio nudo: solo il monitoraggio strumentale rileva le variazioni</div>
     </div>
     <div class="disease-row">
       <div class="d-left"><div class="d-bar" style="background:var(--violet)"></div><div class="d-name">Zoppia (problema alle zampe)</div></div>
-      <div class="d-badge" style="background:var(--violet)">48Ã”Ã‡Ã´72 ore prima*</div>
-      <div class="d-signals">Variazioni osservabili: asimmetrie nel passo â”¬Ã€ riduzione movimento â”¬Ã€ isolamento â”¬Ã€ anomalie termiche al piede rilevabili con termocamera</div>
+      <div class="d-badge" style="background:var(--violet)">48–72 ore prima*</div>
+      <div class="d-signals">Variazioni osservabili: asimmetrie nel passo · riduzione movimento · isolamento · anomalie termiche al piede rilevabili con termocamera</div>
     </div>
     <div class="disease-row">
       <div class="d-left"><div class="d-bar" style="background:var(--red)"></div><div class="d-name">Febbre da parto e carenza di calcio</div></div>
-      <div class="d-badge" style="background:var(--red)">12Ã”Ã‡Ã´24 ore prima*</div>
-      <div class="d-signals">Variazioni osservabili: temperatura subnormale paradossale â”¬Ã€ decubito prolungato â”¬Ã€ calo alimentare</div>
+      <div class="d-badge" style="background:var(--red)">12–24 ore prima*</div>
+      <div class="d-signals">Variazioni osservabili: temperatura subnormale paradossale · decubito prolungato · calo alimentare</div>
     </div>
-    <div style="font-size:10px;color:var(--gray);font-style:italic;margin-top:8px;padding:0 2px">* I range temporali sono indicativi e derivano dalla letteratura scientifica su sistemi di monitoraggio animale. Non rappresentano performance validate di NeuroAlert, che â”œÂ¿ in fase di sviluppo e validazione osservazionale.</div>
+    <div style="font-size:10px;color:var(--gray);font-style:italic;margin-top:8px;padding:0 2px">* I range temporali sono indicativi e derivano dalla letteratura scientifica su sistemi di monitoraggio animale. Non rappresentano performance validate di NeuroAlert, che è in fase di sviluppo e validazione osservazionale.</div>
   </div>
 </div>
 
@@ -713,15 +583,15 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     <div class="paper">
       <div class="paper-bar" style="background:var(--mid)"></div>
       <div class="paper-body">
-        <div class="paper-ref">Studio scientifico internazionale Ã”Ã‡Ã¶ 2017</div>
-        <div class="paper-finding">Nei maiali infettati sperimentalmente, un sistema con le telecamere ha visto il calo di movimento 4 giorni prima che comparissero i sintomi. La riduzione era giâ”œÃ¡ misurabile con il 95% di certezza statistica.</div>
-        <div class="paper-so">Dimostra che il rilevamento precoce da video funziona in stalla, nella realtâ”œÃ¡ Ã”Ã‡Ã¶ non solo in laboratorio.</div>
+        <div class="paper-ref">Studio scientifico internazionale — 2017</div>
+        <div class="paper-finding">Nei maiali infettati sperimentalmente, un sistema con le telecamere ha visto il calo di movimento 4 giorni prima che comparissero i sintomi. La riduzione era già misurabile con il 95% di certezza statistica.</div>
+        <div class="paper-so">Dimostra che il rilevamento precoce da video funziona in stalla, nella realtà — non solo in laboratorio.</div>
       </div>
     </div>
     <div class="paper">
       <div class="paper-bar" style="background:var(--accent)"></div>
       <div class="paper-body">
-        <div class="paper-ref">Russello e colleghi Ã”Ã‡Ã¶ rivista specializzata in tecnologie agricole, 2024</div>
+        <div class="paper-ref">Russello e colleghi — rivista specializzata in tecnologie agricole, 2024</div>
         <div class="paper-finding">Un sistema automatico riesce a rilevare la zoppia nelle vacche da latte analizzando il modo in cui camminano, senza bisogno che il veterinario le guardi una per una ogni giorno.</div>
         <div class="paper-so">Validato in allevamenti reali, non in laboratorio. La tecnologia funziona nel fango e nella routine quotidiana di stalla.</div>
       </div>
@@ -729,17 +599,17 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
     <div class="paper">
       <div class="paper-bar" style="background:var(--blue)"></div>
       <div class="paper-body">
-        <div class="paper-ref">Ricerca su analisi automatica delle immagini termiche Ã”Ã‡Ã¶ rivista internazionale</div>
-        <div class="paper-finding">Diversi studi riportano risultati promettenti nell'analisi automatica delle immagini termiche per il rilevamento di variazioni associate alla mastite subclinica, con sensibilitâ”œÃ¡ elevate in condizioni sperimentali controllate.</div>
-        <div class="paper-so">La termografia integrata con analisi automatica puâ”œâ–“ fornire al veterinario e agli operatori segnalazioni continue che l'ispezione manuale discontinua non permette.</div>
+        <div class="paper-ref">Ricerca su analisi automatica delle immagini termiche — rivista internazionale</div>
+        <div class="paper-finding">Diversi studi riportano risultati promettenti nell'analisi automatica delle immagini termiche per il rilevamento di variazioni associate alla mastite subclinica, con sensibilità elevate in condizioni sperimentali controllate.</div>
+        <div class="paper-so">La termografia integrata con analisi automatica può fornire al veterinario e agli operatori segnalazioni continue che l'ispezione manuale discontinua non permette.</div>
       </div>
     </div>
     <div class="paper">
       <div class="paper-bar" style="background:var(--violet)"></div>
       <div class="paper-body">
-        <div class="paper-ref">Progetto europeo Digi4Live Ã”Ã‡Ã¶ finanziato dalla Commissione Europea, 2024Ã”Ã‡Ã´2028</div>
+        <div class="paper-ref">Progetto europeo Digi4Live — finanziato dalla Commissione Europea, 2024–2028</div>
         <div class="paper-finding">16 istituti di ricerca, 9 paesi europei, finanziati con fondi pubblici per sviluppare oltre 50 soluzioni di monitoraggio automatico dei bovini tramite telecamere e sensori senza contatto con l'animale.</div>
-        <div class="paper-so">L'Europa sta investendo pubblicamente esattamente in questo tipo di approccio. Non â”œÂ¿ fantascienza: â”œÂ¿ il presente della ricerca zootecnica.</div>
+        <div class="paper-so">L'Europa sta investendo pubblicamente esattamente in questo tipo di approccio. Non è fantascienza: è il presente della ricerca zootecnica.</div>
       </div>
     </div>
   </div>
@@ -750,7 +620,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
   <div style="flex:0 0 auto"><h2>Un settore in forte crescita</h2><div class="accent-line"></div></div>
   <div class="content">
     <div class="chart-area">
-      <div class="chart-title">Valore globale Ã”Ã‡Ã¶ monitoraggio intelligente degli animali (miliardi di dollari)</div>
+      <div class="chart-title">Valore globale — monitoraggio intelligente degli animali (miliardi di dollari)</div>
       <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
         <defs><linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2D6A4F" stop-opacity="0.15"/><stop offset="100%" stop-color="#2D6A4F" stop-opacity="0"/></linearGradient></defs>
         <line x1="40" y1="10" x2="40" y2="165" stroke="#E2EDE6" stroke-width="1"/>
@@ -773,12 +643,12 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
         <text x="225" y="178" font-size="9" fill="#9CA3AF" text-anchor="middle">2026</text>
         <text x="320" y="178" font-size="9" fill="#9CA3AF" text-anchor="middle">2028</text>
         <text x="410" y="178" font-size="9" fill="#D4A843" text-anchor="middle" font-weight="600">2030</text>
-        <text x="410" y="50" font-size="10" fill="#D4A843" text-anchor="middle" font-weight="700">8Ã”Ã‡Ã´12 miliardi</text>
+        <text x="410" y="50" font-size="10" fill="#D4A843" text-anchor="middle" font-weight="700">8–12 miliardi</text>
       </svg>
     </div>
     <div class="stats-col">
       <div class="mstat"><div class="mstat-bar" style="background:var(--mid)"></div><div class="mstat-val">4,9 Mld $</div><div class="mstat-desc">valore globale del settore oggi (2024)</div></div>
-      <div class="mstat"><div class="mstat-bar" style="background:var(--mid)"></div><div class="mstat-val">8Ã”Ã‡Ã´12 Mld $</div><div class="mstat-desc">previsione entro il 2030 Ã”Ã‡Ã¶ cresce del 8Ã”Ã‡Ã´11% ogni anno</div></div>
+      <div class="mstat"><div class="mstat-bar" style="background:var(--mid)"></div><div class="mstat-val">8–12 Mld $</div><div class="mstat-desc">previsione entro il 2030 — cresce del 8–11% ogni anno</div></div>
       <div class="mstat"><div class="mstat-bar" style="background:var(--blue)"></div><div class="mstat-val">1,2 Mld $</div><div class="mstat-desc">farmaci per la polmonite bovina venduti nel 2024</div></div>
       <div class="mstat"><div class="mstat-bar" style="background:var(--accent)"></div><div class="mstat-val">&gt; 2 Mld $</div><div class="mstat-desc">perdite annue da polmonite che si potrebbero ridurre</div></div>
     </div>
@@ -788,13 +658,13 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
 <!-- S9 DOVE SIAMO -->
 <div class="slide slide-light" id="s9">
   <div style="flex:0 0 auto"><h2>Dove siamo arrivati: la pipeline software e il motore osservazionale sono operativi in ambiente simulato</h2><div class="accent-line"></div>
-  <div class="intro">Il simulatore software â”œÂ¿ operativo e genera eventi strutturati per tutti e tre i canali osservazionali. La pipeline â”œÂ¿ in fase di preparazione per le successive validazioni sul campo.</div></div>
+  <div class="intro">Il simulatore software è operativo e genera eventi strutturati per tutti e tre i canali osservazionali. La pipeline è in fase di preparazione per le successive validazioni sul campo.</div></div>
   <div class="modules">
-    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Modulo telecamere (video)</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Traccia gli animali â”¬Ã€ rileva calo di movimento â”¬Ã€ misura gli accessi alla mangiatoia â”¬Ã€ vede l'isolamento â”¬Ã€ analizza la postura della testa</div></div>
-    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Modulo termocamera</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Misura la temperatura oculare â”¬Ã€ rileva asimmetrie di calore agli arti â”¬Ã€ controlla la mammella â”¬Ã€ calcola le variazioni termiche nel tempo</div></div>
-    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Modulo sensori ai varchi</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Conta i passaggi per ogni animale â”¬Ã€ registra orari e direzione â”¬Ã€ calcola le variazioni di ritmo quotidiano</div></div>
+    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Modulo telecamere (video)</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Traccia gli animali · rileva calo di movimento · misura gli accessi alla mangiatoia · vede l'isolamento · analizza la postura della testa</div></div>
+    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Modulo termocamera</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Misura la temperatura oculare · rileva asimmetrie di calore agli arti · controlla la mammella · calcola le variazioni termiche nel tempo</div></div>
+    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Modulo sensori ai varchi</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Conta i passaggi per ogni animale · registra orari e direzione · calcola le variazioni di ritmo quotidiano</div></div>
     <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Coordinatore centrale</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Mette assieme i dati dei tre moduli e li salva in continuo per l'analisi e gli allarmi</div></div>
-    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Motore degli allarmi</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Costruisce la linea di base di ogni animale â”¬Ã€ filtra gli eventi di mandria â”¬Ã€ calcola indicatori osservazionali individuali â”¬Ã€ genera segnalazioni da valutare con il veterinario o gli operatori competenti</div></div>
+    <div class="mod-row"><div class="mod-left"><div class="mod-bar" style="background:var(--mid)"></div><div class="mod-name">Motore degli allarmi</div></div><div class="mod-badge" style="background:var(--mid)">Attivo</div><div class="mod-desc">Costruisce la linea di base di ogni animale · filtra gli eventi di mandria · calcola indicatori osservazionali individuali · genera segnalazioni da valutare con il veterinario o gli operatori competenti</div></div>
   </div>
 </div>
 
@@ -827,7 +697,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
       <div class="phase-meta">Autunno 2026</div>
       <div class="phase-label">Prova in stalla</div>
       <ul class="phase-items">
-        <li>50Ã”Ã‡Ã´100 capi, 60Ã”Ã‡Ã´90 giorni di osservazione</li>
+        <li>50–100 capi, 60–90 giorni di osservazione</li>
         <li>Sensori reali in condizioni vere</li>
         <li>Gli allarmi vengono confrontati con le diagnosi del veterinario</li>
       </ul>
@@ -850,32 +720,32 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
   <h2 style="color:var(--white)">NeuroAlert</h2>
   <div class="accent-line"></div>
   <div class="points">
-    <div class="point"><div class="point-num">1</div><div class="point-txt">Il problema â”œÂ¿ reale e misurabile: piâ”œâ•£ di 2 miliardi di dollari persi ogni anno solo per le malattie respiratorie dei bovini</div></div>
+    <div class="point"><div class="point-num">1</div><div class="point-txt">Il problema è reale e misurabile: più di 2 miliardi di dollari persi ogni anno solo per le malattie respiratorie dei bovini</div></div>
     <div class="point"><div class="point-num">2</div><div class="point-txt">La scienza lo conferma: i segnali precoci esistono e si misurano, anche 7 giorni prima che l'animale mostri qualcosa di visibile</div></div>
-    <div class="point"><div class="point-num">3</div><div class="point-txt">La tecnologia funziona: telecamere con analisi automatica, termocamere e sensori ai varchi hanno giâ”œÃ¡ risultati scientifici pubblicati</div></div>
-    <div class="point"><div class="point-num">4</div><div class="point-txt">Il mercato cresce: il settore vale giâ”œÃ¡ quasi 5 miliardi di dollari e raddoppierâ”œÃ¡ entro il 2030</div></div>
-    <div class="point"><div class="point-num">5</div><div class="point-txt">La pipeline software e il motore osservazionale sono operativi in ambiente simulato: il motore degli allarmi â”œÂ¿ in sviluppo, la prova in stalla â”œÂ¿ il passo successivo</div></div>
+    <div class="point"><div class="point-num">3</div><div class="point-txt">La tecnologia funziona: telecamere con analisi automatica, termocamere e sensori ai varchi hanno già risultati scientifici pubblicati</div></div>
+    <div class="point"><div class="point-num">4</div><div class="point-txt">Il mercato cresce: il settore vale già quasi 5 miliardi di dollari e raddoppierà entro il 2030</div></div>
+    <div class="point"><div class="point-num">5</div><div class="point-txt">La pipeline software e il motore osservazionale sono operativi in ambiente simulato: il motore degli allarmi è in sviluppo, la prova in stalla è il passo successivo</div></div>
   </div>
-  <div class="tagline">La vera forza non â”œÂ¿ identificare l'animale malato. â”œÃª rilevare le variazioni nel momento in cui stanno cominciando a comparire.</div>
+  <div class="tagline">La vera forza non è identificare l'animale malato. È rilevare le variazioni nel momento in cui stanno cominciando a comparire.</div>
 </div>
 
 <!-- S12 NON SOLO BOVINI -->
 <div class="slide slide-dark" id="s12">
   <h1 style="color:var(--white);max-width:620px">Non solo bovini</h1>
   <div class="accent-line"></div>
-  <div class="lead">La stessa logica funziona con qualsiasi animale che ha valore Ã”Ã‡Ã¶ economico, biologico o affettivo.</div>
-  <div class="body">Il sistema non â”œÂ¿ costruito per una sola specie. â”œÃª costruito per vedere la deriva prima che diventi malattia.<br><br>Questo vale per qualsiasi animale dove intervenire in anticipo fa la differenza tra perdita e recupero.</div>
+  <div class="lead">La stessa logica funziona con qualsiasi animale che ha valore — economico, biologico o affettivo.</div>
+  <div class="body">Il sistema non è costruito per una sola specie. È costruito per vedere la deriva prima che diventi malattia.<br><br>Questo vale per qualsiasi animale dove intervenire in anticipo fa la differenza tra perdita e recupero.</div>
   <div class="pills">
-    <div class="pill">Piâ”œâ•£ specie</div>
+    <div class="pill">Più specie</div>
     <div class="pill">Un animale alla volta</div>
     <div class="pill">Lo stesso valore ovunque</div>
   </div>
-  <div class="note">Partiamo dai bovini perchâ”œÂ® il problema â”œÂ¿ enorme, misurabile e concreto.<br>Ma la logica si porta ovunque ci siano animali che contano.</div>
+  <div class="note">Partiamo dai bovini perché il problema è enorme, misurabile e concreto.<br>Ma la logica si porta ovunque ci siano animali che contano.</div>
 </div>
 
 <!-- S13 DOVE ARRIVA -->
 <div class="slide slide-light" id="s13">
-  <div style="flex:0 0 auto"><h2>Dove puâ”œâ–“ arrivare il sistema</h2><div class="accent-line"></div></div>
+  <div style="flex:0 0 auto"><h2>Dove può arrivare il sistema</h2><div class="accent-line"></div></div>
   <div class="sectors">
     <div class="sector">
       <div class="sector-head" style="border-top:4px solid var(--mid)">
@@ -883,7 +753,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
         <div class="sector-title">Allevamento bovino</div>
       </div>
       <ul class="sector-items"><li>Vacche da latte e da carne</li><li>Allevamenti intensivi e specializzati</li><li>Centri veterinari con grandi numeri di capi</li></ul>
-      <div class="sector-note">Il ritorno economico â”œÂ¿ misurabile. â”œÃª il punto di ingresso naturale per il sistema.</div>
+      <div class="sector-note">Il ritorno economico è misurabile. È il punto di ingresso naturale per il sistema.</div>
     </div>
     <div class="sector">
       <div class="sector-head" style="border-top:4px solid var(--accent)">
@@ -891,7 +761,7 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
         <div class="sector-title">Cavalli e animali da gara</div>
       </div>
       <ul class="sector-items"><li>Cavalli sportivi e da corsa</li><li>Animali da competizione</li><li>Riproduttori di grande valore</li></ul>
-      <div class="sector-note">Un cavallo da corsa puâ”œâ–“ valere da 100.000 a un milione di euro. Una zoppia vista tardi â”œÂ¿ una carriera finita.</div>
+      <div class="sector-note">Un cavallo da corsa può valere da 100.000 a un milione di euro. Una zoppia vista tardi è una carriera finita.</div>
     </div>
     <div class="sector">
       <div class="sector-head" style="border-top:4px solid var(--blue)">
@@ -899,18 +769,18 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
         <div class="sector-title">Zoo e specie rare</div>
       </div>
       <ul class="sector-items"><li>Animali da zoo e parchi naturali</li><li>Specie rare o in via di estinzione</li><li>Programmi di conservazione</li></ul>
-      <div class="sector-note">Certi animali non si possono sostituire. Tenerli sotto controllo non â”œÂ¿ gestione: â”œÂ¿ conservazione.</div>
+      <div class="sector-note">Certi animali non si possono sostituire. Tenerli sotto controllo non è gestione: è conservazione.</div>
     </div>
     <div class="sector">
       <div class="sector-head" style="border-top:4px solid var(--violet)">
         <div class="sector-tag" style="color:var(--violet)">Cura e ricerca</div>
         <div class="sector-title">Strutture veterinarie</div>
       </div>
-      <ul class="sector-items"><li>Animali in ricovero o osservazione</li><li>Grandi strutture di cura veterinaria</li><li>Animali anziani o con fragilitâ”œÃ¡</li></ul>
+      <ul class="sector-items"><li>Animali in ricovero o osservazione</li><li>Grandi strutture di cura veterinaria</li><li>Animali anziani o con fragilità</li></ul>
       <div class="sector-note">Monitoraggio continuo senza bisogno di controllare ogni ora. Il sistema guarda mentre il personale fa altro.</div>
     </div>
   </div>
-  <div class="footer-bar">Il principio non cambia: ogni animale viene osservato rispetto a sâ”œÂ® stesso nel tempo, non rispetto agli altri.</div>
+  <div class="footer-bar">Il principio non cambia: ogni animale viene osservato rispetto a sé stesso nel tempo, non rispetto agli altri.</div>
 </div>
 
 <!-- S14 OGNI ANIMALE -->
@@ -918,31 +788,31 @@ h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(14px,1.6vw,20px);
   <div style="flex:0 0 auto"><h2>Quando ogni singolo animale conta</h2><div class="accent-line"></div></div>
   <div class="cols">
     <div class="col-card">
-      <div class="col-head" style="border-top:4px solid var(--mid)"><h3>Cosa guarda il sistema Ã”Ã‡Ã¶ su ogni animale, ogni giorno</h3></div>
+      <div class="col-head" style="border-top:4px solid var(--mid)"><h3>Cosa guarda il sistema — su ogni animale, ogni giorno</h3></div>
       <div class="signals">
         <div class="sig-row"><div class="sig-param">Movimento</div><div class="sig-desc">quanto si muove, come si muove, se sta calando rispetto al suo normale</div></div>
-        <div class="sig-row"><div class="sig-param">Postura</div><div class="sig-desc">come tiene il corpo, se â”œÂ¿ asimmetrico, se la testa â”œÂ¿ piâ”œâ•£ bassa del solito</div></div>
+        <div class="sig-row"><div class="sig-param">Postura</div><div class="sig-desc">come tiene il corpo, se è asimmetrico, se la testa è più bassa del solito</div></div>
         <div class="sig-row"><div class="sig-param">Isolamento</div><div class="sig-desc">quanto si avvicina agli altri, se si allontana dal gruppo</div></div>
         <div class="sig-row"><div class="sig-param">Routine</div><div class="sig-desc">se i ritmi quotidiani cambiano: orari, abitudini, sequenze</div></div>
         <div class="sig-row"><div class="sig-param">Mangiatoia</div><div class="sig-desc">quante volte ci va, per quanto tempo, se cala rispetto al suo normale</div></div>
         <div class="sig-row"><div class="sig-param">Passaggi</div><div class="sig-desc">quante volte passa ai punti chiave della stalla e a che orario</div></div>
-        <div class="sig-row"><div class="sig-param">Calore</div><div class="sig-desc">intorno all'occhio, agli arti, alla mammella Ã”Ã‡Ã¶ senza toccare l'animale</div></div>
+        <div class="sig-row"><div class="sig-param">Calore</div><div class="sig-desc">intorno all'occhio, agli arti, alla mammella — senza toccare l'animale</div></div>
         <div class="sig-row"><div class="sig-param">Ritmo</div><div class="sig-desc">se i comportamenti cambiano nel corso della giornata e della settimana</div></div>
       </div>
     </div>
     <div class="col-card">
       <div class="col-head" style="border-top:4px solid var(--accent)"><h3>Animali dove un singolo capo ha valore alto</h3></div>
       <div class="animals">
-        <div class="anim-row"><div class="anim-type">Cavallo sportivo o da corsa</div><div class="anim-why">Da 100.000 a 1 milione di euro. Una zoppia diagnosticata tardi â”œÂ¿ una carriera finita.</div></div>
-        <div class="anim-row"><div class="anim-type">Riproduttore</div><div class="anim-why">Le sue caratteristiche genetiche non si replicano. La perdita â”œÂ¿ irreversibile.</div></div>
-        <div class="anim-row"><div class="anim-type">Animale raro o protetto</div><div class="anim-why">Non si sostituisce con un altro. Monitorarlo â”œÂ¿ un atto di conservazione.</div></div>
-        <div class="anim-row"><div class="anim-type">Animale anziano o fragile</div><div class="anim-why">Regge meno degli altri. I segnali precoci sono spesso l'unica finestra in cui si puâ”œâ–“ ancora intervenire.</div></div>
+        <div class="anim-row"><div class="anim-type">Cavallo sportivo o da corsa</div><div class="anim-why">Da 100.000 a 1 milione di euro. Una zoppia diagnosticata tardi è una carriera finita.</div></div>
+        <div class="anim-row"><div class="anim-type">Riproduttore</div><div class="anim-why">Le sue caratteristiche genetiche non si replicano. La perdita è irreversibile.</div></div>
+        <div class="anim-row"><div class="anim-type">Animale raro o protetto</div><div class="anim-why">Non si sostituisce con un altro. Monitorarlo è un atto di conservazione.</div></div>
+        <div class="anim-row"><div class="anim-type">Animale anziano o fragile</div><div class="anim-why">Regge meno degli altri. I segnali precoci sono spesso l'unica finestra in cui si può ancora intervenire.</div></div>
         <div class="anim-row"><div class="anim-type">Animale da zoo o parco</div><div class="anim-why">Non puoi andare a controllarlo ogni ora. Il sistema guarda mentre tu non puoi.</div></div>
-        <div class="anim-row"><div class="anim-type">Animale in cura o ricovero</div><div class="anim-why">Ogni variazione dal suo normale â”œÂ¿ un'informazione preziosa per chi lo segue.</div></div>
+        <div class="anim-row"><div class="anim-type">Animale in cura o ricovero</div><div class="anim-why">Ogni variazione dal suo normale è un'informazione preziosa per chi lo segue.</div></div>
       </div>
     </div>
   </div>
-  <div class="footer-bar">In tutti i casi il principio â”œÂ¿ lo stesso: ogni animale viene confrontato prima di tutto con la propria storia Ã”Ã‡Ã¶ non con quella degli altri.</div>
+  <div class="footer-bar">In tutti i casi il principio è lo stesso: ogni animale viene confrontato prima di tutto con la propria storia — non con quella degli altri.</div>
 </div>
 
 </div>
@@ -975,7 +845,7 @@ function goTo(idx){
   cur=idx;
   var activeSlide = document.getElementById(SLIDES[cur].id);
   activeSlide.classList.add('active');
-  // forza visibilitâ”œÃ¡ inline Ã”Ã‡Ã¶ sovrascrive qualsiasi CSS
+  // forza visibilità inline — sovrascrive qualsiasi CSS
   activeSlide.style.opacity='1';
   activeSlide.style.pointerEvents='all';
   activeSlide.style.transform='translateX(0)';
@@ -1023,8 +893,8 @@ if (document.readyState === 'loading') {
   initDeck();
 }
 </script>
-<script id="NEUROALERT_CLEAN_MOBILE_SCROLL_FIX_V1_SCRIPT">
-/* === NEUROALERT_CLEAN_MOBILE_SCROLL_FIX_V1 === */
+<script id="NEUROALERT_UTF8_SCROLL_FIX_V5_SCRIPT">
+/* === NEUROALERT_UTF8_SCROLL_FIX_V5 === */
 (function () {
   function isMobileTouch() {
     return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
@@ -1043,21 +913,19 @@ if (document.readyState === 'loading') {
   }
 
   function apply() {
-    document.body.classList.add('neuroalert-clean-mobile-scroll-fix-v1');
+    document.body.classList.add('neuroalert-utf8-scroll-fix-v5');
     var slide = activeSlide();
     if (!slide) return;
     var nav = document.querySelector('nav');
     var navH = nav ? Math.round(nav.getBoundingClientRect().height || 56) : 56;
     document.documentElement.style.setProperty('--nav-h', navH + 'px');
-
     slide.style.overflowY = 'auto';
     slide.style.overflowX = 'hidden';
     slide.style.webkitOverflowScrolling = 'touch';
     slide.style.touchAction = 'pan-y';
     slide.style.height = 'calc(100dvh - ' + navH + 'px)';
     slide.style.maxHeight = 'calc(100dvh - ' + navH + 'px)';
-
-    window.__NEUROALERT_CLEAN_MOBILE_SCROLL_FIX_V1__ = true;
+    window.__NEUROALERT_UTF8_SCROLL_FIX_V5__ = true;
   }
 
   document.addEventListener('touchstart', function (e) {
@@ -1072,7 +940,6 @@ if (document.readyState === 'loading') {
     var dx = Math.abs(e.touches[0].clientX - startX);
     var dy = Math.abs(e.touches[0].clientY - startY);
     if (dy > dx + 5) {
-      // Vertical gesture: keep it inside the active slide and stop deck handlers from stealing it.
       e.stopPropagation();
     }
   }, { capture: true, passive: true });
@@ -1080,15 +947,12 @@ if (document.readyState === 'loading') {
   ['load','resize','orientationchange'].forEach(function (ev) {
     window.addEventListener(ev, function () { setTimeout(apply, ev === 'orientationchange' ? 350 : 80); });
   });
-
   ['click','touchend','keyup','mouseup','pointerup'].forEach(function (ev) {
     document.addEventListener(ev, function () { setTimeout(apply, 80); }, true);
   });
-
   setInterval(apply, 600);
   apply();
 })();
 </script>
 </body>
 </html>
-
