@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NeuroSuite Nina Brescia">
+<meta name="color-scheme" content="light">
+<meta name="description" content="NeuroSuite e Nina – Evoluzione del progetto, fase 0–1 a Brescia e integrazione con valutazione motoria">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0a1628">
+<title>NeuroSuite &amp; Nina — Fase 0–1 · Brescia</title>
+<style>
+/* ─── FONT IMPORT ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+/* ─── DESIGN TOKENS ──────────────────────────────────────────────────────── */
+:root {
+  --ink:        #0d1b2e;
+  --ink-soft:   #3a4a5c;
+  --ink-light:  #6b7f96;
+  --rule:       #dde4ec;
+  --bg:         #f7f9fc;
+  --bg-white:   #ffffff;
+  --accent:     #1a5fa8;
+  --accent-pale:#e8f0fa;
+  --gold:       #b08a4a;
+  --gold-pale:  #f7f2e8;
+  --teal:       #0e7f80;
+  --teal-pale:  #e6f4f4;
+  --rose:       #c0392b;
+  --rose-pale:  #fbeaea;
+
+  --r:          8px;
+  --r-lg:       14px;
+  --shadow:     0 2px 16px rgba(13,27,46,.07);
+  --shadow-md:  0 6px 32px rgba(13,27,46,.11);
+
+  --ff-head:    'Playfair Display', Georgia, serif;
+  --ff-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+
+  --max-w:      780px;
+  --pad-x:      clamp(20px, 5vw, 56px);
+  --pad-y:      clamp(36px, 6vw, 72px);
+}
+
+/* ─── RESET ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--ff-body);
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.72;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── LAYOUT WRAPPER ─────────────────────────────────────────────────────── */
+.doc {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* ─── COVER ──────────────────────────────────────────────────────────────── */
+.cover {
+  background: var(--ink);
+  color: #fff;
+  padding: clamp(48px, 10vw, 100px) var(--pad-x) clamp(40px, 8vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 20%, rgba(26,95,168,.35) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 10% 90%, rgba(14,127,128,.25) 0%, transparent 70%);
+}
+.cover-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.cover-eyebrow {
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cover-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 1px;
+  background: rgba(255,255,255,.4);
+}
+.cover h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(26px, 5.5vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  margin-bottom: 18px;
+  max-width: 640px;
+}
+.cover-sub {
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 300;
+  color: rgba(255,255,255,.68);
+  max-width: 520px;
+  line-height: 1.55;
+  margin-bottom: 36px;
+}
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .04em;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 20px;
+}
+.cover-meta span { display: flex; align-items: center; gap: 6px; }
+
+/* ─── NAV ANCHOR BAR ─────────────────────────────────────────────────────── */
+.toc-bar {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 var(--pad-x);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,.92);
+}
+.toc-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.toc-inner::-webkit-scrollbar { display: none; }
+.toc-inner a {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+  padding: 14px 14px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+  display: block;
+}
+.toc-inner a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ─── SECTION WRAPPER ─────────────────────────────────────────────────────── */
+section {
+  padding: var(--pad-y) var(--pad-x);
+  border-bottom: 1px solid var(--rule);
+}
+section:last-of-type { border-bottom: none; }
+section.alt { background: var(--bg-white); }
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+/* ─── TYPOGRAPHY ──────────────────────────────────────────────────────────── */
+.eyebrow {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: '';
+  width: 18px; height: 1.5px;
+  background: var(--accent);
+  display: inline-block;
+}
+h2 {
+  font-family: var(--ff-head);
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 18px;
+  letter-spacing: -.01em;
+}
+h3 {
+  font-family: var(--ff-head);
+  font-size: clamp(16px, 2.5vw, 19px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 28px 0 12px;
+}
+p { margin-bottom: 16px; color: var(--ink-soft); }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--ink); font-weight: 500; }
+
+/* ─── LEAD TEXT ──────────────────────────────────────────────────────────── */
+.lead {
+  font-size: clamp(16px, 2.5vw, 19px);
+  font-weight: 300;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  padding-left: 18px;
+  border-left: 3px solid var(--accent);
+}
+
+/* ─── INFO BOXES ──────────────────────────────────────────────────────────── */
+.box {
+  border-radius: var(--r-lg);
+  padding: 22px 26px;
+  margin: 24px 0;
+  border: 1px solid transparent;
+}
+.box-blue  { background: var(--accent-pale); border-color: rgba(26,95,168,.18); }
+.box-teal  { background: var(--teal-pale);   border-color: rgba(14,127,128,.18); }
+.box-gold  { background: var(--gold-pale);   border-color: rgba(176,138,74,.22); }
+.box-rose  { background: var(--rose-pale);   border-color: rgba(192,57,43,.15); }
+.box-dark  { background: var(--ink); color: #fff; border-color: transparent; }
+.box-dark p { color: rgba(255,255,255,.72); }
+.box-dark strong { color: #fff; }
+
+.box-title {
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.box-blue  .box-title { color: var(--accent); }
+.box-teal  .box-title { color: var(--teal); }
+.box-gold  .box-title { color: var(--gold); }
+.box-rose  .box-title { color: var(--rose); }
+.box-dark  .box-title { color: rgba(255,255,255,.45); }
+
+/* ─── GRID CARDS ─────────────────────────────────────────────────────────── */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+.card {
+  background: var(--bg-white);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card-icon {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 6px;
+}
+.card h4 {
+  font-family: var(--ff-head);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.card p { font-size: 14px; margin: 0; }
+
+/* ─── PERSON CARD ──────────────────────────────────────────────────────────── */
+.person-grid { display: grid; gap: 18px; margin: 24px 0; }
+.person {
+  background: var(--bg-white);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  padding: 24px 26px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.person-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.person-name {
+  font-family: var(--ff-head);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.person-role {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: var(--ink-light);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.person p { font-size: 14px; margin: 0; line-height: 1.6; }
+
+/* ─── LIST ────────────────────────────────────────────────────────────────── */
+ul.check {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+ul.check li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+ul.check li::before {
+  content: '✓';
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  width: 16px;
+}
+
+ul.dot {
+  list-style: none;
+  display: grid;
+  gap: 9px;
+  margin: 14px 0;
+}
+ul.dot li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+ul.dot li::before {
+  content: '·';
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 14px;
+}
+
+/* ─── TIMELINE ──────────────────────────────────────────────────────────────── */
+.timeline { margin: 28px 0; display: grid; gap: 0; }
+.tl-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  padding-bottom: 28px;
+  position: relative;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot-col { display: flex; flex-direction: column; align-items: center; }
+.tl-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-white);
+  box-shadow: 0 0 0 2px var(--accent);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.tl-line {
+  flex: 1;
+  width: 2px;
+  background: var(--rule);
+  margin-top: 6px;
+}
+.tl-item:last-child .tl-line { display: none; }
+.tl-step {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.tl-title {
+  font-family: var(--ff-head);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.tl-body { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ─── SENSOR GRID ───────────────────────────────────────────────────────────── */
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.sensor-chip {
+  background: var(--bg-white);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sensor-chip span { font-size: 16px; }
+
+/* ─── OBSERVATION GRID ──────────────────────────────────────────────────────── */
+.obs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.obs-item {
+  background: var(--accent-pale);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  font-size: 13.5px;
+  color: var(--ink);
+  border-left: 3px solid var(--accent);
+}
+.obs-item strong { display: block; font-size: 12px; color: var(--accent); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .08em; }
+
+/* ─── DIVIDER ────────────────────────────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 28px 0;
+}
+
+/* ─── PRUDENTIAL NOTE ────────────────────────────────────────────────────── */
+.prudential {
+  background: linear-gradient(135deg, #f0f4fa 0%, #e8f4f4 100%);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  border: 1px solid var(--rule);
+  margin: 32px 0;
+}
+.prudential-icon { font-size: 28px; margin-bottom: 12px; }
+.prudential h3 {
+  font-family: var(--ff-head);
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 14px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────────── */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.5);
+  padding: 40px var(--pad-x);
+  font-size: 12.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+.footer strong { color: rgba(255,255,255,.8); }
+
+/* ─── PRINT ──────────────────────────────────────────────────────────────── */
+@media print {
+  .toc-bar { display: none; }
+  body { background: white; font-size: 13px; }
+  .cover { background: #0d1b2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  section { page-break-inside: avoid; }
+  .card, .person, .box { break-inside: avoid; }
+  * { box-shadow: none !important; }
+}
+
+/* ─── MOBILE ─────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .sensor-grid { grid-template-columns: repeat(2, 1fr); }
+  .obs-grid { grid-template-columns: 1fr; }
+  .person { grid-template-columns: 40px 1fr; }
+  .toc-inner a { font-size: 10.5px; padding: 12px 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-eyebrow">Documento tecnico-divulgativo &nbsp;·&nbsp; Uso riservato · Link non indicizzato</div>
+    <h1>NeuroSuite e Nina<br>Evoluzione del progetto,<br>fase 0–1 a Brescia</h1>
+    <p class="cover-sub">Integrazione con valutazione motoria e stabilometria virtuale — Documento di sintesi per confronto tecnico-scientifico e organizzativo</p>
+    <div class="cover-meta">
+      <span>📍 Brescia · Fondazione Brescia Solidale</span>
+      <span>📅 Maggio 2026</span>
+      <span>🔒 Link riservato · noindex · non destinato a pubblicazione commerciale</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ TOC BAR -->
+<nav class="toc-bar" aria-label="Indice">
+  <div class="toc-inner">
+    <a href="#sommario">Sommario</a>
+    <a href="#perche">Perché ora</a>
+    <a href="#neurosuite">NeuroSuite</a>
+    <a href="#nina">Nina</a>
+    <a href="#kit">Kit</a>
+    <a href="#rsa">RSA</a>
+    <a href="#osservazione">Osservazione</a>
+    <a href="#pedana">Pedana</a>
+    <a href="#passi">Prossimi passi</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ SOMMARIO -->
+<section id="sommario" class="alt">
+<div class="section-inner">
+  <div class="eyebrow">Executive Summary</div>
+  <h2>Un sistema che osserva, impara e supporta</h2>
+  <p class="lead">NeuroSuite è una piattaforma modulare per l'osservazione neurofunzionale e comportamentale della persona anziana o fragile. Nina è il suo modulo vocale, relazionale e ambientale. Insieme, costruiscono un profilo individuale nel tempo — e segnalano variazioni degne di attenzione, senza mai sostituire il giudizio clinico.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <div class="card-label">Piattaforma</div>
+      <h4>NeuroSuite</h4>
+      <p>Sistema modulare per la raccolta, organizzazione e visualizzazione di segnali ambientali, motori, vocali e comportamentali. Non un dispositivo medico certificato.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎙️</div>
+      <div class="card-label">Modulo vocale e relazionale</div>
+      <h4>Nina</h4>
+      <p>Interagisce con la persona H24, impara le sue abitudini, fa compagnia, propone attività cognitive, e segnala variazioni in tempo reale a familiari e operatori.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏥</div>
+      <div class="card-label">Dove opera</div>
+      <h4>RSA e domicilio</h4>
+      <p>Progettata per coprire stanze, corridoi e aree comuni nelle RSA, ma anche l'intero perimetro dell'abitazione in modalità assistenza domiciliare.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📍</div>
+      <div class="card-label">Prossimo passo</div>
+      <h4>Fase 0 · Brescia</h4>
+      <p>Una fase pilota prudente, documentata, organizzata insieme alla Fondazione Brescia Solidale in ambito RSA e assistenza domiciliare.</p>
+    </div>
+  </div>
+
+  <div class="box box-blue">
+    <div class="box-title">Nota metodologica importante</div>
+    <p>NeuroSuite è un sistema osservazionale, non un dispositivo medico certificato né uno strumento diagnostico. Tutte le osservazioni sono a livello di supporto alla valutazione — mai sostitutive del giudizio clinico. Le validazioni cliniche appartengono ai partner clinici, non al team di sviluppo.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ PERCHÉ ORA -->
+<section id="perche">
+<div class="section-inner">
+  <div class="eyebrow">Contesto</div>
+  <h2>Perché ora: la fase 0 a Brescia</h2>
+
+  <p class="lead">Il contesto assistenziale italiano attraversa una transizione profonda. La popolazione anziana cresce, le famiglie si frammentano, i caregiver sono pochi. La continuità tra domicilio e struttura è spesso assente. Osservare in modo discreto, intelligente e continuativo diventa un elemento di cura, non solo di controllo.</p>
+
+  <p>Brescia, con la Fondazione Brescia Solidale, rappresenta un contesto particolarmente adatto per avviare una fase 0 documentata: una realtà significativa nel panorama lombardo dell'assistenza agli anziani, con una cultura organizzativa orientata all'innovazione responsabile.</p>
+
+  <p>A questo si aggiunge il possibile coinvolgimento di un'ulteriore realtà territoriale di grande rilevanza, che segue circa <strong>1.500 pazienti</strong> in un modello di continuità assistenziale — un fattore che potrebbe amplificare sensibilmente il significato e la portata di questa fase iniziale.</p>
+
+  <div class="box box-teal">
+    <div class="box-title">Obiettivo della Fase 0</div>
+    <p>Avviare una fase pilota prudente, documentata e progressiva in ambito RSA e assistenza domiciliare. Raccogliere osservazioni reali. Costruire baseline individuali. Verificare la metodologia su casi concreti. Preparare le condizioni per una validazione progressiva con i partner clinici.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Ora</div>
+        <div class="tl-title">Incontro di avanzamento</div>
+        <div class="tl-body">Confronto tecnico-organizzativo con Fondazione Brescia Solidale e le realtà del territorio. Data in fase di conferma per i prossimi giorni.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Fase 0</div>
+        <div class="tl-title">Installazione e osservazione pilota</div>
+        <div class="tl-body">Deployment modulare in ambienti RSA e domiciliari. Raccolta dei primi profili individuali. Documentazione metodologica.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Integrazione</div>
+        <div class="tl-title">Pedana stabilometrica virtuale</div>
+        <div class="tl-body">Costituzione di un'area dedicata in RSA per la valutazione motoria e stabilometrica, con integrazione dei dati nel profilo NeuroSuite.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Validazione progressiva</div>
+        <div class="tl-title">Analisi dei dati e validazione metodologica</div>
+        <div class="tl-body">Revisione metodologica con i partner clinici. Documentazione dei risultati osservazionali. Eventuale contributo scientifico condiviso.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ NEUROSUITE -->
+<section id="neurosuite">
+<div class="section-inner">
+  <div class="eyebrow">La piattaforma</div>
+  <h2>NeuroSuite in sintesi</h2>
+
+  <p class="lead">NeuroSuite non è un singolo dispositivo. È una piattaforma modulare progettata per raccogliere, organizzare e visualizzare segnali ambientali, motori, vocali e comportamentali — costruendo nel tempo un profilo individuale per ogni persona osservata.</p>
+
+  <p>Il principio fondante è semplice quanto potente: ogni persona ha il suo ritmo. Osservare quel ritmo, impararlo, e rilevare quando cambia — non rispetto a una media statistica, ma rispetto alla <strong>propria baseline individuale</strong> — permette di cogliere variazioni che potrebbero essere rilevanti molto prima che diventino sintomi evidenti.</p>
+
+  <div class="grid-2">
+    <div class="box box-blue" style="margin:0">
+      <div class="box-title">Cosa raccoglie</div>
+      <ul class="check">
+        <li>Segnali ambientali (temperatura, umidità, CO₂, qualità dell'aria, luce)</li>
+        <li>Segnali motori (movimento, postura, immobilità, alzate)</li>
+        <li>Segnali vocali (come parla, tono, frequenza)</li>
+        <li>Segnali comportamentali (routine, variazioni nelle abitudini)</li>
+      </ul>
+    </div>
+    <div class="box box-teal" style="margin:0">
+      <div class="box-title">Come lavora</div>
+      <ul class="check">
+        <li>Costruisce una baseline individuale per ogni persona</li>
+        <li>Osserva variazioni nel tempo rispetto a quella baseline</li>
+        <li>Segnala possibili rischi o variazioni da approfondire</li>
+        <li>Integra dati da moduli diversi in un profilo unico</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Cosa NeuroSuite non è</h3>
+  <p>NeuroSuite non è un dispositivo medico certificato. Non diagnostica. Non sostituisce il medico, il fisioterapista, o qualsiasi altra figura clinica. È uno <strong>strumento di supporto osservazionale</strong>, pensato per arricchire le informazioni disponibili a chi si prende cura della persona — familiari, caregiver, infermieri, medici.</p>
+
+  <div class="box box-gold">
+    <div class="box-title">Principio guida</div>
+    <p>L'obiettivo non è controllare la persona, ma <strong>proteggerla</strong>. Nella massima discrezione, nel rispetto della sua dignità, delle sue abitudini e della sua autonomia. Il sistema è progettato per essere il meno invasivo possibile — e il più utile possibile.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ NINA -->
+<section id="nina" class="alt">
+<div class="section-inner">
+  <div class="eyebrow">Modulo vocale, ambientale e relazionale</div>
+  <h2>Nina</h2>
+
+  <p class="lead">Nina non è "solo" un'intelligenza artificiale. È il modulo che dà voce a NeuroSuite — letteralmente. Impara a conoscere la persona, costruisce un profilo, dialoga con lei, la accompagna nella giornata, e nel frattempo osserva con discrezione.</p>
+
+  <p>Tutto questo senza essere invadente. Nina parla quando viene interpellata, o quando la situazione lo richiede davvero. Mantiene sempre un tono rispettoso, mai infantile, mai paternalistico. Tratta la persona come ciò che è: un adulto con una storia, delle abitudini, e il diritto alla propria autonomia.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <div class="card-label">Relazione</div>
+      <h4>Fa compagnia</h4>
+      <p>Dialoga, ascolta, risponde. Propone giochi, quiz, indovinelli. Legge notizie o contenuti su richiesta. Ricorda appuntamenti e routine quotidiane.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧩</div>
+      <div class="card-label">Stimolazione cognitiva</div>
+      <h4>Ginnastica della mente</h4>
+      <p>Propone esercizi di ginnastica cognitiva quotidiana calibrati sulla persona. Quiz, ricordi, associazioni, piccoli giochi linguistici — sempre con leggerezza.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">👁️</div>
+      <div class="card-label">Osservazione continua</div>
+      <h4>Vede senza disturbare</h4>
+      <p>Osserva come la persona parla, si muove, si alza, quanto sta ferma, se le routine cambiano. Può operare in continuità, giorno e notte, quando i moduli sono attivi e autorizzati.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔔</div>
+      <div class="card-label">Allerta</div>
+      <h4>Avvisa chi di dovere</h4>
+      <p>In caso di rischio rilevato, contatta familiari, caregiver o operatori in tempo reale. Di notte, può accendere una luce di cortesia se la persona si alza.</p>
+    </div>
+  </div>
+
+  <h3>Cosa osserva Nina, a livello osservazionale</h3>
+  <div class="obs-grid">
+    <div class="obs-item"><strong>Voce</strong>Tono, ritmo, chiarezza, frequenza delle interazioni</div>
+    <div class="obs-item"><strong>Movimento</strong>Qualità e frequenza degli spostamenti nella stanza</div>
+    <div class="obs-item"><strong>Alzate</strong>Tempi e modalità nel passaggio da seduto/sdraiato a in piedi</div>
+    <div class="obs-item"><strong>Immobilità</strong>Periodi di prolungata inattività non coerenti con le abitudini</div>
+    <div class="obs-item"><strong>Routine</strong>Variazioni nei pattern abituali (orari, sequenze, frequenze)</div>
+    <div class="obs-item"><strong>Postura</strong>Cambiamenti rilevanti nell'assetto posturale nel tempo</div>
+    <div class="obs-item"><strong>Interazione</strong>Variazioni nella capacità o voglia di dialogare</div>
+    <div class="obs-item"><strong>Ambiente</strong>Temperatura, umidità, CO₂, qualità dell'aria in relazione al comportamento</div>
+  </div>
+
+  <div class="box box-dark">
+    <div class="box-title">Principio di intervento minimo</div>
+    <p>Nina non interviene inutilmente. Risponde quando viene chiamata. Osserva sempre. Si fa sentire solo quando è davvero utile — o quando c'è un rischio. Questo equilibrio non è un limite tecnico: è una scelta progettuale precisa, pensata per il rispetto della persona.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ KIT -->
+<section id="kit">
+<div class="section-inner">
+  <div class="eyebrow">Installazione domiciliare</div>
+  <h2>Il kit domiciliare</h2>
+
+  <p class="lead">Il modulo principale è compatto, discreto, non invasivo. Nella sua forma più semplice, assomiglia a un termostato moderno di grandi dimensioni da parete — il tipo di oggetto che si nota poco e si integra nell'ambiente domestico senza cambiarlo.</p>
+
+  <p>All'interno, una componente tecnologica completa che raccoglie segnali in modo continuo:</p>
+
+  <div class="sensor-grid">
+    <div class="sensor-chip"><span>💻</span> Mini-PC</div>
+    <div class="sensor-chip"><span>🎙️</span> Microfono</div>
+    <div class="sensor-chip"><span>🔊</span> Speaker</div>
+    <div class="sensor-chip"><span>👁️</span> Presenza</div>
+    <div class="sensor-chip"><span>🏃</span> Movimento</div>
+    <div class="sensor-chip"><span>🌡️</span> Temperatura</div>
+    <div class="sensor-chip"><span>💧</span> Umidità</div>
+    <div class="sensor-chip"><span>🌿</span> Qualità aria</div>
+    <div class="sensor-chip"><span>🫁</span> CO₂</div>
+    <div class="sensor-chip"><span>💡</span> Luce</div>
+    <div class="sensor-chip"><span>🚪</span> Porta/finestra</div>
+    <div class="sensor-chip"><span>🔗</span> Moduli aggiuntivi</div>
+  </div>
+
+  <h3>Copertura dell'intera abitazione</h3>
+  <p>Il modulo principale non basta da solo. Per una copertura continuativa dell'intera superficie domestica, vengono installati <strong>moduli aggiuntivi nelle aree chiave</strong>: corridoio, zona giorno, cucina se separata, e ogni altra area rilevante per la persona.</p>
+
+  <p>L'obiettivo è una copertura completa — giorno e notte — che permetta di seguire la persona in modo continuo e coerente, senza zone d'ombra informative.</p>
+
+  <div class="box box-blue">
+    <div class="box-title">Privacy by design</div>
+    <p>Nella configurazione prevista per la fase pilota, il sistema non è pensato per conservare video o audio in chiaro. Lavora su eventi, segnali aggregati e profili comportamentali pseudonimizzati. La privacy della persona è un vincolo di progetto, non una nota a piè di pagina.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ RSA -->
+<section id="rsa" class="alt">
+<div class="section-inner">
+  <div class="eyebrow">Strutture residenziali</div>
+  <h2>Il modello RSA: stanze, corridoi e aree comuni</h2>
+
+  <p>L'ambiente RSA è molto diverso da quello domestico. Non si tratta di seguire una sola persona in un appartamento, ma di operare in una struttura complessa, con spazi condivisi, flussi di più persone e logiche organizzative articolate.</p>
+
+  <p>NeuroSuite distingue chiaramente tra due tipologie di ambienti:</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon">🛏️</div>
+      <div class="card-label">Stanza individuale</div>
+      <h4>Modulo simile al kit domiciliare</h4>
+      <p>La stanza del paziente segue una logica simile al domicilio: un modulo discreto, sensori ambientali, osservazione individuale, profilo personale. La persona è al centro, il contesto è privato.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚶</div>
+      <div class="card-label">Corridoi e aree comuni</div>
+      <h4>Modulo "pro" dedicato</h4>
+      <p>Gli spazi condivisi richiedono una configurazione differente: spazi più ampi, più persone contemporaneamente, logiche di monitoraggio diverse, maggiore robustezza e integrazione con l'organizzazione della struttura.</p>
+    </div>
+  </div>
+
+  <h3>Una nota sull'integrazione organizzativa</h3>
+  <p>Il sistema non è pensato per operare in isolamento. Il suo valore cresce quando si integra con i flussi di lavoro degli operatori: infermieri, OSS, medici, coordinatori. Le segnalazioni arrivano dove servono, nel momento giusto, in forma leggibile — non come dati grezzi, ma come informazioni utili a chi deve decidere.</p>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ OSSERVAZIONE -->
+<section id="osservazione">
+<div class="section-inner">
+  <div class="eyebrow">Cosa viene rilevato</div>
+  <h2>Cosa viene osservato — senza diagnosi automatica</h2>
+
+  <div class="box box-gold" style="margin-bottom:28px">
+    <div class="box-title">Premessa metodologica</div>
+    <p>Tutto ciò che segue si colloca a livello <strong>osservazionale, non diagnostico</strong>. Il sistema segnala possibili variazioni rispetto alla baseline individuale — mai certezze cliniche. Ogni segnale è un invito ad approfondire, non una conclusione. Lo strumento supporta la valutazione; non la sostituisce.</p>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h3>Dimensione motoria e fisica</h3>
+      <ul class="dot">
+        <li>Cambiamenti nella qualità e frequenza del movimento</li>
+        <li>Variazioni posturali rispetto alla baseline individuale</li>
+        <li>Tempi e modalità di alzata (letto, sedia)</li>
+        <li>Periodi di immobilità prolungata non abituali</li>
+        <li>Possibili segnali precoci di rischio caduta</li>
+        <li>Variazioni nell'orientamento spaziale</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Dimensione comunicativa e cognitiva</h3>
+      <ul class="dot">
+        <li>Cambiamenti nel tono, ritmo e chiarezza della voce</li>
+        <li>Variazioni nella capacità e frequenza di interazione</li>
+        <li>Modifiche nelle routine quotidiane consolidate</li>
+        <li>Possibili segnali di fragilità cognitiva da approfondire</li>
+        <li>Variazioni comportamentali rispetto al profilo individuale</li>
+        <li>Modifiche nelle risposte agli stimoli ambientali</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Dimensione ambientale</h3>
+  <ul class="dot">
+    <li>Temperatura, umidità, CO₂, qualità dell'aria — in relazione al benessere della persona</li>
+    <li>Variazioni ambientali correlate a cambiamenti comportamentali</li>
+    <li>Condizioni notturne e qualità del riposo (rilevata indirettamente)</li>
+  </ul>
+
+  <div class="box box-rose">
+    <div class="box-title">Cosa il sistema non fa</div>
+    <p>Il sistema non diagnostica malattie, non certifica condizioni cliniche, non produce referti medici. Ogni variazione rilevata è un segnale da approfondire con le competenze appropriate. Il giudizio clinico rimane sempre e interamente nelle mani dei professionisti della salute.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ PEDANA -->
+<section id="pedana" class="alt">
+<div class="section-inner">
+  <div class="eyebrow">Integrazione con valutazione motoria</div>
+  <h2>Pedana stabilometrica virtuale e area dedicata in RSA</h2>
+
+  <p class="lead">Una delle integrazioni più significative che NeuroSuite sta esplorando riguarda la valutazione motoria strutturata — in particolare l'eventuale integrazione della pedana stabilometrica virtuale ideata dal prof. Giuseppe Placidi e sviluppata insieme all'Università dell'Aquila, per raccogliere informazioni motorie precise e coerenti, costruire baseline individuali e monitorarle nel tempo.</p>
+
+  <p>La pedana stabilometrica virtuale ci è già stata presentata dal prof. Placidi, che ne è il creatore e l'ha brevettata insieme all'Università dell'Aquila; abbiamo inoltre ricevuto la documentazione relativa. Per questo abbiamo ritenuto opportuno inserirla in questa sintesi come possibile componente di integrazione con NeuroSuite, in una logica prudente e aperta al confronto.</p>
+
+  <p>L'obiettivo non è attribuire automaticamente alla piattaforma un ambito clinico che richiede validazione dedicata, ma valutare se e come i dati motori raccolti dalla pedana possano arricchire il profilo individuale già costruito da NeuroSuite e Nina, aggiungendo una dimensione specifica su equilibrio, postura, stabilità e variazioni nel tempo.</p>
+
+  <div class="box box-blue">
+    <div class="box-title">Apertura alla collaborazione</div>
+    <p>Ci piacerebbe approfondire con il prof. Giuseppe Placidi le sue eventuali intenzioni e disponibilità a collaborare in questo progetto. La proposta qui descritta nasce dalla presentazione già ricevuta e dalla documentazione disponibile, ma resta naturalmente aperta a qualsiasi suo suggerimento, richiesta di precisazione, modalità di integrazione o indicazione metodologica.</p>
+  </div>
+
+  <h3>Cosa potrebbe offrire questa integrazione</h3>
+
+  <div class="grid-2">
+    <div class="box box-teal" style="margin:0">
+      <div class="box-title">Valutazione motoria</div>
+      <ul class="check">
+        <li>Raccolta di informazioni motorie precise e coerenti</li>
+        <li>Analisi dell'equilibrio statico e dinamico</li>
+        <li>Valutazione posturale strutturata</li>
+        <li>Costruzione di baseline motorie individuali</li>
+        <li>Monitoraggio delle variazioni nel tempo</li>
+        <li>Identificazione osservazionale di possibili segnali di rischio caduta</li>
+      </ul>
+    </div>
+    <div class="box box-blue" style="margin:0">
+      <div class="box-title">Integrazione con NeuroSuite</div>
+      <ul class="check">
+        <li>Arricchimento del profilo individuale con dati motori dedicati</li>
+        <li>Correlazione tra dati motori, ambientali, vocali e comportamentali</li>
+        <li>Metodologia ripetibile, documentabile e rivedibile con il contributo del prof. Placidi</li>
+        <li>Base per una validazione progressiva dei parametri osservati con i partner clinici e accademici</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>L'area dedicata in RSA: una proposta concreta</h3>
+
+  <div class="box box-gold">
+    <div class="box-title">Proposta operativa</div>
+    <p>Costituire, previo confronto con il prof. Placidi e con i partner clinici, una piccola area dedicata all'interno della struttura RSA — dotata di pedana stabilometrica virtuale e specchio — dove valutare a turno i pazienti in modo strutturato. L'obiettivo sarebbe costruire baseline motorie individuali, monitorare le variazioni nel tempo, individuare possibili segnali osservazionali di rischio caduta e integrare questi dati con quelli ambientali, vocali e comportamentali raccolti da NeuroSuite e Nina.</p>
+    <p style="margin-top:12px">Questa metodologia potrebbe diventare ripetibile, documentabile e progressivamente validabile — un contributo concreto alla ricerca applicata in ambito geriatrico e riabilitativo, nel pieno rispetto della paternità scientifica e tecnologica del prof. Placidi e dell'Università dell'Aquila.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ INVESTITORI -->
+<section id="investitori">
+<div class="section-inner">
+  <div class="eyebrow">Partnership e sviluppo</div>
+  <h2>Investitori e percorso di sviluppo</h2>
+
+  <p>Il progetto ha suscitato interesse da parte di diversi investitori. Il percorso di sviluppo richiede risorse, ma soprattutto la giusta visione condivisa — e la capacità di preservare la qualità, la direzione e il controllo del progetto nel tempo.</p>
+
+  <div class="box box-dark">
+    <div class="box-title">Nota strategica</div>
+    <p>Esistono interlocutori e potenziali investitori interessati al progetto. Il percorso verrà costruito con grande attenzione nella scelta dei partner — cercando chi comprenda la natura del progetto, ne condivida i valori e sia disposto a costruire qualcosa che duri, rispettando la direzione, la qualità e la visione che lo hanno generato.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ PASSI -->
+<section id="passi">
+<div class="section-inner">
+  <div class="eyebrow">Roadmap</div>
+  <h2>Prossimi passi</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Imminente</div>
+        <div class="tl-title">Incontro di confronto con Fondazione Brescia Solidale</div>
+        <div class="tl-body">Presentazione del progetto aggiornato, definizione dei termini della fase 0, accordo sulle modalità di coinvolgimento della realtà di continuità assistenziale del territorio.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Fase 0</div>
+        <div class="tl-title">Avvio della sperimentazione pilota</div>
+        <div class="tl-body">Installazione modulare in ambienti RSA e domiciliari selezionati. Raccolta dei primi profili individuali. Documentazione rigorosa della metodologia applicata.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Integrazione</div>
+        <div class="tl-title">Costituzione dell'area di valutazione motoria in RSA</div>
+        <div class="tl-body">Allestimento dell'area dedicata con pedana stabilometrica virtuale. Avvio delle valutazioni motorie strutturate. Integrazione dei dati con il profilo NeuroSuite.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Analisi</div>
+        <div class="tl-title">Prima revisione dei dati raccolti</div>
+        <div class="tl-body">Confronto con i partner clinici e accademici. Valutazione della qualità delle osservazioni. Eventuale affinamento della metodologia.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-step">Sviluppo</div>
+        <div class="tl-title">Validazione progressiva e ampliamento</div>
+        <div class="tl-body">Revisione dei risultati con i partner clinici. Eventuale ampliamento della fase pilota ad altre strutture e contesti territoriali.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ NOTA FINALE -->
+<section class="alt">
+<div class="section-inner">
+  <div class="eyebrow">Principi fondativi</div>
+  <h2>Privacy, dignità, prudenza e validazione progressiva</h2>
+
+  <div class="prudential">
+    <div class="prudential-icon">🛡️</div>
+    <h3>Una nota finale che vale quanto tutto il resto</h3>
+    <p>Questo progetto nasce da una convinzione precisa: la tecnologia applicata alla cura delle persone fragili ha senso solo se è <strong>rispettosa, prudente e verificabile</strong>.</p>
+    <p style="margin-top:12px">Rispettosa della persona — della sua storia, delle sue abitudini, della sua dignità. Non vogliamo sorvegliare: vogliamo proteggere. Non vogliamo sostituirci ai medici: vogliamo dare loro informazioni migliori.</p>
+    <p style="margin-top:12px">Prudente nelle affermazioni — non promettiamo ciò che non possiamo dimostrare. Ogni segnale è un invito ad approfondire, non una diagnosi. Ogni dato è un'osservazione, non una sentenza.</p>
+    <p style="margin-top:12px">Verificabile nel tempo — la validazione progressiva con i partner clinici e accademici non è un optional. È il cuore del metodo. Un sistema che non si lascia misurare non merita fiducia.</p>
+    <p style="margin-top:12px">La persona anziana e fragile non è un dataset. È una persona, con tutto ciò che questo comporta.</p>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ FOOTER -->
+<footer class="footer">
+  <strong>NeuroSuite</strong> — Piattaforma modulare per l'osservazione neurofunzionale e multimodale<br>
+  <span style="font-size:11px; margin-top:6px; display:block">
+    Documento di sintesi tecnico-divulgativa · Uso riservato · Link non indicizzato · Non destinato a pubblicazione commerciale<br>
+    NeuroSuite non è un dispositivo medico certificato. Non diagnostica. Supporto osservazionale, non sostitutivo del giudizio clinico.<br>
+    <span style="opacity:.5; margin-top:8px; display:block">© Alessandro Pindilli · Tutti i diritti riservati · Maggio 2026</span>
+  </span>
+</footer>
+
+</body>
+</html>
