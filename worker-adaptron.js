@@ -1,4 +1,4 @@
-// Cloudflare Worker template for Adaptron Beta
+﻿// Cloudflare Worker template for estensioni operative. Altri ambiti restano possibili estensioni dello stesso motore osservativo, non promesse di prodotto già concluso. Beta
 // Secrets needed: GROQ_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY (optional later), TURNSTILE_SECRET (optional later)
 export default {
   async fetch(request, env) {
@@ -18,7 +18,7 @@ export default {
         body: JSON.stringify({
           model: 'llama-3.1-8b-instant',
           messages: [
-            { role: 'system', content: 'Sei Adaptron: AI guidata, educativa, sicura. Non fornire istruzioni illegali, pericolose o dannose. Guida passo passo, adatta livello e fai una domanda breve alla fine.' },
+            { role: 'system', content: 'Sei estensioni operative. Altri ambiti restano possibili estensioni dello stesso motore osservativo, non promesse di prodotto già concluso.: AI guidata, educativa, sicura. Non fornire istruzioni illegali, pericolose o dannose. Guida passo passo, adatta livello e fai una domanda breve alla fine.' },
             { role: 'user', content: String(body.prompt || '') }
           ],
           temperature: 0.5
@@ -32,3 +32,4 @@ export default {
 }
 function cors(){ return { 'Access-Control-Allow-Origin':'https://neurosuite.dev', 'Access-Control-Allow-Methods':'POST,OPTIONS', 'Access-Control-Allow-Headers':'Content-Type' }; }
 function json(obj, status=200){ return new Response(JSON.stringify(obj), { status, headers: { ...cors(), 'Content-Type':'application/json' } }); }
+
