@@ -163,6 +163,57 @@
   });
 })();
 
+// Section keyboard navigation
+(function(){
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  if (!sections.length) return;
+  let lastMove = 0;
+
+  function isEditingTarget(el) {
+    if (!el) return false;
+    const tag = el.tagName ? el.tagName.toLowerCase() : '';
+    return tag === 'input' || tag === 'textarea' || tag === 'select' || el.isContentEditable;
+  }
+
+  function currentIndex() {
+    const y = window.scrollY + Math.max(96, window.innerHeight * 0.28);
+    let index = 0;
+    sections.forEach((section, i) => {
+      if (section.offsetTop <= y) index = i;
+    });
+    return index;
+  }
+
+  function go(delta) {
+    const now = Date.now();
+    if (now - lastMove < 240) return;
+    lastMove = now;
+    const next = Math.max(0, Math.min(sections.length - 1, currentIndex() + delta));
+    sections[next].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  window.addEventListener('keydown', (event) => {
+    if (isEditingTarget(document.activeElement)) return;
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'PageDown') {
+      event.preventDefault();
+      go(1);
+    }
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') {
+      event.preventDefault();
+      go(-1);
+    }
+    if (event.key === 'Home') {
+      event.preventDefault();
+      sections[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if (event.key === 'End') {
+      event.preventDefault();
+      sections[sections.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+})();
+
 // Form
 (function(){
   const form = document.getElementById('access-form');
