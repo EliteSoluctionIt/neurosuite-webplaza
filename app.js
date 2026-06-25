@@ -1,4 +1,4 @@
-// NeuroSuite — constellation hero canvas
+﻿// NeuroSuite â€” constellation hero canvas
 // Quiet, premium nodes-and-edges field
 
 (function () {
@@ -264,6 +264,6 @@
     ];
     const subject = encodeURIComponent('Contatto operativo - neurosuite.dev');
     const body = encodeURIComponent(lines.join('\n'));
-    window.location.href = 'mailto:info@neurosuite.dev?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:alessandro@neurosuite.dev?subject=' + subject + '&body=' + body;
   });
 })();
