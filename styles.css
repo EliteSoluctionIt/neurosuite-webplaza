@@ -1547,10 +1547,14 @@ html.nsd-on body {
   overflow: hidden !important;
 }
 
+html.nsd-on .nav {
+  z-index: 10002;
+}
+
 .nsd {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 9990;
   background: var(--bg);
   color: var(--fg);
   overflow: hidden;
@@ -1590,7 +1594,7 @@ html.nsd-on body {
 
 .nsd-scroll {
   min-height: 100dvh;
-  padding: clamp(86px, 9dvh, 124px) 0 118px;
+  padding: clamp(96px, 10dvh, 132px) 0 clamp(132px, 15dvh, 168px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1661,8 +1665,9 @@ html.nsd-on body {
 .nsd-controls {
   position: fixed;
   z-index: 10001;
-  right: var(--gutter);
-  top: max(14px, env(safe-area-inset-top));
+  left: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
   display: flex;
   gap: 10px;
 }
@@ -1692,7 +1697,7 @@ html.nsd-on body {
   font-size: var(--fs-xs);
   letter-spacing: 0.12em;
   color: var(--fg-3);
-  padding: 8px 10px;
+  padding: 10px 12px;
   border-radius: 999px;
   background: color-mix(in oklab, var(--bg) 82%, transparent);
   backdrop-filter: blur(18px) saturate(140%);
@@ -1733,5 +1738,34 @@ html.nsd-on body {
   html.nsd-on,
   html.nsd-on body {
     overflow: auto !important;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 820px) {
+  .nsd-scroll {
+    padding-top: 92px;
+    padding-bottom: 128px;
+  }
+
+  .nsd .s-head {
+    padding-bottom: 18px !important;
+  }
+
+  .nsd .market-block + .market-block {
+    margin-top: 18px;
+  }
+
+  .nsd .intro-copy {
+    margin-bottom: 18px !important;
+  }
+
+  .nsd-controls {
+    gap: 8px;
+  }
+
+  .nsd-btn,
+  .nsd-count,
+  .nsd-cue {
+    padding: 8px 11px;
   }
 }

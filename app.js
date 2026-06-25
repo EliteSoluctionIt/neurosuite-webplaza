@@ -449,9 +449,27 @@
     count.textContent =
       String(current + 1).padStart(2, '0') +
       ' / ' +
-      String(slides.length).padStart(2, '0') +
-      ' - ' +
-      (slides[current] ? slides[current].dataset.title : '');
+      String(slides.length).padStart(2, '0');
+    count.setAttribute('aria-label', slides[current] ? slides[current].dataset.title : 'Slide');
+  }
+
+  function indexForHash(hash) {
+    if (!hash || hash === '#') return -1;
+    const id = hash.slice(1);
+    return slides.findIndex(function (slide) {
+      return slide.dataset.source === id;
+    });
+  }
+
+  function scrollActive(deltaY) {
+    const slide = slides[current];
+    if (!slide || !slide.classList.contains('nsd-over')) return false;
+    if (deltaY > 0 && !canScrollDown()) return false;
+    if (deltaY < 0 && !canScrollUp()) return false;
+
+    slide.scrollBy({ top: deltaY, behavior: 'auto' });
+    updateCue();
+    return true;
   }
 
   function goTo(index) {
@@ -489,6 +507,20 @@
     cue = null;
     slides = [];
   }
+
+  document.addEventListener('click', function (event) {
+    if (!overlay) return;
+    const target = event.target;
+    const link = target && target.closest ? target.closest('a[href^="#"]') : null;
+    if (!link) return;
+
+    const index = indexForHash(link.getAttribute('href'));
+    if (index < 0) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    goTo(index);
+  }, true);
 
   window.addEventListener('keydown', function (event) {
     if (!overlay) return;
@@ -568,7 +600,8 @@
 
     const verticalIntent = Math.abs(event.deltaY) >= Math.abs(event.deltaX);
 
-    if (verticalIntent && (canScrollDown() || canScrollUp())) {
+    if (verticalIntent && scrollActive(event.deltaY)) {
+      event.preventDefault();
       return;
     }
 
@@ -585,6 +618,8 @@
   window.addEventListener('resize', function () {
     if (!mq.matches) {
       stop();
+    } else if (!overlay) {
+      start();
     } else {
       refreshCurrentSlide();
     }
