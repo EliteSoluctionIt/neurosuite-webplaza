@@ -267,3 +267,332 @@
     window.location.href = 'mailto:alessandro@neurosuite.dev?subject=' + subject + '&body=' + body;
   });
 })();
+
+// NeuroSuite horizontal public deck v2
+(function () {
+  if (document.documentElement.classList.contains('private-scenario-page')) return;
+  if (!document.querySelector('body > section[id]')) return;
+
+  const mq = window.matchMedia('(min-width: 761px)');
+  let overlay = null;
+  let track = null;
+  let slides = [];
+  let current = 0;
+  let wheelLock = 0;
+
+  function cleanIds(node) {
+    if (!node || node.nodeType !== 1) return;
+    node.removeAttribute('id');
+    node.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  }
+
+  function cloneOriginal(node) {
+    const cloned = node.cloneNode(true);
+    cleanIds(cloned);
+    return cloned;
+  }
+
+  function titleFor(section, fallback) {
+    const h = section.querySelector('h1,h2,h3');
+    return (h ? h.textContent : fallback || 'Slide').replace(/\s+/g, ' ').trim();
+  }
+
+  function makeSlide(section) {
+    const slide = document.createElement('section');
+    slide.className = 'nsd-slide';
+    slide.dataset.source = section.id || '';
+    slide.dataset.title = titleFor(section, section.id || 'Slide');
+
+    const scroll = document.createElement('div');
+    scroll.className = 'nsd-scroll';
+
+    const fit = document.createElement('div');
+    fit.className = 'nsd-fit';
+    fit.appendChild(cloneOriginal(section));
+
+    const cue = document.createElement('button');
+    cue.type = 'button';
+    cue.className = 'nsd-cue';
+    cue.textContent = 'â†“ scorri';
+    cue.addEventListener('click', function () {
+      slide.scrollBy({ top: Math.round(slide.clientHeight * 0.78), behavior: 'smooth' });
+    });
+
+    scroll.appendChild(fit);
+    slide.appendChild(scroll);
+    slide.appendChild(cue);
+    slides.push(slide);
+  }
+
+  function collectSlides() {
+    slides = [];
+    Array.from(document.querySelectorAll('body > section[id]')).forEach(makeSlide);
+  }
+
+  function build() {
+    collectSlides();
+
+    overlay = document.createElement('div');
+    overlay.className = 'nsd';
+    overlay.setAttribute('aria-label', 'Presentazione NeuroSuite');
+
+    track = document.createElement('div');
+    track.className = 'nsd-track';
+
+    slides.forEach(slide => track.appendChild(slide));
+    overlay.appendChild(track);
+
+    const controls = document.createElement('div');
+    controls.className = 'nsd-controls';
+
+    const full = document.createElement('button');
+    full.type = 'button';
+    full.className = 'nsd-btn';
+
+    const page = document.createElement('button');
+    page.type = 'button';
+    page.className = 'nsd-btn';
+    page.textContent = 'Vista pagina';
+
+    controls.appendChild(full);
+    controls.appendChild(page);
+
+    const count = document.createElement('div');
+    count.className = 'nsd-count';
+
+    const hint = document.createElement('div');
+    hint.className = 'nsd-hint';
+    hint.textContent = 'â† â†’ slide Â· â†‘ â†“ scorri se serve';
+
+    overlay.appendChild(controls);
+    overlay.appendChild(count);
+    overlay.appendChild(hint);
+    document.body.appendChild(overlay);
+
+    function label() {
+      full.textContent = document.fullscreenElement ? 'Esci schermo pieno' : 'Schermo pieno';
+    }
+
+    full.addEventListener('click', function () {
+      if (document.fullscreenElement) {
+        if (document.exitFullscreen) document.exitFullscreen();
+      } else {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(function () {});
+        }
+      }
+    });
+
+    page.addEventListener('click', stop);
+
+    document.addEventListener('fullscreenchange', function () {
+      label();
+      fitCurrent();
+    });
+
+    label();
+  }
+
+  function fitCurrent() {
+    const slide = slides[current];
+    if (!slide) return;
+
+    const scroll = slide.querySelector('.nsd-scroll');
+    const fit = slide.querySelector('.nsd-fit');
+    if (!scroll || !fit) return;
+
+    slide.classList.remove('nsd-over');
+    slide.scrollTop = 0;
+    fit.style.zoom = '1';
+
+    requestAnimationFrame(function () {
+      const aw = Math.max(1, scroll.clientWidth);
+      const ah = Math.max(1, scroll.clientHeight);
+      const cw = Math.max(1, fit.scrollWidth);
+      const ch = Math.max(1, fit.scrollHeight);
+
+      const exact = Math.min(1, aw / cw, ah / ch);
+      const minReadable = 0.76;
+
+      let zoom = exact;
+      let overflow = false;
+
+      if (exact < minReadable) {
+        zoom = Math.min(1, Math.max(minReadable, aw / cw));
+        overflow = true;
+      }
+
+      fit.style.zoom = zoom.toFixed(3);
+
+      requestAnimationFrame(function () {
+        slide.classList.toggle('nsd-over', overflow || slide.scrollHeight > slide.clientHeight + 8);
+      });
+    });
+  }
+
+  function updateCount() {
+    const count = overlay && overlay.querySelector('.nsd-count');
+    if (!count) return;
+
+    const title = slides[current] ? slides[current].dataset.title : '';
+    count.textContent =
+      String(current + 1).padStart(2, '0') +
+      ' / ' +
+      String(slides.length).padStart(2, '0') +
+      ' Â· ' +
+      title;
+  }
+
+  function goTo(index) {
+    if (!track || !slides.length) return;
+
+    current = Math.max(0, Math.min(slides.length - 1, index));
+    slides.forEach(function (slide, i) {
+      slide.classList.toggle('nsd-active', i === current);
+    });
+
+    track.scrollTo({ left: current * window.innerWidth, behavior: 'smooth' });
+    updateCount();
+    fitCurrent();
+  }
+
+  function start() {
+    if (!mq.matches || overlay) return;
+
+    document.documentElement.classList.add('nsd-on');
+    build();
+    goTo(0);
+  }
+
+  function stop() {
+    if (document.fullscreenElement && document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+
+    document.documentElement.classList.remove('nsd-on');
+
+    if (overlay) overlay.remove();
+    overlay = null;
+    track = null;
+    slides = [];
+  }
+
+  function currentSlideCanScroll(delta) {
+    const slide = slides[current];
+    if (!slide || !slide.classList.contains('nsd-over')) return false;
+
+    if (delta > 0) {
+      return slide.scrollTop + slide.clientHeight < slide.scrollHeight - 4;
+    }
+
+    if (delta < 0) {
+      return slide.scrollTop > 4;
+    }
+
+    return false;
+  }
+
+  window.addEventListener('keydown', function (event) {
+    if (!overlay) return;
+
+    const tag = (document.activeElement && document.activeElement.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      goTo(current + 1);
+      return;
+    }
+
+    if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      goTo(current - 1);
+      return;
+    }
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (currentSlideCanScroll(1)) {
+        slides[current].scrollBy({ top: Math.round(slides[current].clientHeight * 0.78), behavior: 'smooth' });
+      } else {
+        goTo(current + 1);
+      }
+
+      return;
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (currentSlideCanScroll(-1)) {
+        slides[current].scrollBy({ top: -Math.round(slides[current].clientHeight * 0.78), behavior: 'smooth' });
+      } else {
+        goTo(current - 1);
+      }
+
+      return;
+    }
+
+    if (event.key === 'Home') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      goTo(0);
+      return;
+    }
+
+    if (event.key === 'End') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      goTo(slides.length - 1);
+      return;
+    }
+
+    if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (document.fullscreenElement) {
+        if (document.exitFullscreen) document.exitFullscreen();
+      } else {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(function () {});
+        }
+      }
+    }
+  }, true);
+
+  window.addEventListener('wheel', function (event) {
+    if (!overlay) return;
+
+    const verticalIntent = Math.abs(event.deltaY) >= Math.abs(event.deltaX);
+
+    if (verticalIntent && currentSlideCanScroll(event.deltaY)) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const now = Date.now();
+    if (now - wheelLock < 420) return;
+    wheelLock = now;
+
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    goTo(current + (delta > 0 ? 1 : -1));
+  }, { passive: false, capture: true });
+
+  window.addEventListener('resize', function () {
+    if (!mq.matches) {
+      stop();
+    } else {
+      fitCurrent();
+    }
+  }, { passive: true });
+
+  setTimeout(start, 80);
+})();

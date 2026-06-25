@@ -1539,3 +1539,189 @@ html.private-scenario-page body {
   .scenario-kpi:last-child { border-bottom: 0; }
   .deck-count { display: none; }
 }
+
+/* NeuroSuite horizontal public deck v2 */
+html.nsd-on,
+html.nsd-on body {
+  height: 100dvh;
+  overflow: hidden !important;
+}
+
+.nsd {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
+  color: var(--fg);
+  overflow: hidden;
+}
+
+.nsd-track {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.nsd-track::-webkit-scrollbar { display: none; }
+
+.nsd-slide {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100dvh;
+  position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background: var(--bg);
+}
+
+.nsd-slide.nsd-over {
+  overflow-y: auto;
+}
+
+.nsd-scroll {
+  min-height: 100dvh;
+  padding: clamp(86px, 9dvh, 124px) 0 clamp(58px, 7dvh, 92px);
+  display: grid;
+  place-items: center;
+}
+
+.nsd-over .nsd-scroll {
+  place-items: start center;
+}
+
+.nsd-fit {
+  width: 100%;
+  transform-origin: top center;
+}
+
+.nsd .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.nsd section {
+  max-width: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+.nsd .hero {
+  min-height: auto !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.nsd .hero__canvas {
+  display: none !important;
+}
+
+.nsd .s-head {
+  padding-block: 0 clamp(22px, 3dvh, 38px) !important;
+}
+
+.nsd .market-block {
+  padding-block: 0 !important;
+}
+
+.nsd .flow {
+  padding-block: clamp(28px, 4dvh, 54px) !important;
+}
+
+.nsd .eco,
+.nsd .status,
+.nsd .evidence-grid,
+.nsd .asset-grid {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.nsd .intro-copy {
+  margin-bottom: clamp(18px, 3dvh, 34px) !important;
+}
+
+.nsd-controls {
+  position: fixed;
+  z-index: 10001;
+  right: var(--gutter);
+  top: max(14px, env(safe-area-inset-top));
+  display: flex;
+  gap: 10px;
+}
+
+.nsd-btn {
+  border: 1px solid var(--line-2);
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  color: var(--fg);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: var(--fs-sm);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.nsd-btn:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-glow);
+}
+
+.nsd-count {
+  position: fixed;
+  z-index: 10001;
+  left: var(--gutter);
+  bottom: max(18px, env(safe-area-inset-bottom));
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: .12em;
+  color: var(--fg-3);
+}
+
+.nsd-hint {
+  position: fixed;
+  z-index: 10001;
+  right: var(--gutter);
+  bottom: max(18px, env(safe-area-inset-bottom));
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: .1em;
+  color: var(--fg-4);
+}
+
+.nsd-cue {
+  position: absolute;
+  z-index: 10002;
+  right: var(--gutter);
+  bottom: 58px;
+  display: none;
+  border: 1px solid var(--accent-line);
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.nsd-slide.nsd-active.nsd-over .nsd-cue {
+  display: inline-flex;
+}
+
+@media (max-width: 760px) {
+  .nsd { display: none; }
+
+  html.nsd-on,
+  html.nsd-on body {
+    overflow: auto !important;
+  }
+}
