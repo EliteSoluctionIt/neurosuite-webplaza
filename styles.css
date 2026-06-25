@@ -1540,7 +1540,7 @@ html.private-scenario-page body {
   .deck-count { display: none; }
 }
 
-/* NeuroSuite horizontal public deck v2 */
+/* NeuroSuite horizontal public deck v3 */
 html.nsd-on,
 html.nsd-on body {
   height: 100dvh;
@@ -1568,7 +1568,9 @@ html.nsd-on body {
   scrollbar-width: none;
 }
 
-.nsd-track::-webkit-scrollbar { display: none; }
+.nsd-track::-webkit-scrollbar {
+  display: none;
+}
 
 .nsd-slide {
   flex: 0 0 100vw;
@@ -1588,18 +1590,19 @@ html.nsd-on body {
 
 .nsd-scroll {
   min-height: 100dvh;
-  padding: clamp(86px, 9dvh, 124px) 0 clamp(58px, 7dvh, 92px);
-  display: grid;
-  place-items: center;
+  padding: clamp(86px, 9dvh, 124px) 0 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nsd-over .nsd-scroll {
-  place-items: start center;
+.nsd-slide.nsd-over .nsd-scroll {
+  align-items: flex-start;
 }
 
-.nsd-fit {
-  width: 100%;
-  transform-origin: top center;
+.nsd-frame {
+  width: min(var(--maxw), calc(100vw - (var(--gutter) * 2)));
+  margin: 0 auto;
 }
 
 .nsd .reveal {
@@ -1624,15 +1627,23 @@ html.nsd-on body {
 }
 
 .nsd .s-head {
-  padding-block: 0 clamp(22px, 3dvh, 38px) !important;
+  padding-block: 0 clamp(18px, 3dvh, 34px) !important;
+}
+
+.nsd .market {
+  padding-bottom: 0 !important;
 }
 
 .nsd .market-block {
   padding-block: 0 !important;
 }
 
+.nsd .market-block + .market-block {
+  margin-top: clamp(18px, 3dvh, 30px);
+}
+
 .nsd .flow {
-  padding-block: clamp(28px, 4dvh, 54px) !important;
+  padding-block: clamp(26px, 4dvh, 52px) !important;
 }
 
 .nsd .eco,
@@ -1644,7 +1655,7 @@ html.nsd-on body {
 }
 
 .nsd .intro-copy {
-  margin-bottom: clamp(18px, 3dvh, 34px) !important;
+  margin-bottom: clamp(16px, 3dvh, 28px) !important;
 }
 
 .nsd-controls {
@@ -1679,46 +1690,45 @@ html.nsd-on body {
   bottom: max(18px, env(safe-area-inset-bottom));
   font-family: var(--mono);
   font-size: var(--fs-xs);
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   color: var(--fg-3);
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
 }
 
-.nsd-hint {
+.nsd-cue {
   position: fixed;
   z-index: 10001;
   right: var(--gutter);
   bottom: max(18px, env(safe-area-inset-bottom));
-  font-family: var(--mono);
-  font-size: var(--fs-xs);
-  letter-spacing: .1em;
-  color: var(--fg-4);
-}
-
-.nsd-cue {
-  position: absolute;
-  z-index: 10002;
-  right: var(--gutter);
-  bottom: 58px;
   display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border: 1px solid var(--accent-line);
-  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
   color: var(--accent);
   border-radius: 999px;
   padding: 10px 14px;
   font-family: var(--mono);
   font-size: var(--fs-xs);
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
 }
 
-.nsd-slide.nsd-active.nsd-over .nsd-cue {
+.nsd-cue.is-visible {
   display: inline-flex;
 }
 
 @media (max-width: 760px) {
-  .nsd { display: none; }
+  .nsd {
+    display: none;
+  }
 
   html.nsd-on,
   html.nsd-on body {

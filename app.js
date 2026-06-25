@@ -268,7 +268,7 @@
   });
 })();
 
-// NeuroSuite horizontal public deck v2
+// NeuroSuite horizontal public deck v3
 (function () {
   if (document.documentElement.classList.contains('private-scenario-page')) return;
   if (!document.querySelector('body > section[id]')) return;
@@ -276,6 +276,7 @@
   const mq = window.matchMedia('(min-width: 761px)');
   let overlay = null;
   let track = null;
+  let cue = null;
   let slides = [];
   let current = 0;
   let wheelLock = 0;
@@ -306,21 +307,17 @@
     const scroll = document.createElement('div');
     scroll.className = 'nsd-scroll';
 
-    const fit = document.createElement('div');
-    fit.className = 'nsd-fit';
-    fit.appendChild(cloneOriginal(section));
+    const frame = document.createElement('div');
+    frame.className = 'nsd-frame';
+    frame.appendChild(cloneOriginal(section));
 
-    const cue = document.createElement('button');
-    cue.type = 'button';
-    cue.className = 'nsd-cue';
-    cue.textContent = 'â†“ scorri';
-    cue.addEventListener('click', function () {
-      slide.scrollBy({ top: Math.round(slide.clientHeight * 0.78), behavior: 'smooth' });
-    });
-
-    scroll.appendChild(fit);
+    scroll.appendChild(frame);
     slide.appendChild(scroll);
-    slide.appendChild(cue);
+
+    slide.addEventListener('scroll', function () {
+      updateCue();
+    }, { passive: true });
+
     slides.push(slide);
   }
 
@@ -338,7 +335,6 @@
 
     track = document.createElement('div');
     track.className = 'nsd-track';
-
     slides.forEach(slide => track.appendChild(slide));
     overlay.appendChild(track);
 
@@ -356,20 +352,30 @@
 
     controls.appendChild(full);
     controls.appendChild(page);
+    overlay.appendChild(controls);
 
     const count = document.createElement('div');
     count.className = 'nsd-count';
-
-    const hint = document.createElement('div');
-    hint.className = 'nsd-hint';
-    hint.textContent = 'â† â†’ slide Â· â†‘ â†“ scorri se serve';
-
-    overlay.appendChild(controls);
     overlay.appendChild(count);
-    overlay.appendChild(hint);
+
+    cue = document.createElement('button');
+    cue.type = 'button';
+    cue.className = 'nsd-cue';
+    cue.addEventListener('click', function () {
+      const slide = slides[current];
+      if (!slide) return;
+
+      if (canScrollDown()) {
+        slide.scrollBy({ top: Math.round(slide.clientHeight * 0.78), behavior: 'smooth' });
+      } else if (slide.classList.contains('nsd-over')) {
+        slide.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    overlay.appendChild(cue);
+
     document.body.appendChild(overlay);
 
-    function label() {
+    function updateFullLabel() {
       full.textContent = document.fullscreenElement ? 'Esci schermo pieno' : 'Schermo pieno';
     }
 
@@ -386,47 +392,53 @@
     page.addEventListener('click', stop);
 
     document.addEventListener('fullscreenchange', function () {
-      label();
-      fitCurrent();
+      updateFullLabel();
+      refreshCurrentSlide();
     });
 
-    label();
+    updateFullLabel();
   }
 
-  function fitCurrent() {
+  function canScrollDown() {
+    const slide = slides[current];
+    if (!slide || !slide.classList.contains('nsd-over')) return false;
+    return slide.scrollTop + slide.clientHeight < slide.scrollHeight - 4;
+  }
+
+  function canScrollUp() {
+    const slide = slides[current];
+    if (!slide || !slide.classList.contains('nsd-over')) return false;
+    return slide.scrollTop > 4;
+  }
+
+  function updateCue() {
+    if (!cue) return;
+    const slide = slides[current];
+    if (!slide || !slide.classList.contains('nsd-over')) {
+      cue.classList.remove('is-visible');
+      return;
+    }
+
+    cue.classList.add('is-visible');
+
+    if (canScrollDown()) {
+      cue.textContent = '\u2193 scorri';
+    } else {
+      cue.textContent = '\u2191 risali';
+    }
+  }
+
+  function refreshCurrentSlide() {
     const slide = slides[current];
     if (!slide) return;
 
-    const scroll = slide.querySelector('.nsd-scroll');
-    const fit = slide.querySelector('.nsd-fit');
-    if (!scroll || !fit) return;
-
     slide.classList.remove('nsd-over');
     slide.scrollTop = 0;
-    fit.style.zoom = '1';
 
     requestAnimationFrame(function () {
-      const aw = Math.max(1, scroll.clientWidth);
-      const ah = Math.max(1, scroll.clientHeight);
-      const cw = Math.max(1, fit.scrollWidth);
-      const ch = Math.max(1, fit.scrollHeight);
-
-      const exact = Math.min(1, aw / cw, ah / ch);
-      const minReadable = 0.76;
-
-      let zoom = exact;
-      let overflow = false;
-
-      if (exact < minReadable) {
-        zoom = Math.min(1, Math.max(minReadable, aw / cw));
-        overflow = true;
-      }
-
-      fit.style.zoom = zoom.toFixed(3);
-
-      requestAnimationFrame(function () {
-        slide.classList.toggle('nsd-over', overflow || slide.scrollHeight > slide.clientHeight + 8);
-      });
+      const overflow = slide.scrollHeight > slide.clientHeight + 8;
+      slide.classList.toggle('nsd-over', overflow);
+      updateCue();
     });
   }
 
@@ -434,31 +446,31 @@
     const count = overlay && overlay.querySelector('.nsd-count');
     if (!count) return;
 
-    const title = slides[current] ? slides[current].dataset.title : '';
     count.textContent =
       String(current + 1).padStart(2, '0') +
       ' / ' +
       String(slides.length).padStart(2, '0') +
-      ' Â· ' +
-      title;
+      ' - ' +
+      (slides[current] ? slides[current].dataset.title : '');
   }
 
   function goTo(index) {
     if (!track || !slides.length) return;
 
     current = Math.max(0, Math.min(slides.length - 1, index));
+
     slides.forEach(function (slide, i) {
       slide.classList.toggle('nsd-active', i === current);
+      if (i !== current) slide.scrollTop = 0;
     });
 
     track.scrollTo({ left: current * window.innerWidth, behavior: 'smooth' });
     updateCount();
-    fitCurrent();
+    refreshCurrentSlide();
   }
 
   function start() {
     if (!mq.matches || overlay) return;
-
     document.documentElement.classList.add('nsd-on');
     build();
     goTo(0);
@@ -474,22 +486,8 @@
     if (overlay) overlay.remove();
     overlay = null;
     track = null;
+    cue = null;
     slides = [];
-  }
-
-  function currentSlideCanScroll(delta) {
-    const slide = slides[current];
-    if (!slide || !slide.classList.contains('nsd-over')) return false;
-
-    if (delta > 0) {
-      return slide.scrollTop + slide.clientHeight < slide.scrollHeight - 4;
-    }
-
-    if (delta < 0) {
-      return slide.scrollTop > 4;
-    }
-
-    return false;
   }
 
   window.addEventListener('keydown', function (event) {
@@ -517,12 +515,11 @@
       event.preventDefault();
       event.stopImmediatePropagation();
 
-      if (currentSlideCanScroll(1)) {
+      if (canScrollDown()) {
         slides[current].scrollBy({ top: Math.round(slides[current].clientHeight * 0.78), behavior: 'smooth' });
       } else {
         goTo(current + 1);
       }
-
       return;
     }
 
@@ -530,12 +527,11 @@
       event.preventDefault();
       event.stopImmediatePropagation();
 
-      if (currentSlideCanScroll(-1)) {
+      if (canScrollUp()) {
         slides[current].scrollBy({ top: -Math.round(slides[current].clientHeight * 0.78), behavior: 'smooth' });
       } else {
         goTo(current - 1);
       }
-
       return;
     }
 
@@ -572,7 +568,7 @@
 
     const verticalIntent = Math.abs(event.deltaY) >= Math.abs(event.deltaX);
 
-    if (verticalIntent && currentSlideCanScroll(event.deltaY)) {
+    if (verticalIntent && (canScrollDown() || canScrollUp())) {
       return;
     }
 
@@ -590,7 +586,7 @@
     if (!mq.matches) {
       stop();
     } else {
-      fitCurrent();
+      refreshCurrentSlide();
     }
   }, { passive: true });
 
