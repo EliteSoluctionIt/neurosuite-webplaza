@@ -1241,3 +1241,301 @@ section[id] { scroll-margin-top: 96px; }
   .flow__title, .flow__desc { margin: 0; }
   .flow__viz { margin-top: 0; align-self: end; }
 }
+
+/* ---------- private investor scenario deck ---------- */
+html.private-scenario-page,
+html.private-scenario-page body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.private-scenario-page body {
+  background: var(--bg);
+}
+
+.scenario-deck {
+  height: 100svh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.scenario-track {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.scenario-track::-webkit-scrollbar { display: none; }
+
+.scenario-slide {
+  width: 100vw;
+  min-width: 100vw;
+  height: 100svh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: grid;
+  align-items: center;
+  padding: clamp(98px, 11vh, 138px) var(--gutter) clamp(74px, 8vh, 96px);
+  overflow: hidden;
+  position: relative;
+}
+
+.scenario-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 72% 18%, var(--accent-glow), transparent 34%);
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.scenario-slide__inner {
+  position: relative;
+  z-index: 1;
+  width: min(var(--maxw), 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(24px, 3vw, 42px);
+}
+
+.scenario-slide__head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: end;
+}
+
+.scenario-slide h1,
+.scenario-slide h2 {
+  font-size: clamp(42px, 6.4vw, 94px);
+  line-height: 0.96;
+  max-width: 12ch;
+}
+
+.scenario-slide h2 em,
+.scenario-slide h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.scenario-slide__copy {
+  color: var(--fg-2);
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.5;
+  max-width: 58ch;
+}
+
+.scenario-slide__copy p + p { margin-top: 14px; }
+
+.scenario-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.scenario-kpi {
+  min-height: 168px;
+  padding: clamp(20px, 2vw, 30px);
+  border-right: 1px solid var(--line);
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.scenario-kpi:last-child { border-right: 0; }
+
+.scenario-kpi span {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.scenario-kpi strong {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(38px, 5vw, 74px);
+  line-height: 0.92;
+  color: var(--accent);
+  font-feature-settings: 'tnum';
+}
+
+.scenario-kpi p {
+  margin: 0;
+  color: var(--fg-2);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+}
+
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.4vw, 20px);
+}
+
+.scenario-panel {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in oklab, var(--surface) 78%, transparent);
+  padding: clamp(22px, 2vw, 30px);
+  min-height: 230px;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.scenario-panel h3 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.1vw, 36px);
+  line-height: 1.04;
+}
+
+.scenario-panel p,
+.scenario-panel li {
+  color: var(--fg-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.scenario-panel ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.scenario-note {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px 24px;
+  color: var(--fg-2);
+  background: color-mix(in oklab, var(--surface) 70%, transparent);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.scenario-battle {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in oklab, var(--surface) 76%, transparent);
+}
+
+.scenario-battle table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.scenario-battle th,
+.scenario-battle td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.scenario-battle th:first-child,
+.scenario-battle td:first-child {
+  text-align: left;
+  color: var(--fg-2);
+  width: 280px;
+}
+
+.scenario-battle th {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.scenario-battle tr:last-child td { border-bottom: 0; }
+
+.deck-indicator {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--bg) 76%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.deck-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--fg-4);
+  transition: width 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.deck-dot.active {
+  width: 28px;
+  background: var(--accent);
+}
+
+.deck-count {
+  position: fixed;
+  z-index: 60;
+  right: var(--gutter);
+  bottom: max(18px, env(safe-area-inset-bottom));
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  color: var(--fg-3);
+}
+
+@media (max-width: 980px) {
+  .scenario-slide {
+    align-items: start;
+    overflow-y: auto;
+    padding-block: 92px 84px;
+  }
+
+  .scenario-slide__head,
+  .scenario-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-kpis {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .scenario-kpi:nth-child(2) { border-right: 0; }
+  .scenario-kpi:nth-child(1),
+  .scenario-kpi:nth-child(2) { border-bottom: 1px solid var(--line); }
+}
+
+@media (max-width: 620px) {
+  .scenario-slide {
+    padding-inline: 20px;
+  }
+
+  .scenario-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-kpi {
+    min-height: 128px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .scenario-kpi:last-child { border-bottom: 0; }
+  .deck-count { display: none; }
+}
