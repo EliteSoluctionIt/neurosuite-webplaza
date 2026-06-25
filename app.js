@@ -1,4 +1,4 @@
-// NeuroSuite — constellation hero canvas
+// NeuroSuite Ã¢â‚¬â€ constellation hero canvas
 // Quiet, premium nodes-and-edges field
 
 (function () {
@@ -625,5 +625,9 @@
     }
   }, { passive: true });
 
-  setTimeout(start, 80);
+  const deckParams = new URLSearchParams(window.location.search);
+  const publicDeckEnabled = deckParams.get('deck') === '1' || deckParams.get('deck') === 'true';
+  if (publicDeckEnabled) {
+    setTimeout(start, 80);
+  }
 })();
