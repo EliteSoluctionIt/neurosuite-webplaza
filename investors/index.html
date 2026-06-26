@@ -1,0 +1,1610 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroSuite RSA Investor Deck</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #111827;
+    --muted: #64748b;
+    --soft: #f6f8fb;
+    --line: #dbe3ee;
+    --navy: #0d1b2f;
+    --blue: #1f5f99;
+    --teal: #087b75;
+    --green: #2f7d5f;
+    --gold: #b9812f;
+    --white: #fff;
+    --shadow: 0 24px 60px rgba(15, 23, 42, .12);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background: var(--soft);
+    color: var(--ink);
+    font-family: var(--font);
+  }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    overscroll-behavior: none;
+  }
+  body:not(.en) .lang-en,
+  body:not(.it) .lang-it,
+  body.it .lang-en,
+  body.en .lang-it { display: none !important; }
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .slides-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform .38s cubic-bezier(.2,.8,.2,1);
+  }
+  .slide {
+    flex: 0 0 100vw;
+    height: 100vh;
+    height: 100dvh;
+    padding: calc(58px + env(safe-area-inset-top)) 82px calc(56px + env(safe-area-inset-bottom));
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top left, rgba(31,95,153,.10), transparent 30%),
+      linear-gradient(135deg, #ffffff 0%, #f5f8fc 100%);
+  }
+  .slide.dark {
+    color: var(--white);
+    background:
+      radial-gradient(circle at 14% 12%, rgba(8,123,117,.30), transparent 34%),
+      linear-gradient(135deg, #081423 0%, #0d1b2f 58%, #10243c 100%);
+  }
+  .slide-inner {
+    width: min(1120px, 100%);
+    min-height: calc(100vh - 124px);
+    min-height: calc(100dvh - 124px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+  }
+  .slide-compact .slide-inner { justify-content: flex-start; gap: 12px; }
+  .kicker {
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--blue);
+  }
+  .dark .kicker { color: #8fd7d2; }
+  h1 {
+    font-size: clamp(56px, 7vw, 88px);
+    line-height: .92;
+    letter-spacing: -0.03em;
+    max-width: 980px;
+  }
+  h2 {
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    max-width: 940px;
+  }
+  .slide-compact h2 { font-size: clamp(26px, 3vw, 36px); }
+  .lead {
+    font-size: clamp(18px, 2vw, 25px);
+    line-height: 1.32;
+    color: #334155;
+    max-width: 940px;
+  }
+  .dark .lead { color: #d7e2ef; }
+  .small {
+    font-size: 14px;
+    line-height: 1.38;
+    color: var(--muted);
+  }
+  .dark .small { color: #c5d3e1; }
+  .pill-row, .meta-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .pill {
+    border: 1px solid rgba(31,95,153,.22);
+    background: rgba(255,255,255,.80);
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 750;
+    color: #164b7b;
+  }
+  .dark .pill {
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,255,255,.22);
+    color: #eaf6ff;
+  }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card {
+    background: rgba(255,255,255,.90);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 12px 32px rgba(15,23,42,.07);
+  }
+  .dark .card {
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.16);
+    box-shadow: none;
+  }
+  .card h3 {
+    font-size: 18px;
+    line-height: 1.18;
+    margin-bottom: 8px;
+    color: #13223a;
+  }
+  .dark .card h3 { color: #fff; }
+  .card p, .card li {
+    font-size: 14px;
+    line-height: 1.38;
+    color: #46566a;
+  }
+  .dark .card p, .dark .card li { color: #d2deeb; }
+  ul.clean { list-style: none; display: grid; gap: 7px; }
+  ul.clean li {
+    padding-left: 17px;
+    position: relative;
+  }
+  ul.clean li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    position: absolute;
+    left: 0;
+    top: .62em;
+  }
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .phase-card {
+    min-height: 360px;
+    padding: 15px;
+  }
+  .phase-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e9f2fb;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+  .phase-card h3 { font-size: 16px; }
+  .phase-card li { font-size: 12.6px; line-height: 1.30; }
+  .signal-flow {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr 1fr .9fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .flow-box {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    padding: 16px;
+  }
+  .flow-box h3 { font-size: 16px; margin-bottom: 8px; }
+  .flow-arrow {
+    align-self: center;
+    justify-self: center;
+    font-size: 28px;
+    color: var(--blue);
+  }
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .evidence-card {
+    padding: 12px;
+    min-height: 134px;
+  }
+  .area {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-weight: 900;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .ref {
+    font-size: 12.4px;
+    line-height: 1.22;
+    font-weight: 760;
+    color: #18253c;
+    margin-bottom: 6px;
+  }
+  .evidence-card p { font-size: 11.8px; line-height: 1.25; }
+  .market-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr .95fr;
+    gap: 12px;
+  }
+  .market-card {
+    min-height: 186px;
+  }
+  .market-card h3 {
+    font-size: 17px;
+  }
+  .battle-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 12px 32px rgba(15,23,42,.06);
+  }
+  .battle-table {
+    width: 100%;
+    min-width: 940px;
+    border-collapse: collapse;
+    font-size: 11.2px;
+    line-height: 1.18;
+  }
+  .battle-table th,
+  .battle-table td {
+    border-bottom: 1px solid #e4ebf3;
+    padding: 7px 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .battle-table th {
+    background: #eef5fb;
+    color: #17324f;
+    font-weight: 850;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .battle-table th:first-child,
+  .battle-table td:first-child {
+    text-align: left;
+    width: 220px;
+    color: #26384f;
+    font-weight: 760;
+  }
+  .battle-table tr:last-child td { border-bottom: 0; }
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    min-height: 20px;
+    border-radius: 999px;
+    padding: 2px 7px;
+    font-size: 10px;
+    font-weight: 900;
+  }
+  .mark.yes { background: #dff4e8; color: #17633b; }
+  .mark.part { background: #fff1cf; color: #8a5a00; }
+  .mark.no { background: #fde8e8; color: #9f2d2d; }
+  .legend {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legend span {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .status-card { min-height: 260px; }
+  .status-tag {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 6px 9px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-weight: 900;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .done { background: var(--green); }
+  .now { background: var(--gold); }
+  .next { background: var(--blue); }
+  .quote-panel {
+    border-left: 4px solid var(--teal);
+    width: 100%;
+    min-height: 98px;
+    padding: 0 26px;
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,.78);
+    border-radius: 0 8px 8px 0;
+  }
+  .quote-panel p { font-size: 23px; line-height: 1.15; letter-spacing: -0.015em; }
+  body.it .quote-panel p.lang-it { white-space: nowrap; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 900px;
+  }
+  .contact-grid.single-contact {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 520px;
+  }
+  .contact-name { font-size: 22px; font-weight: 850; margin-bottom: 5px; }
+  .contact-role { font-size: 13px; color: var(--muted); line-height: 1.35; }
+  .dark .contact-role { color: #cad8e6; }
+  #lang-toggle {
+    position: fixed;
+    top: calc(16px + env(safe-area-inset-top));
+    right: calc(72px + env(safe-area-inset-right));
+    z-index: 20;
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow: 0 10px 30px rgba(15,23,42,.08);
+  }
+  #lang-toggle button {
+    border: 0;
+    border-radius: 999px;
+    padding: 6px 11px;
+    font-size: 11px;
+    font-weight: 900;
+    cursor: pointer;
+    background: transparent;
+    color: var(--muted);
+  }
+  #lang-toggle button.active { background: var(--navy); color: #fff; }
+  .nav-btn {
+    position: fixed;
+    top: 50%;
+    z-index: 20;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 10px 28px rgba(15,23,42,.10);
+    cursor: pointer;
+    color: var(--navy);
+    font-size: 24px;
+  }
+  .nav-btn:disabled { opacity: .28; cursor: default; }
+  #btn-prev { left: calc(22px + env(safe-area-inset-left)); }
+  #btn-next { right: calc(22px + env(safe-area-inset-right)); }
+  #slide-counter {
+    position: fixed;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    gap: 7px;
+  }
+  .dot {
+    border: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #b8c3d2;
+    cursor: pointer;
+  }
+  .dot.active { width: 22px; border-radius: 999px; background: var(--blue); }
+  #mobile-slide-number { display: none; }
+  .slide-no {
+    position: absolute;
+    right: 82px;
+    bottom: 26px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+  }
+  .dark .slide-no { color: rgba(255,255,255,.50); }
+  .note {
+    font-size: 11.5px;
+    line-height: 1.3;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+  .dark .note { color: #bbcad8; border-color: rgba(255,255,255,.18); }
+
+  /* ─── REVENUE / ECONOMICS SLIDE ─── */
+  .revenue-hero {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+  .revenue-main {
+    background: linear-gradient(135deg, rgba(31,95,153,.10), rgba(8,123,117,.10));
+    border: 1px solid rgba(31,95,153,.18);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 14px 34px rgba(15,23,42,.08);
+  }
+  .revenue-number {
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: .9;
+    letter-spacing: -0.05em;
+    font-weight: 950;
+    color: var(--navy);
+    margin: 8px 0 6px;
+  }
+  .revenue-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-weight: 900;
+    color: var(--blue);
+  }
+  .revenue-sub {
+    font-size: 15px;
+    line-height: 1.35;
+    color: #334155;
+  }
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 12px;
+  }
+  .revenue-card {
+    background: rgba(255,255,255,.92);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .revenue-card .big {
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1;
+    font-weight: 950;
+    letter-spacing: -0.035em;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .revenue-card .label {
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .scenario-strip {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .scenario-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .scenario-box h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .scenario-box p {
+    font-size: 13px;
+    line-height: 1.34;
+    color: #40516a;
+  }
+  .source-note {
+    font-size: 10.8px;
+    line-height: 1.25;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .deck { height: 100vh; height: 100dvh; }
+    .slide {
+      height: 100vh;
+      height: 100dvh;
+      padding: calc(58px + env(safe-area-inset-top)) 22px calc(76px + env(safe-area-inset-bottom));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+    .slide-inner { min-height: auto; justify-content: flex-start; padding-bottom: 16px; }
+    h1 { font-size: clamp(42px, 14vw, 62px); }
+    h2 { font-size: clamp(30px, 9vw, 44px); }
+    .grid-2, .grid-3, .phase-grid, .signal-flow, .evidence-grid, .market-grid, .status-grid, .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .phase-card, .status-card { min-height: auto; }
+    .flow-arrow { display: none; }
+    .quote-panel { min-height: auto; padding: 18px; }
+    body.it .quote-panel p.lang-it { white-space: normal; }
+    #btn-prev, #btn-next { display: none; }
+    .slide-no { display: none; }
+    #slide-counter {
+      bottom: calc(18px + env(safe-area-inset-bottom));
+    }
+    #mobile-slide-number {
+      display: block;
+      position: fixed;
+      left: 50%;
+      bottom: calc(42px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      z-index: 22;
+      pointer-events: none;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: rgba(246, 248, 251, .86);
+      color: #64748b;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: .10em;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, .08);
+    }
+  }
+
+  @media (max-width: 900px) {
+
+    .revenue-hero, .revenue-grid, .scenario-strip {
+      grid-template-columns: 1fr !important;
+    }
+    .revenue-number {
+      font-size: clamp(36px, 13vw, 58px) !important;
+    }
+  }
+
+  /* ─── MARKET EXPANSION / DATA ASSET SLIDES ─── */
+  .market-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .market-kpi {
+    background: rgba(255,255,255,.94);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px;
+    min-height: 104px;
+  }
+  .market-kpi .pct {
+    font-size: 23px;
+    font-weight: 950;
+    color: var(--blue);
+    letter-spacing: -.035em;
+  }
+  .market-kpi .people {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 800;
+    margin-top: 4px;
+  }
+  .market-kpi .money {
+    font-size: 18px;
+    font-weight: 950;
+    color: var(--navy);
+    margin-top: 8px;
+    letter-spacing: -.03em;
+  }
+  .market-focus {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .market-focus-card {
+    background: linear-gradient(135deg, rgba(31,95,153,.10), rgba(8,123,117,.08));
+    border: 1px solid rgba(31,95,153,.18);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .market-focus-card .headline {
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: .95;
+    font-weight: 950;
+    letter-spacing: -.055em;
+    color: var(--navy);
+  }
+  .market-focus-card .caption {
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.35;
+    margin-top: 8px;
+  }
+  .data-asset-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .asset-pillar {
+    background: rgba(255,255,255,.94);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .asset-pillar h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .asset-pillar p, .asset-pillar li {
+    font-size: 13px;
+    line-height: 1.36;
+    color: #40516a;
+  }
+  .asset-pillar ul {
+    margin-left: 17px;
+    display: grid;
+    gap: 6px;
+  }
+  .asset-range {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .asset-range .range-card {
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 12px;
+  }
+  .asset-range .range-card .value {
+    font-size: 23px;
+    font-weight: 950;
+    color: var(--blue);
+    letter-spacing: -.035em;
+  }
+  .asset-range .range-card .label {
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--muted);
+    font-weight: 750;
+    margin-top: 4px;
+  }
+  .deck-source {
+    font-size: 10.4px;
+    line-height: 1.25;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 7px;
+    margin-top: 10px;
+  }
+
+
+  @media (max-width: 900px) {
+    .market-kpi-row {
+      grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    }
+    .market-focus, .data-asset-grid, .asset-range {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  @media (max-width: 520px) {
+    .market-kpi-row {
+      grid-template-columns: 1fr !important;
+    }
+    .market-kpi {
+      min-height: auto !important;
+    }
+  }
+
+
+  .market-kpi-row.two-scenarios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 760px;
+  }
+  .market-kpi-row.two-scenarios .market-kpi {
+    min-height: 132px;
+    padding: 18px;
+  }
+  .market-kpi-row.two-scenarios .market-kpi .pct {
+    font-size: clamp(34px, 5vw, 58px);
+  }
+  .market-kpi-row.two-scenarios .market-kpi .money {
+    font-size: clamp(24px, 3vw, 34px);
+  }
+  .reader-does-math {
+    background: rgba(31,95,153,.07);
+    border-left: 4px solid var(--blue);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #334155;
+    margin-top: 12px;
+  }
+
+</style>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<!-- lessico-positivo-v2: preferire possibilità, opportunità, vantaggio, leva, valore, bisogno operativo. -->
+</head>
+<body class="it">
+<div id="lang-toggle" aria-label="Language selector">
+  <button id="btn-it" class="active" onclick="setLang('it')">IT</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+<button id="btn-prev" class="nav-btn" onclick="navigate(-1)" aria-label="Previous slide">&lsaquo;</button>
+<button id="btn-next" class="nav-btn" onclick="navigate(1)" aria-label="Next slide">&rsaquo;</button>
+<div id="slide-counter" aria-label="Slide navigation"></div>
+<div id="mobile-slide-number" aria-hidden="true">01 / 11</div>
+
+<main class="deck">
+<div class="slides-track" id="slides-track">
+
+<section class="slide dark">
+  <div class="slide-inner">
+    <p class="kicker">Investor Deck / RSA</p>
+    <h1>NeuroSuite</h1>
+    <p class="lead lang-it">Osservazione neurofunzionale continua per RSA, caregiver e clinici.</p>
+    <p class="lead lang-en">Continuous neurofunctional observation for residential care, caregivers and clinicians.</p>
+    <p class="small lang-it">Un'infrastruttura modulare che costruisce baseline individuali, intercetta derive nel tempo e aiuta chi si prende cura delle persone.</p>
+    <p class="small lang-en">A modular infrastructure that builds individual baselines, detects changes over time and supports the people who care for others.</p>
+    <div class="pill-row">
+      <span class="pill">Baseline individuale</span>
+      <span class="pill">RSA Brescia</span>
+      <span class="pill">Trial progressivo</span>
+      <span class="pill">Non diagnostico</span>
+    </div>
+  </div>
+  <span class="slide-no">01 / 15</span>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Piattaforma orizzontale</p>
+    <p class="kicker lang-en">Horizontal platform</p>
+    <h2 class="lang-it">NeuroSuite è un motore multimodale, non una soluzione di nicchia.</h2>
+    <h2 class="lang-en">NeuroSuite is a multimodal engine, not a niche solution.</h2>
+    <p class="lead lang-it">È un ecosistema progettato per raccogliere segnali diversi, costruire baseline individuali e trasformare osservazioni continue in informazioni operative, leggibili e non diagnostiche.</p>
+    <p class="lead lang-en">It is an ecosystem designed to collect different signals, build individual baselines and turn continuous observation into operational, readable and non-diagnostic information.</p>
+    <div class="market-grid">
+      <div class="card market-card">
+        <h3 class="lang-it">Multimodale</h3>
+        <h3 class="lang-en">Multimodal</h3>
+        <p class="lang-it">Integra ambiente, movimento, riposo, linguaggio, interazioni, voce e, se autorizzati, segnali neurofunzionali portatili.</p>
+        <p class="lang-en">It integrates environment, movement, rest, language, interactions, voice and, when authorized, portable neurofunctional signals.</p>
+      </div>
+      <div class="card market-card">
+        <h3 class="lang-it">Scalabile</h3>
+        <h3 class="lang-en">Scalable</h3>
+        <p class="lang-it">Lo stesso core può adattarsi a RSA, domicilio, caregiver, trial osservativi, assistenza territoriale e verticali future.</p>
+        <p class="lang-en">The same core can adapt to residential care, home care, caregivers, observational trials, community care and future verticals.</p>
+      </div>
+      <div class="card market-card">
+        <h3 class="lang-it">Perché partire dalla RSA</h3>
+        <h3 class="lang-en">Why start with residential care</h3>
+        <p class="lang-it">La RSA concentra un bisogno urgente: popolazione più anziana, maggiore continuità di cura, governance chiara e un contesto reale per dimostrare valore.</p>
+        <p class="lang-en">Residential care concentrates an urgent need: an ageing population, more continuous care needs, clear governance and a real context to prove value.</p>
+      </div>
+    </div>
+    <div class="quote-panel">
+      <p class="lang-it">Partire dalla RSA non restringe NeuroSuite: rende verificabile un motore pensato per molti mondi diversi.</p>
+      <p class="lang-en">Starting with residential care does not narrow NeuroSuite: it makes a multi-vertical engine verifiable in a real need.</p>
+    </div>
+  </div>
+  <span class="slide-no">02 / 15</span>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="kicker lang-it">La possibilità concreta</p>
+    <p class="kicker lang-en">The concrete opportunity</p>
+    <h2 class="lang-it">Accorgersi prima che qualcosa stia cambiando.</h2>
+    <h2 class="lang-en">Noticing earlier that something is changing.</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3 class="lang-it">Osservazione frammentata</h3>
+        <h3 class="lang-en">Fragmented observation</h3>
+        <p class="lang-it">Operatori e caregiver vedono molto, ma non possono osservare tutto, sempre, in modo ordinato.</p>
+        <p class="lang-en">Care teams see a lot, but they cannot observe everything, continuously and in an ordered way.</p>
+      </div>
+      <div class="card">
+        <h3 class="lang-it">Segnali dispersi</h3>
+        <h3 class="lang-en">Signals are dispersed</h3>
+        <p class="lang-it">Sonno, movimento, linguaggio, ambiente e interazioni restano spesso separati e difficili da leggere nel tempo.</p>
+        <p class="lang-en">Sleep, movement, language, environment and interactions often remain separate and hard to read over time.</p>
+      </div>
+      <div class="card">
+        <h3 class="lang-it">Incertezza operativa</h3>
+        <h3 class="lang-en">Operational uncertainty</h3>
+        <p class="lang-it">Il opportunità non è solo intervenire sull'evento, ma capire se una deriva sta emergendo prima che diventi evidente.</p>
+        <p class="lang-en">The issue is not only reacting to events, but understanding whether a drift is emerging before it becomes obvious.</p>
+      </div>
+    </div>
+    <div class="quote-panel">
+      <p class="lang-it">NeuroSuite non sostituisce le persone: aiuta le persone che si prendono cura di altre persone.</p>
+      <p class="lang-en">NeuroSuite does not replace people: it supports the people who care for other people.</p>
+    </div>
+  </div>
+  <span class="slide-no">03 / 15</span>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Cos'è NeuroSuite</p>
+    <p class="kicker lang-en">What NeuroSuite is</p>
+    <h2 class="lang-it">Un motore modulare di osservazione e continuità.</h2>
+    <h2 class="lang-en">A modular engine for observation and continuity.</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>1. Multimodale</h3>
+        <p class="lang-it">Integra segnali da quotidianità, riposo, movimento, ambiente, linguaggio e interazioni.</p>
+        <p class="lang-en">Integrates signals from daily routines, rest, movement, environment, language and interactions.</p>
+      </div>
+      <div class="card">
+        <h3>2. Baseline individuale</h3>
+        <p class="lang-it">Il riferimento non è una media astratta, ma la storia osservativa della singola persona.</p>
+        <p class="lang-en">The reference is not an abstract average, but the observational history of the individual person.</p>
+      </div>
+      <div class="card">
+        <h3>3. Segnali contestualizzati</h3>
+        <p class="lang-it">I cambiamenti vengono letti rispetto al contesto, non come eventi isolati o diagnosi.</p>
+        <p class="lang-en">Changes are read in context, not as isolated events or diagnoses.</p>
+      </div>
+      <div class="card">
+        <h3>4. Alert e report</h3>
+        <p class="lang-it">Produce report ordinati e alert non diagnostici per supportare clinici e operatori.</p>
+        <p class="lang-en">Produces structured reports and non-diagnostic alerts to support clinicians and care teams.</p>
+      </div>
+      <div class="card">
+        <h3>5. Riusabile</h3>
+        <p class="lang-it">Lo stesso core può essere adattato a RSA, domicilio, caregiver e verticali future.</p>
+        <p class="lang-en">The same core can be adapted to residential care, home care, caregivers and future verticals.</p>
+      </div>
+      <div class="card">
+        <h3>6. Sobrio</h3>
+        <p class="lang-it">Non vende AI in astratto: vende continuità osservativa e riduzione dell'incertezza.</p>
+        <p class="lang-en">It does not sell AI in the abstract: it sells observational continuity and reduced uncertainty.</p>
+      </div>
+    </div>
+  </div>
+  <span class="slide-no">04 / 15</span>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Perché RSA / Brescia</p>
+    <p class="kicker lang-en">Why RSA / Brescia</p>
+    <h2 class="lang-it">Un contesto reale, governabile, clinicamente leggibile.</h2>
+    <h2 class="lang-en">A real, governable and clinically readable context.</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3 class="lang-it">Fondazione Brescia Solidale</h3>
+        <h3 class="lang-en">Fondazione Brescia Solidale</h3>
+        <ul class="clean lang-it">
+          <li>Contesto reale per un trial operativo controllato.</li>
+          <li>Ambiente adatto a consenso, governance e regole di accesso ai dati.</li>
+          <li>Possibilità di osservare ritmi e fragilità differenti senza invadere la quotidianità.</li>
+        </ul>
+        <ul class="clean lang-en">
+          <li>Real context for a controlled operational trial.</li>
+          <li>Suitable environment for consent, governance and data access rules.</li>
+          <li>Ability to observe different rhythms and vulnerabilities without intruding on daily life.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="lang-it">Riferimento clinico Brescia</h3>
+        <h3 class="lang-en">Brescia clinical reference</h3>
+        <ul class="clean lang-it">
+          <li>Il Dottor Gian Battista Guerrini è clinico di supporto geriatrico e riferimento per la valutazione clinica del percorso.</li>
+          <li>Fondazione Brescia Solidale rappresenta il contesto reale in cui impostare un trial governabile, compatibile con consenso, privacy e lettura clinico-operativa.</li>
+          <li>Il trial nasce come percorso prudente, progressivo e osservativo.</li>
+          <li>NeuroSuite non sostituisce il giudizio clinico: ordina segnali e supporta chi segue la persona.</li>
+        </ul>
+        <ul class="clean lang-en">
+          <li>Dottor Gian Battista Guerrini provides geriatric clinical support and acts as reference for the clinical evaluation of the pathway.</li>
+          <li>Fondazione Brescia Solidale represents the real context in which to structure a governable trial, compatible with consent, privacy and clinical-operational interpretation.</li>
+          <li>The trial starts as a prudent, progressive and observational pathway.</li>
+          <li>NeuroSuite does not replace clinical judgement: it structures signals and supports those who follow the person.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note lang-it">La relazione persona-operatore resta centrale. NeuroSuite ordina segnali e supporta la lettura, senza sostituire giudizio clinico o cura umana.</p>
+    <p class="note lang-en">The person-care team relationship remains central. NeuroSuite structures signals and supports interpretation without replacing clinical judgement or human care.</p>
+  </div>
+  <span class="slide-no">05 / 15</span>
+</section>
+
+<section class="slide slide-compact">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Trial progressivo</p>
+    <p class="kicker lang-en">Progressive trial</p>
+    <h2 class="lang-it">Da 2 stanze a baseline strutturata.</h2>
+    <h2 class="lang-en">From 2 rooms to structured baselines.</h2>
+    <div class="phase-grid">
+      <div class="card phase-card">
+        <div class="phase-num">1</div>
+        <h3 class="lang-it">Preparazione clinico-operativa</h3>
+        <h3 class="lang-en">Clinical-operational preparation</h3>
+        <ul class="clean lang-it">
+          <li>Criteri di inclusione.</li>
+          <li>Consenso informato.</li>
+          <li>Persone disponibili e situazioni differenti.</li>
+          <li>Setup minimo tecnologia.</li>
+          <li>Segnali da osservare.</li>
+          <li>Privacy, accesso ai dati e report.</li>
+        </ul>
+        <ul class="clean lang-en">
+          <li>Inclusion criteria.</li>
+          <li>Informed consent.</li>
+          <li>Available persons and different situations.</li>
+          <li>Minimal technology setup.</li>
+          <li>Signals to observe.</li>
+          <li>Privacy, data access and reports.</li>
+        </ul>
+      </div>
+      <div class="card phase-card">
+        <div class="phase-num">2</div>
+        <h3 class="lang-it">Avvio prudente su 2 stanze</h3>
+        <h3 class="lang-en">Prudent start in 2 rooms</h3>
+        <ul class="clean lang-it">
+          <li>2 stanze / 2 persone.</li>
+          <li>Baseline iniziale di 2-3 settimane.</li>
+          <li>Setup iniziale con tecnologie non invasive autorizzate.</li>
+          <li>Accettabilità, usabilità e stabilità tecnica.</li>
+          <li>Osservazione non invasiva.</li>
+          <li>Nina, dashboard e alert senza disturbare la quotidianità.</li>
+        </ul>
+        <ul class="clean lang-en">
+          <li>2 rooms / 2 people.</li>
+          <li>Initial baseline over 2-3 weeks.</li>
+          <li>Initial setup with authorized non-invasive technologies.</li>
+          <li>Acceptability, usability and technical stability.</li>
+          <li>Non-invasive observation.</li>
+          <li>Nina, dashboard and alerts without disrupting daily life.</li>
+        </ul>
+      </div>
+      <div class="card phase-card">
+        <div class="phase-num">3</div>
+        <h3 class="lang-it">Estensione a 4 stanze</h3>
+        <h3 class="lang-en">Extension to 4 rooms</h3>
+        <ul class="clean lang-it">
+          <li>4 stanze / 4 persone.</li>
+          <li>Casi scelti con criterio clinico-operativo.</li>
+          <li>Situazioni differenti.</li>
+          <li>Bacino osservativo più ricco.</li>
+          <li>Confronto tra pattern individuali, non tra persone.</li>
+          <li>Costruzione di baseline individuali.</li>
+        </ul>
+        <ul class="clean lang-en">
+          <li>4 rooms / 4 people.</li>
+          <li>Cases selected with clinical-operational criteria.</li>
+          <li>Different situations.</li>
+          <li>Richer observational pool.</li>
+          <li>Comparison of individual patterns, not people.</li>
+          <li>Construction of individual baselines.</li>
+        </ul>
+      </div>
+      <div class="card phase-card">
+        <div class="phase-num">4</div>
+        <h3 class="lang-it">Baseline, derive e scalabilità</h3>
+        <h3 class="lang-en">Baseline, drifts and scalability</h3>
+        <ul class="clean lang-it">
+          <li>Eventuale integrazione di MUSE o EEG portatile equivalente, se approvata nel percorso clinico-operativo.</li>
+          <li>Analisi longitudinale delle derive rispetto alla storia individuale.</li>
+          <li>Prova di concetto con variazioni simulate e dichiarate.</li>
+          <li>Report e invio segnali a caregiver, medici e operatori autorizzati.</li>
+          <li>Valutazione estensione alla struttura.</li>
+        </ul>
+        <ul class="clean lang-en">
+          <li>Possible integration of MUSE or equivalent portable EEG, if approved within the clinical-operational pathway.</li>
+          <li>Longitudinal analysis of drifts compared with the individual history.</li>
+          <li>Proof of concept with simulated and clearly labelled variations.</li>
+          <li>Reports and signal routing to authorized caregivers, physicians and operators.</li>
+          <li>Assessment of extension to the facility.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <span class="slide-no">06 / 15</span>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Cosa osserviamo</p>
+    <p class="kicker lang-en">What we observe</p>
+    <h2 class="lang-it">Segnali diversi, una storia individuale nel tempo.</h2>
+    <h2 class="lang-en">Different signals, one individual story over time.</h2>
+    <div class="signal-flow">
+      <div class="flow-box">
+        <h3 class="lang-it">Segnali quotidiani</h3>
+        <h3 class="lang-en">Daily signals</h3>
+        <p class="small lang-it">Quotidianità, sonno/riposo, movimento/cammino, ambiente, linguaggio, interazioni, comportamento.</p>
+        <p class="small lang-en">Daily routines, sleep/rest, movement/gait, environment, language, interactions and behaviour.</p>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-box">
+        <h3 class="lang-it">Baseline individuale</h3>
+        <h3 class="lang-en">Individual baseline</h3>
+        <p class="small lang-it">Ogni ospite ha ritmi, fragilità, abitudini e condizioni differenti. La storia della persona diventa il riferimento.</p>
+        <p class="small lang-en">Each resident has different rhythms, vulnerabilities, habits and conditions. The person's own history becomes the reference.</p>
+      </div>
+      <div class="flow-box">
+        <h3 class="lang-it">Deriva &rarr; attenzione</h3>
+        <h3 class="lang-en">Drift &rarr; attention</h3>
+        <p class="small lang-it">Quando il pattern cambia, NeuroSuite ordina i segnali e prepara report non diagnostici per chi segue la persona.</p>
+        <p class="small lang-en">When the pattern changes, NeuroSuite orders the signals and prepares non-diagnostic reports for the care team.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="lang-it">EEG portatile come possibile approfondimento</h3>
+      <h3 class="lang-en">Portable EEG as a possible deepening layer</h3>
+      <p class="lang-it">MUSE o sistemi EEG portatili equivalenti possono essere integrati come possibile approfondimento, se coerenti con il percorso clinico-operativo e con le autorizzazioni previste. L'obiettivo non è diagnosticare, ma aggiungere segnali neurofunzionali osservativi alla baseline individuale, da leggere insieme a movimento, sonno, ambiente, linguaggio, interazioni e comportamento quotidiano.</p>
+      <p class="lang-en">MUSE or equivalent portable EEG systems may be integrated as a possible deepening layer, if coherent with the clinical-operational pathway and the required authorizations. The objective is not diagnosis, but adding observational neurofunctional signals to the individual baseline, to be read together with movement, sleep, environment, language, interactions and daily behaviour.</p>
+    </div>
+  </div>
+  <span class="slide-no">07 / 15</span>
+</section>
+
+<section class="slide slide-compact">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Fondamento scientifico</p>
+    <p class="kicker lang-en">Scientific foundation</p>
+    <h2 class="lang-it">Segnali digitali e neurofunzionali.</h2>
+    <h2 class="lang-en">Digital and neurofunctional signals.</h2>
+    <p class="small lang-it">La letteratura suggerisce che segnali EEG e digitali possano essere utili nello studio precoce/prodromico di condizioni neurodegenerative. NeuroSuite li usa come segnali osservativi e contestuali, non diagnostici.</p>
+    <p class="small lang-en">The literature suggests that EEG and digital signals may be useful in early/prodromal study of neurodegenerative conditions. NeuroSuite uses them as observational and contextual signals, not diagnostic ones.</p>
+    <div class="evidence-grid">
+      <div class="card evidence-card">
+        <div class="area">EEG portatile</div>
+        <div class="ref">Krigolson O.E. et al. (2017), Choosing MUSE, Frontiers in Neuroscience.</div>
+        <p class="lang-it">Supporta MUSE come sistema EEG portatile validato per ricerca ERP, non come dispositivo diagnostico.</p>
+        <p class="lang-en">Supports MUSE as a portable EEG system validated for ERP research, not as a diagnostic device.</p>
+      </div>
+      <div class="card evidence-card">
+        <div class="area">Alzheimer / MCI</div>
+        <div class="ref">Cassani R. et al. (2018), Resting-State EEG for Alzheimer's Disease, Disease Markers.</div>
+        <p class="lang-it">Inquadra la rilevanza dell'EEG resting-state nello studio di Alzheimer e progressione.</p>
+        <p class="lang-en">Frames the relevance of resting-state EEG in the study of Alzheimer's disease and progression.</p>
+      </div>
+      <div class="card evidence-card">
+        <div class="area">Ritmi EEG</div>
+        <div class="ref">Babiloni C. et al., resting-state EEG rhythms in Mild Cognitive Impairment and Alzheimer's disease.</div>
+        <p class="lang-it">Colloca ritmi EEG e MCI/Alzheimer in un ambito di ricerca consolidato, con lettura prudente.</p>
+        <p class="lang-en">Places EEG rhythms and MCI/Alzheimer's disease within an established research area, read cautiously.</p>
+      </div>
+      <div class="card evidence-card">
+        <div class="area">Parkinson</div>
+        <div class="ref">Caviness J.N. et al. (2016), quantitative EEG patterns in Parkinson's disease, Eur. J. Neurology.</div>
+        <p class="lang-it">Mostra che pattern EEG quantitativi sono studiati anche nella Malattia di Parkinson.</p>
+        <p class="lang-en">Shows that quantitative EEG patterns are also studied in Parkinson's disease.</p>
+      </div>
+      <div class="card evidence-card">
+        <div class="area">Linguaggio</div>
+        <div class="ref">Fraser K.C., Meltzer J.A., Rudzicz F. (2016), linguistic features in narrative speech, JAD.</div>
+        <p class="lang-it">Supporta parlato spontaneo e linguaggio come fonte di biomarcatori digitali nello studio cognitivo.</p>
+        <p class="lang-en">Supports spontaneous speech and language as a source of digital biomarkers in cognitive study.</p>
+      </div>
+      <div class="card evidence-card">
+        <div class="area">Cammino</div>
+        <div class="ref">Verghese J. et al. (2002), Abnormality of Gait, New England Journal of Medicine.</div>
+        <p class="lang-it">Sostiene il valore osservativo di cammino e movimento come segnali longitudinali di rischio neurocognitivo.</p>
+        <p class="lang-en">Supports the observational value of gait and movement as longitudinal neurocognitive risk signals.</p>
+      </div>
+    </div>
+    <p class="note lang-it">Questi riferimenti non validano NeuroSuite e non costituiscono endorsement. Indicano la linea scientifica in cui si colloca il progetto.</p>
+    <p class="note lang-en">These references do not validate NeuroSuite and do not imply endorsement. They indicate the scientific line in which the project is positioned.</p>
+  </div>
+  <span class="slide-no">08 / 15</span>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Stato attuale</p>
+    <p class="kicker lang-en">Current status</p>
+    <h2 class="lang-it">Da dove siamo e dove andiamo.</h2>
+    <h2 class="lang-en">Where we are and where we are going.</h2>
+    <div class="status-grid">
+      <div class="card status-card">
+        <span class="status-tag done">Completato</span>
+        <h3 class="lang-it">Architettura e documentazione</h3>
+        <h3 class="lang-en">Architecture and documentation</h3>
+        <p class="lang-it">Sviluppo concettuale, architettura modulare e documentazione operativa completati.</p>
+        <p class="lang-en">Conceptual development, modular architecture and operational documentation completed.</p>
+      </div>
+      <div class="card status-card">
+        <span class="status-tag done">Completato</span>
+        <h3 class="lang-it">Allineamento clinico Brescia</h3>
+        <h3 class="lang-en">Brescia clinical alignment</h3>
+        <p class="lang-it">Allineamento clinico-operativo con Brescia / Fondazione Brescia Solidale e supporto geriatrico del Dottor Gian Battista Guerrini per la valutazione clinica del percorso.</p>
+        <p class="lang-en">Clinical-operational alignment with Brescia / Fondazione Brescia Solidale and geriatric support from Dottor Gian Battista Guerrini for the clinical evaluation of the pathway.</p>
+      </div>
+      <div class="card status-card">
+        <span class="status-tag now">Ora</span>
+        <h3 class="lang-it">Trial operativo controllato</h3>
+        <h3 class="lang-en">Controlled operational trial</h3>
+        <p class="lang-it">Siamo alla partenza del trial progressivo: preparazione, 2 stanze, baseline 2-3 settimane con tecnologie non invasive autorizzate, poi estensione a 4 stanze.</p>
+        <p class="lang-en">We are at the start of the progressive trial: preparation, 2 rooms, 2-3 week baseline with authorized non-invasive technologies, then extension to 4 rooms.</p>
+      </div>
+      <div class="card status-card">
+        <span class="status-tag next">Dopo</span>
+        <h3 class="lang-it">Estensione e replicabilità</h3>
+        <h3 class="lang-en">Extension and replication</h3>
+        <p class="lang-it">Valutazione di estensione alla struttura e preparazione della replicabilità verso RSA, domicilio e caregiver.</p>
+        <p class="lang-en">Assessment of extension to the facility and preparation of replication toward RSA, home care and caregivers.</p>
+      </div>
+    </div>
+  </div>
+  <span class="slide-no">09 / 15</span>
+</section>
+
+
+<section class="slide slide-compact">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Scenario economico</p>
+    <p class="kicker lang-en">Revenue scenario</p>
+    <h2 class="lang-it">Scenario prudente: 20% del potenziale operativo.</h2>
+    <h2 class="lang-en">Prudent scenario: 20% of the operational potential.</h2>
+    <p class="small lang-it">Il valore non è nella singola installazione, ma nella ricorrenza giornaliera per persona seguita. La base iniziale è Fondazione Brescia Solidale; l’ingresso di una seconda fondazione non nominata, già in interesse avanzato e con possibile finestra di finanziamento coerente con digitalizzazione, prevenzione, AI e miglioramento dei servizi, porta lo scenario da circa 600 persone a circa 2.000 persone o più.</p>
+    <p class="small lang-en">The value is not in a single installation, but in the daily recurring fee per person followed. Scenario based on Fondazione Brescia Solidale plus a second unnamed foundation, already showing advanced interest and with a potential funding window aligned with digitalization, prevention, AI and service improvement.</p>
+
+    <div class="revenue-hero">
+      <div class="revenue-main">
+        <div class="revenue-label lang-it">Scenario avvio — 2 fondazioni</div>
+        <div class="revenue-label lang-en">Launch scenario — 2 foundations</div>
+        <div class="revenue-number">2,55 M€/anno</div>
+        <p class="revenue-sub lang-it">Ricavi ricorrenti imponibili annui, IVA esclusa con 2.000 persone seguite a 3,50 €/giorno/persona, IVA esclusa.</p>
+        <p class="revenue-sub lang-en">Annual recurring taxable revenue, VAT excluded with 2,000 people followed at €3.50/day/person, VAT excluded.</p>
+      </div>
+      <div class="grid">
+        <div class="revenue-card">
+          <div class="big">2.000</div>
+          <div class="label lang-it">persone seguite nello scenario iniziale con due fondazioni</div>
+          <div class="label lang-en">people followed in the initial two-foundation scenario</div>
+        </div>
+        <div class="revenue-card">
+          <div class="big">3,50 €</div>
+          <div class="label lang-it">al giorno/persona: 3,00 € servizio base + 0,50 € pacchetto API/voce/risposte</div>
+          <div class="label lang-en">per day/person: €3.00 core service + €0.50 API/voice/response package</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="revenue-grid">
+      <div class="revenue-card">
+        <div class="big">7.000 €/giorno</div>
+        <div class="label lang-it">2.000 persone × 3,50 €</div>
+        <div class="label lang-en">2,000 people × €3.50</div>
+      </div>
+      <div class="revenue-card">
+        <div class="big">2,19 M€/anno</div>
+        <div class="label lang-it">sensitivity a 3,00 €/giorno/persona</div>
+        <div class="label lang-en">sensitivity at €3.00/day/person</div>
+      </div>
+      <div class="revenue-card">
+        <div class="big">12,78 M€/anno</div>
+        <div class="label lang-it">potenziale prudenziale 10.000 persone × 3,50 €/giorno</div>
+        <div class="label lang-en">prudent potential of 10,000 people × €3.50/day</div>
+      </div>
+    </div>
+
+    <div class="scenario-strip">
+      <div class="scenario-box">
+        <h3 class="lang-it">Da 600 a 2.000 persone</h3>
+        <h3 class="lang-en">From 600 to 2,000 people</h3>
+        <p class="lang-it">La prima base è Fondazione Brescia Solidale. Con l’ingresso di una seconda fondazione non nominata, già interessata e compatibile con piani di spesa su digitalizzazione, prevenzione e AI, lo scenario passa da circa 600 persone a circa 2.000 persone o più.</p>
+        <p class="lang-en">The first base is Fondazione Brescia Solidale. With the addition of a second unnamed foundation, already interested and aligned with spending plans for digitalization, prevention and AI, the scenario moves from about 600 people to around 2,000 people or more.</p>
+      </div>
+      <div class="scenario-box">
+        <h3 class="lang-it">Solo il 20% del potenziale</h3>
+        <h3 class="lang-en">Only 20% of the potential</h3>
+        <p class="lang-it">Le 2.000 persone rappresentano circa il 20% di un potenziale operativo territoriale prudenziale di 10.000 persone indicato dal progetto, da validare con dati ufficiali ATS / Comune / Regione.</p>
+        <p class="lang-en">The 2,000 people represent about 20% of a prudent territorial operating potential of 10,000 people indicated by the project, to be validated with official ATS / Municipality / Region data.</p>
+      </div>
+    </div>
+
+    <p class="source-note lang-it">Valori espressi come ricavi ricorrenti imponibili annui, IVA esclusa, costi API, assistenza, installazione, manutenzione, supporto e costi operativi. La seconda fondazione non viene nominata: interesse avanzato e finanziamento in valutazione/definizione, non finanziamento già concesso.</p>
+    <p class="source-note lang-en">Values shown as annual recurring taxable revenue, VAT excluded, API costs, assistance, installation, maintenance, support and operating costs. The second foundation is not named: advanced interest and funding under evaluation/definition, not already granted funding.</p>
+  </div>
+  <span class="slide-no">10 / 15</span>
+</section>
+
+
+
+
+<section class="slide slide-compact">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Mercato Italia</p>
+    <p class="kicker lang-en">Italy market</p>
+    <h2 class="lang-it">Italia: basta una quota piccola per vedere la scala.</h2>
+    <h2 class="lang-en">Italy: a small share is enough to show scale.</h2>
+    <p class="small lang-it">Base prudenziale: circa 408.000 persone/posti target nei presidi residenziali per anziani. Mostriamo solo il 2% e il 5%: senza includere ospedali, pronto soccorso, neurologia, aree post-intervento o monitoraggio continuo.</p>
+    <p class="small lang-en">Prudent base: about 408,000 target people/beds in residential elderly care. We show only 2% and 5%: excluding hospitals, emergency departments, neurology, post-intervention areas or continuous monitoring wards.</p>
+
+    <div class="market-focus">
+      <div class="market-focus-card">
+        <div class="headline">10,42 M€/anno</div>
+        <div class="caption lang-it">Italia 2%: 8.160 persone seguite a 3,50 €/giorno/persona, IVA esclusa.</div>
+        <div class="caption lang-en">Italy 2%: 8,160 people followed at €3.50/day/person, VAT excluded.</div>
+      </div>
+      <div class="market-focus-card">
+        <div class="headline">26,06 M€/anno</div>
+        <div class="caption lang-it">Italia 5%: 20.400 persone seguite. È ancora una quota piccola del solo mercato RSA/residenziale.</div>
+        <div class="caption lang-en">Italy 5%: 20,400 people followed. It is still a small share of the residential elderly care market alone.</div>
+      </div>
+    </div>
+
+    <div class="market-kpi-row two-scenarios">
+      <div class="market-kpi">
+          <div class="pct">2%</div>
+          <div class="people">8.160 persone</div>
+          <div class="money">10,42 M€/anno</div>
+        </div>
+        <div class="market-kpi">
+          <div class="pct">5%</div>
+          <div class="people">20.400 persone</div>
+          <div class="money">26,06 M€/anno</div>
+        </div>
+    </div>
+
+    <div class="reader-does-math lang-it">La slide non spinge scenari estremi: mostra solo 2% e 5%. Se il modello viene adottato, il lettore può intuire da solo cosa accade al 10%, 20% o oltre.</div>
+    <div class="reader-does-math lang-en">The slide does not push extreme scenarios: it only shows 2% and 5%. If the model is adopted, the reader can infer what happens at 10%, 20% or beyond.</div>
+
+    <p class="deck-source lang-it">Base Italia: scenario prudenziale su persone/posti target in presidi residenziali anziani, da validare con fonte primaria ISTAT/settore. Valori di fatturato imponibile, IVA esclusa; non utile netto, al lordo di costi API, cloud, assistenza, manutenzione, supporto, personale, imposte e costi operativi.</p>
+    <p class="deck-source lang-en">Italy base: prudent scenario on target people/beds in residential elderly care, to be validated with primary statistical/sector sources. Revenue values are VAT excluded and before APIs, cloud, assistance, maintenance, support, personnel, taxes and operating costs.</p>
+  </div>
+  <span class="slide-no">11 / 15</span>
+</section>
+
+
+
+<section class="slide slide-compact">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Mercato Europa</p>
+    <p class="kicker lang-en">Europe market</p>
+    <h2 class="lang-it">Europa: il 5% è già scala industriale.</h2>
+    <h2 class="lang-en">Europe: 5% is already industrial scale.</h2>
+    <p class="small lang-it">Scenario prudenziale interno: 2,4 milioni di persone/posti target RSA-equivalenti e long-term care residenziale in Europa, da validare con dataset Eurostat/OECD. Anche qui mostriamo solo il 2% e il 5%.</p>
+    <p class="small lang-en">Internal prudent scenario: 2.4 million target people/beds across RSA-equivalent and residential long-term care in Europe, to be validated against Eurostat/OECD datasets. Here too, we show only 2% and 5%.</p>
+
+    <div class="market-focus">
+      <div class="market-focus-card">
+        <div class="headline">61,32 M€/anno</div>
+        <div class="caption lang-it">Europa 2%: 48.000 persone seguite a 3,50 €/giorno/persona, IVA esclusa.</div>
+        <div class="caption lang-en">Europe 2%: 48,000 people followed at €3.50/day/person, VAT excluded.</div>
+      </div>
+      <div class="market-focus-card">
+        <div class="headline">153,30 M€/anno</div>
+        <div class="caption lang-it">Europa 5%: 120.000 persone seguite. Il modello diventa infrastruttura replicabile, non singola installazione.</div>
+        <div class="caption lang-en">Europe 5%: 120,000 people followed. The model becomes repeatable infrastructure, not a single installation.</div>
+      </div>
+    </div>
+
+    <div class="market-kpi-row two-scenarios">
+      <div class="market-kpi">
+          <div class="pct">2%</div>
+          <div class="people">48.000 persone</div>
+          <div class="money">61,32 M€/anno</div>
+        </div>
+        <div class="market-kpi">
+          <div class="pct">5%</div>
+          <div class="people">120.000 persone</div>
+          <div class="money">153,30 M€/anno</div>
+        </div>
+    </div>
+
+    <div class="reader-does-math lang-it">L’obiettivo della slide è far vedere la leva: se 2% e 5% producono questi valori, gli scenari successivi diventano immediati senza doverli promettere.</div>
+    <div class="reader-does-math lang-en">The goal of the slide is to show leverage: if 2% and 5% produce these values, the next scenarios become intuitive without having to promise them.</div>
+
+    <p class="deck-source lang-it">Base Europa: scenario interno prudenziale da validare con Eurostat/OECD; Eurostat dispone del dataset sui posti letto long-term care in nursing and residential care facilities. Valori di fatturato imponibile, IVA esclusa.</p>
+    <p class="deck-source lang-en">Europe base: internal prudent scenario to be validated against Eurostat/OECD; Eurostat provides a dataset on long-term care beds in nursing and residential care facilities. Revenue values are VAT excluded.</p>
+  </div>
+  <span class="slide-no">12 / 15</span>
+</section>
+
+
+
+<section class="slide slide-compact">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Asset proprietario</p>
+    <p class="kicker lang-en">Proprietary asset</p>
+    <h2 class="lang-it">La banca dati diventa barriera d’ingresso.</h2>
+    <h2 class="lang-en">The data asset becomes the entry barrier.</h2>
+    <p class="small lang-it">NeuroSuite non crea solo fatturato ricorrente: costruisce una banca dati longitudinale, multimodale e governata sulla fragilità quotidiana. Non è vendita di dati personali: è un asset anonimizzato/aggregato, autorizzato e tracciato per qualità, ricerca osservazionale, benchmarking e miglioramento dei modelli.</p>
+    <p class="small lang-en">NeuroSuite does not only create recurring revenue: it builds a governed longitudinal and multimodal data asset around everyday frailty. This is not personal data resale: it is an anonymized/aggregated, authorized and audited asset for quality, observational research, benchmarking and model improvement.</p>
+
+    <div class="data-asset-grid">
+      <div class="asset-pillar">
+        <h3 class="lang-it">Perché vale</h3>
+        <h3 class="lang-en">Why it matters</h3>
+        <ul class="lang-it">
+          <li>Baseline individuali nel tempo, non fotografie isolate.</li>
+          <li>Voce, interazioni, promemoria, alert e segnali ambientali nello stesso tracciato.</li>
+          <li>Dati oggi frammentati tra RSA, caregiver, cartelle, appunti e sistemi non interoperabili.</li>
+          <li>Effetto rete: più persone osservate, più robusto diventa il sistema.</li>
+        </ul>
+        <ul class="lang-en">
+          <li>Individual baselines over time, not isolated snapshots.</li>
+          <li>Voice, interactions, reminders, alerts and environmental signals in one track.</li>
+          <li>Data currently fragmented across care homes, caregivers, records, notes and non-interoperable systems.</li>
+          <li>Network effect: the more people followed, the stronger the system becomes.</li>
+        </ul>
+      </div>
+      <div class="asset-pillar">
+        <h3 class="lang-it">Stima prudente di valore strategico</h3>
+        <h3 class="lang-en">Prudent strategic value estimate</h3>
+        <p class="lang-it">Valorizzazione interna prudente: 50–200 €/persona/anno osservata. Non è ricavo garantito: è valore patrimoniale, barriera d’ingresso e leva per partnership industriali.</p>
+        <p class="lang-en">Prudent internal valuation: €50–200 per observed person/year. This is not guaranteed revenue: it is strategic asset value, entry barrier and partnership leverage.</p>
+        <div class="asset-range">
+          <div class="range-card">
+            <div class="value">0,41–1,63 M€</div>
+            <div class="label lang-it">Italia 2%: 8.160 persone osservate/anno</div>
+            <div class="label lang-en">Italy 2%: 8,160 observed people/year</div>
+          </div>
+          <div class="range-card">
+            <div class="value">1,02–4,08 M€</div>
+            <div class="label lang-it">Italia 5%: 20.400 persone osservate/anno</div>
+            <div class="label lang-en">Italy 5%: 20,400 observed people/year</div>
+          </div>
+          <div class="range-card">
+            <div class="value">2,40–9,60 M€</div>
+            <div class="label lang-it">Europa 2%: 48.000 persone osservate/anno</div>
+            <div class="label lang-en">Europe 2%: 48,000 observed people/year</div>
+          </div>
+          <div class="range-card">
+            <div class="value">6–24 M€</div>
+            <div class="label lang-it">Europa 5%: 120.000 persone osservate/anno</div>
+            <div class="label lang-en">Europe 5%: 120,000 observed people/year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="deck-source lang-it">La stima dell’asset dati è interna e prudenziale. Non rappresenta vendita di dati personali né ricavo garantito: misura il potenziale valore strategico di una base osservativa longitudinale, autorizzata, aggregata/anonimizzata e governata.</p>
+    <p class="deck-source lang-en">The data asset estimate is internal and prudent. It does not represent personal data sales or guaranteed revenue: it measures the potential strategic value of a governed, authorized, aggregated/anonymized longitudinal observation base.</p>
+  </div>
+  <span class="slide-no">13 / 15</span>
+</section>
+
+
+
+<section class="slide slide-compact">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Battle card</p>
+    <p class="kicker lang-en">Battle card</p>
+    <h2 class="lang-it">Dove NeuroSuite si differenzia.</h2>
+    <h2 class="lang-en">Where NeuroSuite differentiates.</h2>
+    <p class="small lang-it">Matrice indicativa basata su informazioni pubbliche e posizionamento dichiarato dei competitor. Non costituisce due diligence tecnica o commerciale completa: evidenzia dove NeuroSuite combina funzioni oggi spesso separate.</p>
+    <p class="small lang-en">Indicative matrix based on public information and declared competitor positioning. It is not a complete technical or commercial due diligence review: it highlights where NeuroSuite combines functions that are often separate today.</p>
+    <div class="battle-wrap">
+      <table class="battle-table" aria-label="NeuroSuite competitor battle card">
+        <thead>
+          <tr>
+            <th class="lang-it">Capacità / servizio</th>
+            <th class="lang-en">Capability / service</th>
+            <th>NeuroSuite</th>
+            <th>CarePredict</th>
+            <th>Inspiren</th>
+            <th>Sensi.AI</th>
+            <th>Essence SmartCare</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="lang-it">RSA / senior living</span><span class="lang-en">Residential care / senior living</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark part">Parz.</span></td><td><span class="mark yes">Pres.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Domicilio e caregiver</span><span class="lang-en">Home care and caregivers</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Sensori ambientali / stanza</span><span class="lang-en">Ambient / room sensors</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark part">Parz.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Wearable o device di sicurezza</span><span class="lang-en">Wearable or safety device</span></td>
+            <td><span class="mark part">Opz.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark yes">Pres.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Baseline individuale longitudinale</span><span class="lang-en">Longitudinal individual baseline</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark part">Parz.</span></td><td><span class="mark part">Parz.</span></td><td><span class="mark part">Parz.</span></td><td><span class="mark part">Parz.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Voce Nina e compagnia conversazionale</span><span class="lang-en">Nina voice and conversational companionship</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Report per caregiver, medici e operatori</span><span class="lang-en">Reports for caregivers, physicians and operators</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark part">Parz.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Alert non diagnostici contestualizzati</span><span class="lang-en">Contextual non-diagnostic alerts</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td><td><span class="mark yes">Pres.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">MUSE / EEG portatile come approfondimento</span><span class="lang-en">MUSE / portable EEG as deepening layer</span></td>
+            <td><span class="mark part">Opz.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Prova di concetto con derive simulate</span><span class="lang-en">Proof of concept with simulated drifts</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td>
+          </tr>
+          <tr>
+            <td><span class="lang-it">Riuso su verticali diverse</span><span class="lang-en">Reuse across different verticals</span></td>
+            <td><span class="mark yes">Pres.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark no">N.r.</span></td><td><span class="mark part">Parz.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><span class="mark yes">Pres.</span> presente o progettato dal posizionamento pubblico</span>
+      <span><span class="mark part">Parz.</span> copertura parziale o diversa</span>
+      <span><span class="mark no">N.r.</span> non rilevato dal posizionamento pubblico</span>
+      <span><span class="mark part">Opz.</span> previsto come opzione / modulo successivo</span>
+    </div>
+    <p class="source-note lang-it">Nota: confronto indicativo basato su informazioni pubbliche, materiali commerciali e posizionamento dichiarato. Non costituisce due diligence tecnica o commerciale completa.</p>
+    <p class="source-note lang-en">Note: indicative comparison based on public information, commercial material and declared positioning. It is not a complete technical or commercial due diligence review.</p>
+  </div>
+  <span class="slide-no">14 / 15</span>
+</section>
+
+<section class="slide dark">
+  <div class="slide-inner">
+    <p class="kicker lang-it">Chiusura</p>
+    <p class="kicker lang-en">Closing</p>
+    <h2 class="lang-it">Cosa serve per partire bene.</h2>
+    <h2 class="lang-en">What is needed to start well.</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3 class="lang-it">Supporto operativo e metodologico</h3>
+        <h3 class="lang-en">Operational and methodological support</h3>
+        <ul class="clean lang-it">
+          <li>Partenza operativa del trial.</li>
+          <li>Accesso al network clinico-istituzionale.</li>
+          <li>Consolidamento metodologico.</li>
+          <li>Preparazione scalabilità.</li>
+        </ul>
+        <ul class="clean lang-en">
+          <li>Operational launch of the trial.</li>
+          <li>Access to the clinical-institutional network.</li>
+          <li>Methodological consolidation.</li>
+          <li>Scalability preparation.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="lang-it">Contatti</h3>
+        <h3 class="lang-en">Contacts</h3>
+        <div class="contact-grid single-contact">
+          <div>
+            <div class="contact-name">Alessandro Pindilli</div>
+            <div class="contact-role lang-it">Fondatore, creatore e proprietario intellettuale dell'intero progetto NeuroSuite.</div>
+            <div class="contact-role lang-en">Founder, creator and intellectual owner of the entire NeuroSuite project.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note lang-it">NeuroSuite osserva, costruisce baseline, intercetta derive, ordina segnali e supporta i clinici. Non sostituisce persone, non certifica diagnosi e non promette esiti clinici.</p>
+    <p class="note lang-en">NeuroSuite observes, builds baselines, detects drifts, orders signals and supports clinicians. It does not replace people, certify diagnoses or promise clinical outcomes.</p>
+  </div>
+  <span class="slide-no">15 / 15</span>
+</section>
+
+</div>
+</main>
+
+<script>
+(function(){
+  let currentSlide = 0;
+  function slides(){ return Array.from(document.querySelectorAll('.slide')); }
+  function update(){
+    const track = document.getElementById('slides-track');
+    const all = slides();
+    if(track) track.style.transform = 'translateX(-' + (currentSlide * 100) + 'vw)';
+    const prev = document.getElementById('btn-prev');
+    const next = document.getElementById('btn-next');
+    if(prev) prev.disabled = currentSlide === 0;
+    if(next) next.disabled = currentSlide === all.length - 1;
+    document.querySelectorAll('.dot').forEach(function(dot, index){
+      dot.classList.toggle('active', index === currentSlide);
+    });
+    const mobileNumber = document.getElementById('mobile-slide-number');
+    if(mobileNumber) {
+      mobileNumber.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(all.length).padStart(2, '0');
+    }
+  }
+  function buildDots(){
+    const holder = document.getElementById('slide-counter');
+    if(!holder) return;
+    holder.innerHTML = '';
+    slides().forEach(function(_, index){
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (index === currentSlide ? ' active' : '');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
+      dot.addEventListener('click', function(){ goToSlide(index); });
+      holder.appendChild(dot);
+    });
+  }
+  window.goToSlide = function(index){
+    const all = slides();
+    currentSlide = Math.max(0, Math.min(all.length - 1, index));
+    update();
+  };
+  window.navigate = function(direction){ window.goToSlide(currentSlide + direction); };
+  window.setLang = function(lang){
+    document.body.classList.remove('it', 'en');
+    document.body.classList.add(lang === 'en' ? 'en' : 'it');
+    document.documentElement.lang = lang === 'en' ? 'en' : 'it';
+    document.getElementById('btn-it').classList.toggle('active', lang !== 'en');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    update();
+  };
+  document.addEventListener('keydown', function(event){
+    if(event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'PageDown') navigate(1);
+    if(event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') navigate(-1);
+    if(event.key === 'Home') goToSlide(0);
+    if(event.key === 'End') goToSlide(slides().length - 1);
+  });
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartAt = 0;
+  document.addEventListener('touchstart', function(event){
+    if(!event.changedTouches || !event.changedTouches.length) return;
+    touchStartX = event.changedTouches[0].clientX;
+    touchStartY = event.changedTouches[0].clientY;
+    touchStartAt = Date.now();
+  }, { passive: true });
+  document.addEventListener('touchend', function(event){
+    if(!event.changedTouches || !event.changedTouches.length) return;
+    const dx = event.changedTouches[0].clientX - touchStartX;
+    const dy = event.changedTouches[0].clientY - touchStartY;
+    const elapsed = Date.now() - touchStartAt;
+    if(elapsed > 900) return;
+    if(Math.abs(dx) < 52 || Math.abs(dx) < Math.abs(dy) * 1.35) return;
+    navigate(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  document.addEventListener('DOMContentLoaded', function(){
+    buildDots();
+    update();
+  });
+  buildDots();
+  update();
+})();
+</script>
+
+<script id="deck-runtime-safety-v1">
+(function(){
+  if(!document.body.classList.contains('it') && !document.body.classList.contains('en')){
+    document.body.classList.add('it');
+  }
+})();
+</script>
+
+</body>
+</html>
+
+
